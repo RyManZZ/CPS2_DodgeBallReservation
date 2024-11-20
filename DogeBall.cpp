@@ -13,7 +13,7 @@ ifstream openInputFile();
 ofstream openOutputFile();
 
 //testTESING
-//hah it works
+
 //menu function
 
 int main() {
