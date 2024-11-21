@@ -7,7 +7,7 @@
 //////////////////////////////////////////////
 
 #include "DogeBall.h"
-
+#include "person.h"
 
 ifstream openInputFile();
 ofstream openOutputFile();
@@ -16,33 +16,57 @@ ofstream openOutputFile();
 //test
 //menu function
 
+using namespace NS_Person;
+
 int main() {
 
-	ifstream dogeball;
-	ofstream dogeball_updated, all_reservation;
+	ifstream inFile_dodgeball;
+	ofstream dodgeball_updated, all_reservation;
 	
-	
+	//variables
+	vector<Person> personData; //Stores First and Last names and the credits
+	string userInput, pin, firstName, lastName;
+	int credit, counts = 0;
+
 	
 	
 	//gets the name list of the dogeball team 
 	cout << "Dogeball team roster\n--------------------\n";
-	dogeball = openInputFile();
+	inFile_dodgeball = openInputFile();
 	
 	system("cls");
 
 //put person class function here
+	//populate person class from input file
+	while (inFile_dodgeball) {
+		//loop for the drivers
+		while (counts < 9) {
+			inFile_dodgeball >> firstName >> lastName; //run 9 times for driver
+			credit = -1;
+			counts++;
+
+			personData.push_back(Person(firstName, lastName, credit)); //populates the person class with the drivers
+		}
+
+		inFile_dodgeball >> firstName >> lastName >> credit; //gets the remaing people from the file that are not drivers
+		personData.push_back(Person(firstName, lastName, credit)); //populates the person class with the passengers
+	}
+	
+	//used for testing to diaply all names
+	for (auto i : personData) {
+		i.displayFirstName();
+		i.displayLastName();
+		i.displayCredit();
+		cout << endl;
+	}
 
 
 
-	dogeball_updated = openOutputFile(); //output file used for the updated credit values
+	dodgeball_updated = openOutputFile(); //output file used for the updated credit values
 	all_reservation  = openOutputFile(); //output file for the gui of car reservation
 
-	//variables
-	string userInput, pin, firstName, lastName;
-
-	//populate person class from input file
 	
-
+	
 	while (true) {
 		system("cls"); //clear the cmd
 

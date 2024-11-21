@@ -17,17 +17,22 @@
 namespace NS_Person { //creates a namespace for plant
 	class Person {    //creates a parent class Plant
 
-	protected:
+	private:
 		string firstName;
 		string lastName;
 		int credit;
 
 	public:
-			 Person();			     //constructor
-		void setPersonData(string, string, int); //get the First, Last names, & credits of each person
-		
-		//check for driver? 
-		//or give driver -1 credit to serve as a sentinal value?
+		Person();
+		Person(string, string, int );			     //constructor
+		void setPersonData(string, string); //get the First, Last names, & credits of each person
+		void setCreditData(int);
+		void displayFirstName(void);
+		void displayLastName(void);
+		void displayCredit(void);
+
+			//check for driver? 
+			//or give driver -1 credit to serve as a sentinal value?
 	};
 }
 
