@@ -8,16 +8,16 @@
 
 #pragma once
 //source files
+#include <iostream>
 #include <iomanip>
 #include <string>
 #include <vector>
 #include <fstream>
-#include <iostream>
 
 //header files
 #include "reservation.h"
 #include "vehicle.h"
-#include "person.h"
+//#include "person.h"
 #include "truck.h"
 #include "sedan.h"
 #include "compact.h"

@@ -32,6 +32,8 @@ int main() {
 
 //put person class function here
 
+
+
 	dogeball_updated = openOutputFile(); //output file used for the updated credit values
 	all_reservation  = openOutputFile(); //output file for the gui of car reservation
 
