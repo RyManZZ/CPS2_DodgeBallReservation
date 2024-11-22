@@ -23,10 +23,21 @@ namespace NS_Person { //creates a namespace for plant
 		int credit;
 
 	public:
-		Person();
-		Person(string, string, int );			     //constructor
-		void setPersonData(string, string); //get the First, Last names, & credits of each person
-		void setCreditData(int);
+		//constructors
+		Person(); //default
+		Person(string, string, int ); //paramertarized
+		
+		//seting
+		void setPersonData(string, string); //sets the first and last names
+		void setCreditData(int); //sets the # of credits
+
+		//returns
+		string getFirstName();
+		string getLastName();
+		int    getCredit();
+
+
+		//displays
 		void displayFirstName(void);
 		void displayLastName(void);
 		void displayCredit(void);

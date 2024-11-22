@@ -12,60 +12,58 @@
 ifstream openInputFile();
 ofstream openOutputFile();
 
-//testTESING
-//test
-//menu function
-
 using namespace NS_Person;
 
 int main() {
 
+	//file variables
 	ifstream inFile_dodgeball;
 	ofstream dodgeball_updated, all_reservation;
 	
+
 	//variables
 	vector<Person> personData; //Stores First and Last names and the credits
 	string userInput, pin, firstName, lastName;
-	int credit, counts = 0;
+	int credit;
+	int counts = 0; //used to get the drivers
 
-	
 	
 	//gets the name list of the dogeball team 
 	cout << "Dogeball team roster\n--------------------\n";
 	inFile_dodgeball = openInputFile();
-	
 	system("cls");
+
 
 //put person class function here
 	//populate person class from input file
-	while (inFile_dodgeball) {
-		//loop for the drivers
+	while (inFile_dodgeball.good()) {
+		//Grabs the first 9 people from the txt file
+		//As they are drivers it assigns -1 crdits to them
 		while (counts < 9) {
 			inFile_dodgeball >> firstName >> lastName; //run 9 times for driver
-			credit = -1;
+			credit = -1; //used as a sentinal value
 			counts++;
 
 			personData.push_back(Person(firstName, lastName, credit)); //populates the person class with the drivers
 		}
-
 		inFile_dodgeball >> firstName >> lastName >> credit; //gets the remaing people from the file that are not drivers
 		personData.push_back(Person(firstName, lastName, credit)); //populates the person class with the passengers
 	}
 	
 	//used for testing to diaply all names
-	for (auto i : personData) {
-		i.displayFirstName();
-		i.displayLastName();
-		i.displayCredit();
-		cout << endl;
-	}
+	//for (auto i : personData) {
+	//	i.displayFirstName();
+	//	i.displayLastName();
+	//	i.displayCredit();
+	//	cout << endl;
+	//}
+	//////////////////////////////////////////
 
 
+	//opens the output files
+	//dodgeball_updated = openOutputFile(); //output file used for the updated credit values
+	//all_reservation  = openOutputFile(); //output file for the gui of car reservation
 
-	dodgeball_updated = openOutputFile(); //output file used for the updated credit values
-	all_reservation  = openOutputFile(); //output file for the gui of car reservation
-
-	
 	
 	while (true) {
 		system("cls"); //clear the cmd
@@ -84,14 +82,33 @@ int main() {
 
 		//Create reservation
 		if (userInput == "1") {
-			
-			//
 			cout << "First Name: ";
 			cin >> firstName;
 
 			cout << "Last Name: ";
 			cin >> lastName;
-			system("pause");
+			
+
+			for (int i = 0; i < personData.size(); i++) {
+				if (firstName == personData.at(i).Person::getFirstName() && lastName == personData.at(i).Person::getLastName()) {
+					cout << personData.at(i).Person::getCredit();
+
+
+					cin >> userInput;
+					if (userInput == "yes") {
+						cout << "Reservation Made";
+					}
+					else {
+						cout << "Reservation Failed";
+
+					}
+
+					system("pause");
+					continue;
+				}
+			}
+			
+
 		}
 
 		//Modify Reservation
@@ -118,9 +135,6 @@ int main() {
 
 	return 0;
 }
-
-
-
 
 
 //Input file fuction
