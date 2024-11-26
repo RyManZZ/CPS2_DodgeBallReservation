@@ -33,7 +33,7 @@ int main() {
 	inFile_dodgeball = openInputFile();
 	system("cls");
 
-
+	sleep(5);
 //put person class function here
 	//populate person class from input file
 	while (inFile_dodgeball.good()) {
@@ -66,7 +66,7 @@ int main() {
 
 	
 	while (true) {
-		system("cls"); //clear the cmd
+		system("cls"); //clear the cmd for every loop
 
 		//menu display
 		cout << "Doge Ball Car pool Reservation:\n";
@@ -76,11 +76,14 @@ int main() {
 		cout << "(3) Delete Reservation\n";
 		cout << "(4) Print  Reservations\n\n";
 
+
 		//user input for menu
 		cout << "option: ";
 		cin >> userInput;
 
-		//Create reservation
+		
+		//options 1
+		//this will allow the user to create a reservation
 		if (userInput == "1") {
 			cout << "First Name: ";
 			cin >> firstName;
@@ -105,23 +108,29 @@ int main() {
 
 					system("pause");
 					continue;
-				}
+				}	
 			}
-			
 
+			//make error check for if name was not found and send the user back to the menu
+			cout << "Sorry, " << firstName << " " << lastName << " was not found\n\n";
+			system("pause");
+			continue;
 		}
 
-		//Modify Reservation
+		//Option 2
+		//This will allow the user to modify a reservation that has already been made
 		else if (userInput == "2") {
 
 		}
 
-		//Delete Reservation
+		//Option 3
+		//This will allow a user to delete a reservation that has been made delete reservation
 		else if (userInput == "3") {
 
 		}
 
-		//Print Reservation
+		//Option 4
+		//This will print all made reservation
 		else if (userInput == "4") {
 
 		}

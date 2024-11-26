@@ -8,3 +8,20 @@
 #pragma once
 
 #include "DogeBall.h"
+
+
+//car order goes
+
+// Color  Vehcile Name
+
+// Purple  Pick-Up  Pat Cooper
+// Green   Pick-Up  Jane Cox
+// Black   Pick-Up  Tim Taylor
+
+// Red     Compact  Ben Butler
+// Blue    Compact  Art Campbell
+// Yellow  Compact  Ann Edwards
+ 
+// Blue    Sedan    Grace Wan
+// Black   Sedan    Lary Adams
+// Green   Sedan    Jessie Quirk
