@@ -27,5 +27,4 @@
 //namespaces
 using namespace std;
 
-//test
 //prototypes
