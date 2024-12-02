@@ -8,3 +8,21 @@
 #pragma once
 
 #include "DogeBall.h"
+#include "vehicle.h"
+
+
+using namespace NS_Vehicle;
+
+namespace NS_Sedan { //creates a namespace for tree
+	class Sedan : public Vehicle { //creates the tree class as a child of plant
+
+	private:
+		vector<char> seat_S;
+
+	public:
+		Sedan();             //constructor
+		void displaySedan(); //prints the truck image
+		vector <char> getSeatSedan(); //may not be used
+		bool seatCheckSedan(vector<char>); //checks to see if the seat is valid
+	};
+}

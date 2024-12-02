@@ -8,3 +8,24 @@
 #pragma once
 
 #include "DogeBall.h"
+#include "person.h"
+
+using namespace NS_Person;
+
+namespace NS_Reservation { //creates a namespace for plant
+	class Reservation {    //creates a parent class Plant
+
+	private:
+		string firstName;
+		int pin;
+		
+	public:
+		//constructors
+		Reservation(); //default
+		void SetPin(int);
+		void createReservation(vector<Person>);
+	//	void modifyReservation();
+	//	void printReservation();
+	//	void deleteReservation();
+	};
+}

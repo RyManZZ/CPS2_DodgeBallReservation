@@ -8,11 +8,24 @@
 
 #include "DogeBall.h"
 #include "person.h"
+#include "reservation.h"
+#include "truck.h"
+#include "sedan.h"
+#include "compact.h"
 
 ifstream openInputFile();
 ofstream openOutputFile();
 
 using namespace NS_Person;
+using namespace NS_Reservation;
+using namespace NS_Truck;
+using namespace NS_Sedan;
+using namespace NS_Compact;
+
+
+void createTruck(vector<Truck>);
+void createSedan(vector<Sedan>);
+void createCompact(vector<Compact>);
 
 
 int main() {
@@ -22,8 +35,20 @@ int main() {
 	ofstream dodgeball_updated, all_reservation;
 	
 
-	//variables
+	//Person class variables
 	vector<Person> personData; //Stores First and Last names and the credits
+	
+	//Reservation Class Variables
+	Reservation reservationTemp; //
+	
+	//Vehicle Class Variables
+	vector<Truck>   trucks;
+	vector<Sedan>   sedans;
+	vector<Compact> compacts;
+	string carType; //user input to get the type of the car
+
+
+	//variable main
 	string userInput, pin, firstName, lastName;
 	int credit;
 	int counts = 0; //used to get the drivers
@@ -70,7 +95,7 @@ int main() {
 		system("cls"); //clear the cmd for every loop
 
 		//menu display
-		cout << "Doge Ball Car pool Reservation:\n";
+		cout << "Dodge Ball Car pool Reservation:\n";
 		cout << "-------------------------------\n\n";
 		cout << "(1) Create Reservation\n";
 		cout << "(2) Modify Reservation\n";
@@ -86,36 +111,7 @@ int main() {
 		//options 1
 		//this will allow the user to create a reservation
 		if (userInput == "1") {
-			cout << "First Name: ";
-			cin >> firstName;
-
-			cout << "Last Name: ";
-			cin >> lastName;
-			
-
-			for (int i = 0; i < personData.size(); i++) {
-				if (firstName == personData.at(i).Person::getFirstName() && lastName == personData.at(i).Person::getLastName()) {
-					cout << personData.at(i).Person::getCredit();
-
-
-					cin >> userInput;
-					if (userInput == "yes") {
-						cout << "Reservation Made";
-					}
-					else {
-						cout << "Reservation Failed";
-
-					}
-
-					system("pause");
-					continue;
-				}	
-			}
-
-			//make error check for if name was not found and send the user back to the menu
-			cout << "Sorry, " << firstName << " " << lastName << " was not found\n\n";
-			system("pause");
-			continue;
+			reservationTemp.createReservation(personData);
 		}
 
 		//Option 2
@@ -145,6 +141,56 @@ int main() {
 
 	return 0;
 }
+
+
+//creates the three objects of Truck
+void createTruck(vector<Truck> trucks) {
+	Truck tempTruck;
+	//purple pat cooper
+	tempTruck.SetDriverName("Pat", "Cooper", "purple");
+	tempTruck.Truck::Truck();
+	trucks.push_back(tempTruck);
+
+	//Green Jane Cox
+	tempTruck.SetDriverName("Jane", "Cox", "Green");
+	tempTruck.Truck::Truck();
+	trucks.push_back(tempTruck);
+
+	//Black  Tim Taylor
+	tempTruck.SetDriverName("Tim", "Taylor", "Black");
+	tempTruck.Truck::Truck();
+	trucks.push_back(tempTruck);
+}
+
+//Creates the three objects of Compact
+void createCompact(vector<Compact>) {
+	//red Ben Butler
+
+
+	//Blue Art Campbell
+
+
+    //Yellow Ann Edwards
+}
+
+//Crteates the three objects of Sedan
+void createSedan(vector<Sedan>) {
+	//Blue Grace Wan
+
+
+	//Black Lary Adams
+
+
+	//Green Jessie Quirk
+}
+
+
+
+
+
+
+
+
 
 
 //Input file fuction
@@ -197,6 +243,4 @@ ofstream openOutputFile() {
 
 	return OutPutFile; //returns the file path to main
 }
-
-
 

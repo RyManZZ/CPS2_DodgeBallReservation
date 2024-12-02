@@ -15,10 +15,10 @@
 using namespace NS_Compact;
 using namespace NS_Vehicle;
 
-Compact::Compact() {
-	seat_C.push_back('-'); //passanger seat
-	seat_C.push_back('-'); //back seat left
-	seat_C.push_back('-'); //back seat right
+Compact::Compact() {							//pos val
+	seat_C.push_back('-'); //passanger seat        0   5
+	seat_C.push_back('-'); //back seat left        1   3
+	seat_C.push_back('-'); //back seat right       2   3
 }
 
 //still needs to be completed
@@ -33,7 +33,7 @@ void Compact::displayCompact() {
 	//  --------
 	//Print Driver Name
 
-	//Extra
+	//Extra (add if time allows)
 	//Print Passanger 1
 	//Print Passanger 2
 	//Print Passanger 3

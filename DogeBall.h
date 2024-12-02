@@ -15,7 +15,8 @@
 #include <fstream>
 
 
-
+//Remove?
+//*****************************************************************************\\
 // Was used to include all class files together but broke the program
 //header files (Classes)
 //#include "reservation.h"
@@ -24,7 +25,7 @@
 //#include "truck.h"
 //#include "sedan.h"
 //#include "compact.h"
-
+//*****************************************************************************\\
 
 //namespaces
 using namespace std;
@@ -32,15 +33,27 @@ using namespace std;
 //prototypes
 
 
-// To-Do 
+//To-Do 
 // Finish the print for the truck
 // Finish the print for the compact
+// Finish the print for the sedan
+//
+//
 
 //To-Do Zach
 //
 //
 
+
+
+
 //To-Do Ryan
 //
 //
 
+
+
+
+//completed
+// Vehcile main class
+// Person Class

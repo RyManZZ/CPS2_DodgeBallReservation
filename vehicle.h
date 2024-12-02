@@ -32,12 +32,14 @@ namespace NS_Vehicle{ //creates a namespace for plant
 	protected:
 		string driverFirstName;
 		string driverLastName;
+		string color;
 		
 	public:
 		//constructors
 		Vehicle(); //default
-		void SetDriverName(string, string); //sets the drive name
+		void SetDriverName(string, string, string); //sets the drive name
 		string GetDriverFirstName();
 		string GetDriverLastName();
+		string GetColor();
 	};
 }
