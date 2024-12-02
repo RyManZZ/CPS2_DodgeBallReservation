@@ -17,7 +17,7 @@ namespace NS_Truck { //creates a namespace for tree
 	class Truck : public Vehicle { //creates the tree class as a child of plant
 
 	private:
-		vector<char> seat;
+		vector<char> seat_T;
 
 	public:
 		Truck();             //constructor

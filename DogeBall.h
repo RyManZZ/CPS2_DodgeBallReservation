@@ -32,9 +32,9 @@ using namespace std;
 //prototypes
 
 
-// To-Do Request
-// Make the 
-//
+// To-Do 
+// Finish the print for the truck
+// Finish the print for the compact
 
 //To-Do Zach
 //
