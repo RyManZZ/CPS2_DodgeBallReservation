@@ -14,6 +14,7 @@ ofstream openOutputFile();
 
 using namespace NS_Person;
 
+
 int main() {
 
 	//file variables
@@ -33,7 +34,7 @@ int main() {
 	inFile_dodgeball = openInputFile();
 	system("cls");
 
-	sleep(5);
+	
 //put person class function here
 	//populate person class from input file
 	while (inFile_dodgeball.good()) {

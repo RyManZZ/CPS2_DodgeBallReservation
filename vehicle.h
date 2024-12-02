@@ -25,3 +25,19 @@
 // Blue    Sedan    Grace Wan
 // Black   Sedan    Lary Adams
 // Green   Sedan    Jessie Quirk
+
+namespace NS_Vehicle{ //creates a namespace for plant
+	class Vehicle {    //creates a parent class Plant
+
+	protected:
+		string driverFirstName;
+		string driverLastName;
+		
+	public:
+		//constructors
+		Vehicle(); //default
+		void SetDriverName(string, string); //sets the drive name
+		string GetDriverFirstName();
+		string GetDriverLastName();
+	};
+}

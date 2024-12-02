@@ -6,13 +6,7 @@
 // Description: Serves as Header File for the person class (person.cpp):
 //////////////////////////////////////////////
 #pragma once
-//#include "DogeBall.h"
-
-#include <iostream>
-#include <iomanip>
-#include <string>
-
-
+#include "DogeBall.h"
 
 namespace NS_Person { //creates a namespace for plant
 	class Person {    //creates a parent class Plant

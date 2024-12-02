@@ -15,13 +15,15 @@
 #include <fstream>
 
 
-//header files
-#include "reservation.h"
-#include "vehicle.h"
+
+// Was used to include all class files together but broke the program
+//header files (Classes)
+//#include "reservation.h"
+//#include "vehicle.h"
 //#include "person.h"
-#include "truck.h"
-#include "sedan.h"
-#include "compact.h"
+//#include "truck.h"
+//#include "sedan.h"
+//#include "compact.h"
 
 
 //namespaces
@@ -30,7 +32,9 @@ using namespace std;
 //prototypes
 
 
-
+// To-Do Request
+// Make the 
+//
 
 //To-Do Zach
 //
@@ -40,6 +44,3 @@ using namespace std;
 //
 //
 
-// To-Do Request
-//
-//
