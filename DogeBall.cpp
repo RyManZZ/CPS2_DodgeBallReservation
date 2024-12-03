@@ -147,7 +147,7 @@ int main() {
 void createTruck(vector<Truck> trucks) {
 	Truck tempTruck;
 	//purple pat cooper
-	tempTruck.SetDriverName("Pat", "Cooper", "purple");
+	tempTruck.SetDriverName("Pat", "Cooper", "Purple");
 	tempTruck.Truck::Truck();
 	trucks.push_back(tempTruck);
 
@@ -163,14 +163,22 @@ void createTruck(vector<Truck> trucks) {
 }
 
 //Creates the three objects of Compact
-void createCompact(vector<Compact>) {
+void createCompact(vector<Compact>compacts) {
+	Compact tempCompact;
 	//red Ben Butler
-
+	tempCompact.SetDriverName("Ben", "Butler", "Red");
+	tempCompact.Compact::Compact();
+	compacts.push_back(tempCompact);
 
 	//Blue Art Campbell
-
+	tempCompact.SetDriverName("Art", "Campbell", "Blue");
+	tempCompact.Compact::Compact();
+	compacts.push_back(tempCompact);
 
     //Yellow Ann Edwards
+	tempCompact.SetDriverName("Ann", "Edwards", "Yellow");
+	tempCompact.Compact::Compact();
+	compacts.push_back(tempCompact);
 }
 
 //Crteates the three objects of Sedan
