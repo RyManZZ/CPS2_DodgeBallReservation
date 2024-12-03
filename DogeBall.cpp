@@ -24,9 +24,9 @@ using namespace NS_Sedan;
 using namespace NS_Compact;
 
 
-void createTruck(vector<Truck>);
-void createSedan(vector<Sedan>);
-void createCompact(vector<Compact>);
+void createTruck(vector<Truck>&);
+void createSedan(vector<Sedan>&);
+void createCompact(vector<Compact>&);
 
 //updated
 
@@ -44,6 +44,7 @@ int main() {
 
 	//Reservation Class Variables
 	Reservation reservationTemp; //
+	vector<Reservation> completedReservation;
 	
 
 	//Vehicle Class Variables
@@ -83,6 +84,12 @@ int main() {
 	inFile_dodgeball.close();
 
 
+	//calls the functions for the three vehicle types to create three objects of each
+	createTruck(trucks);
+	createCompact(compacts);
+	createSedan(sedans);
+
+
 	//used for testing to diaply all names
 	//for (auto i : personData) {
 	//	i.displayFirstName();
@@ -117,6 +124,7 @@ int main() {
 		//this will allow the user to create a reservation
 		if (userInput == "1") {
 			reservationTemp.createReservation(personData, trucks, compacts, sedans);
+			completedReservation.push_back(reservationTemp);
 		}
 
 		//Option 2
@@ -150,7 +158,7 @@ int main() {
 
 //creates the three objects of Truck as a vector
 //with driver name first, last, and car color
-void createTruck(vector<Truck> trucks) {
+void createTruck(vector<Truck>& trucks) {
 	Truck tempTruck;
 	//purple pat cooper
 	tempTruck.SetDriverName("Pat", "Cooper", "Purple");
@@ -170,7 +178,7 @@ void createTruck(vector<Truck> trucks) {
 
 //Creates the three objects of Compact as a vector
 //with driver name first, last, and car color
-void createCompact(vector<Compact>compacts) {
+void createCompact(vector<Compact>& compacts) {
 	Compact tempCompact;
 	//red Ben Butler
 	tempCompact.SetDriverName("Ben", "Butler", "Red");
@@ -190,7 +198,7 @@ void createCompact(vector<Compact>compacts) {
 
 //Crteates the three objects of Sedan as a vector
 //with driver name first, last, and car color
-void createSedan(vector<Sedan> sedans) {
+void createSedan(vector<Sedan>& sedans) {
 	//Blue Grace Wan
 	Sedan tempSedan;
 	tempSedan.SetDriverName("Grace", "Wan", "Blue");
