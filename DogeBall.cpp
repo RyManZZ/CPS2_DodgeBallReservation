@@ -32,7 +32,7 @@ void createCompact(vector<Compact>&);
 
 int main() {
 	
-	//Variabels
+	//Variables
 	//**************************************************************************************\\
 	//file
 	ifstream inFile_dodgeball;
@@ -58,7 +58,9 @@ int main() {
 	string userInput, pin, firstName, lastName;
 	int credit;
 	int counts = 0; //used to get the drivers
-	//**************************************************************************************\\
+	bool reservationCheck = false; //used to make sure a reservation was made
+
+//*****************************************************************************************************
 	
 
 	//opens the input file of dodgeball.dat
@@ -90,7 +92,7 @@ int main() {
 	createSedan(sedans);
 
 
-	//used for testing to diaply all names
+	//used for testing to display all names
 	//for (auto i : personData) {
 	//	i.displayFirstName();
 	//	i.displayLastName();
@@ -120,11 +122,11 @@ int main() {
 		cin >> userInput;
 
 		
-		//options 1
+		//options 1	
 		//this will allow the user to create a reservation
 		if (userInput == "1") {
-			reservationTemp.createReservation(personData, trucks, compacts, sedans);
-			completedReservation.push_back(reservationTemp);
+			 reservationTemp.createReservation(completedReservation, personData, trucks, compacts, sedans);
+
 		}
 
 		//Option 2

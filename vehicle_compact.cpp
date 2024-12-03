@@ -60,7 +60,7 @@ bool Compact::seatCheckCompact(vector<char>) {
 		}
 
 		if (seat_C.at(userSeatVal - 1) = '-') {
-			return true;
+			return false;
 		}
 		else {
 			return false;

@@ -18,16 +18,25 @@ using namespace NS_Compact;
 
 
 //prototypes
-void low(string&);
+void low(string&); //converts the inputed string to lowercase
+
 
 
 //constructors
 Reservation::Reservation() {
     firstName = "NULL";
+	vehicleNum = 0;
 	cost = 0;
     pin = 0;
 }
 
+void Reservation::SetFirstName(string firstName) {
+	this->firstName = firstName;
+}
+
+void Reservation::SetVehicleNum(int vehicleNum) {
+	this->vehicleNum = vehicleNum;
+}
 
 void Reservation::SetPin(int pin) {
     this->pin = pin;
@@ -43,11 +52,20 @@ int Reservation::GetCost() {
 	return cost;
 }
 
+int Reservation::GetVehicleNum() {
+	return vehicleNum;
+}
+
+
 //This allows a person to make a reservation as long as they have above 0 credits and are not a driver
 //Takes in the person class vecotor (First/Last names and credits) - drivers get -1 credits
-void Reservation::createReservation(vector<Person> personData, vector<Truck> trucks, vector<Compact> compacts, vector<Sedan> sedans) {
+void Reservation::createReservation(vector<Reservation>& completedReservation, vector<Person> personData, vector<Truck> trucks, vector<Compact> compacts, vector<Sedan> sedans) {
+	Reservation tempCompleted;
+
 	string userInput, carType, carColor, tempString;
 	int userInt;
+	int personLocation;
+	bool resCheck; //used to check to see if a reservation was made
 
 	cout << "\n\nCreate Reservation\n";
 	cout << "------------------\n";
@@ -61,18 +79,18 @@ void Reservation::createReservation(vector<Person> personData, vector<Truck> tru
 	}
 	userInput = tempString;
 
-	for (int i = 0; i < personData.size(); i++) {
-		if (userInput == personData.at(i).Person::getFirstName()) {
+	for (personLocation = 0; personLocation < personData.size(); personLocation++) {
+		if (userInput == personData.at(personLocation).Person::getFirstName()) {
 			
 			//Driver Check
-			if (personData.at(i).Person::getCredit() == -1) {
+			if (personData.at(personLocation).Person::getCredit() == -1) {
 				cout << "You are a driver and cannot reserve a seat\n";
 				system("pause");
 				return;
 			}
 
 			//0 creddit check
-			else if (personData.at(i).Person::getCredit() == 0) {
+			else if (personData.at(personLocation).Person::getCredit() == 0) {
 				cout << "\nYou have 0 credits, you must dirve your self\n";
 				system("pause");
 				return;
@@ -82,8 +100,8 @@ void Reservation::createReservation(vector<Person> personData, vector<Truck> tru
 			else {
 				system("cls");
 				//displays the persons name and the number of credits they have
-				cout << "Hello ";    personData.at(i).Person::displayFirstName();
-				cout << "you have ";  personData.at(i).Person::displayCredit();
+				cout << "Hello ";    personData.at(personLocation).Person::displayFirstName();
+				cout << "you have ";  personData.at(personLocation).Person::displayCredit();
 				cout << "credits\n\n";
 
 				//display for all of the current reservations for all 
@@ -110,6 +128,7 @@ void Reservation::createReservation(vector<Person> personData, vector<Truck> tru
 				cout << "Option: Enter a 1 or a 2\n(1) Any avaiable seat\n(2) A specific Vehicle\n\n";
 				cout << "choice: "; cin >> userInt;
 
+//**************************************************************************************************************************************************************************************************************************************************************************
 
 				//Any avaiable seat
 				if (userInt == 1) {
@@ -123,16 +142,28 @@ void Reservation::createReservation(vector<Person> personData, vector<Truck> tru
 					cout << "(4) Sedan Back Seat Middle    1\n";
 					cout << "Seat: "; cin >> userInt;
 
+					//add a credit check here to make sure they have enough for the desired seat
+
+
 					//Shotgun
 					if (userInt == 1) {
 						//loop through the all front seats  if an option is avaiable ask the user to confirm then make pin and return to main
-
+						for (int i = 0; i < trucks.size(); i++) {
+							trucks.at(i).seatCheckTruck();
+							
+							
+						}
 					}
 
 					//Compact Back Seat
 					else if (userInt == 2) {
 						//loop through the three comapacts back seats if an option is avaiable ask the user to confirm then make pin and return to main
+						for (int i = 0; i < trucks.size(); i++)
+						{
+							//trucks.at(i).seatCheckT
 
+						}
+						
 					}
 
 					//Sedan Back Seat Outside
@@ -154,6 +185,8 @@ void Reservation::createReservation(vector<Person> personData, vector<Truck> tru
 						return;
 					}
 				}
+	
+//************************************************************************************************************************************************* 	
 
 				//user specific vehicle and seat
 				else if (userInt == 2) {
@@ -176,26 +209,60 @@ void Reservation::createReservation(vector<Person> personData, vector<Truck> tru
 					cout << "Seat: "; cin >> userInt;
 
 					//add credit check here to make sure they can get a seat of that cost value
+					if (userInt == 1) {
+						if (personData.at(personLocation).getCredit() >= 5) {
 
+						}
+					}
 
+					else if (userInt == 2) {
+
+					}
+
+					else if (userInt == 3) {
+					
+					}
+
+					else if (userInt == 4) {
+
+					}
+
+					else {
+						cout << "invlaid input, must enter 1-4, returning to main";
+						system("pause");
+						return;
+					}
+					
 					//truck and its three options for user specified vehicle
 					if (carType == "truck") {
-						//Purple Truck
+						
+						//Purple Truck:
 						if (carColor == "purple") {
 							//if avaiable ask the user to confirm then make pin and return to main 
-
 						}
 
 						//Green Truck
-						else if (carColor == "green") {
-							//if avaiable ask the user to confirm then make pin and return to main
+						else if (carColor == "green"){
+							if (trucks.at(1).seatCheckTruck() == true) {
+								tempCompleted.SetCost(5);
 
+								//*****//
+								//Temp value
+								tempCompleted.SetPin(999);//needs to be set random 100-999?
+								////////////////////////
+
+								tempCompleted.SetVehicleNum(2);
+								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+								completedReservation.push_back(tempCompleted);
+							}
 						}
 
 						//Black Truck
-						else if (carColor == "black") {
-							//if avaiable ask the user to confirm then make pin and return to main
-
+						else if (carColor == "black"){
+							if(trucks.at(1).seatCheckTruck() == true)
+							{
+								
+							}
 						}
 
 						//Error check
@@ -208,10 +275,13 @@ void Reservation::createReservation(vector<Person> personData, vector<Truck> tru
 
 					//Compact and its three options for user specified vehicle
 					else if (carType == "compact") {
+
+						
 						
 						//Red Compact 
 						if (carColor == "red") {
 							//if avaiable ask the user to confirm then make pin and return to main
+
 
 						}
 
@@ -229,7 +299,7 @@ void Reservation::createReservation(vector<Person> personData, vector<Truck> tru
 
 						//Error Check
 						else {
-							cout << "The compact you entered does not exist, returing to main menu.";
+							cout << "The Truck you entered does not exist, returing to main menu.";
 							system("pause");
 							return;
 						}
@@ -240,6 +310,8 @@ void Reservation::createReservation(vector<Person> personData, vector<Truck> tru
 						//Blue Sedan
 						if (carColor == "blue") {
 							//if avaiable ask the user to confirm then make pin and return to main
+
+							
 
 						}
 						
@@ -294,7 +366,7 @@ void Reservation::createReservation(vector<Person> personData, vector<Truck> tru
 
 
 				if (carType == "truck") {
-					if (personData.at(i).Person::getCredit() >= 5) {
+					if (personData.at(personLocation).Person::getCredit() >= 5) {
 
 
 					}
@@ -305,7 +377,7 @@ void Reservation::createReservation(vector<Person> personData, vector<Truck> tru
 					}
 				}
 				else if (carType == "compact") {
-					if (personData.at(i).Person::getCredit() >= 3) {
+					if (personData.at(personLocation).Person::getCredit() >= 3) {
 
 
 
@@ -333,7 +405,6 @@ void Reservation::createReservation(vector<Person> personData, vector<Truck> tru
 	cout << "Sorry, " << userInput << " was not found\n\n";
 	system("pause");
 	return;
-
 }
 
 

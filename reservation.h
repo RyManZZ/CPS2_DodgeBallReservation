@@ -24,18 +24,40 @@ namespace NS_Reservation { //creates a namespace for plant
 
 	private:
 		string firstName;
+		int vehicleNum;  //used to identify which vehicle the reservation is being made for
 		int cost;
 		int pin;
 		
 	public:
 		//constructors
 		Reservation(); //default
+		
+		//sets
 		void SetPin(int);
 		void SetCost(int);
+		void SetVehicleNum(int);
+		void SetFirstName(string);
+
+		//returns
 		int GetCost();
-		void createReservation(vector<Person>, vector<Truck>, vector<Compact>, vector<Sedan>);
+		int GetVehicleNum();
+
+		void createReservation(vector<Reservation>&, vector<Person>, vector<Truck>, vector<Compact>, vector<Sedan>);
 	//	void modifyReservation();
 	//	void printReservation();
 	//	void deleteReservation();
 	};
 }
+
+
+
+//vehicleNum - map
+// 1 - Truck    Purple
+// 2 - Truck    Green
+// 3 - Truck    Black
+// 4 - Comapct  Red
+// 5 - Compact  Blue
+// 6 - Compact  Yellow
+// 7 - Sedan    Blue
+// 8 - Sedan    Black
+// 9 - Sedan    Green

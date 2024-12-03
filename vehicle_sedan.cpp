@@ -57,7 +57,7 @@ bool Sedan::seatCheckSedan(vector<char>) {
 		}
 
 		if (seat_S.at(userSeatVal - 1) = '-') {
-			return true;
+			return false;
 		}
 		else {
 			return false;
