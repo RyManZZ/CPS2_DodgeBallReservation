@@ -31,18 +31,21 @@ void createCompact(vector<Compact>);
 //updated
 
 int main() {
-
-	//file variables
-	ifstream inFile_dodgeball;
-	ofstream dodgeball_updated, all_reservation;
 	
+	//Variabels
+	//**************************************************************************************\\
+	//file
+	ifstream inFile_dodgeball;
+	ofstream outFIle_dodgeball; 	
 
 	//Person class variables
 	vector<Person> personData; //Stores First and Last names and the credits
 	
+
 	//Reservation Class Variables
 	Reservation reservationTemp; //
 	
+
 	//Vehicle Class Variables
 	vector<Truck>   trucks;
 	vector<Sedan>   sedans;
@@ -50,17 +53,16 @@ int main() {
 	string carType; //user input to get the type of the car
 
 
-	//variable main
+	//variables main
 	string userInput, pin, firstName, lastName;
 	int credit;
 	int counts = 0; //used to get the drivers
-
+	//**************************************************************************************\\
 	
-	//gets the name list of the dogeball team 
-	cout << "Dogeball team roster\n--------------------\n";
-	inFile_dodgeball = openInputFile();
-	system("cls");
 
+	//opens the input file of dodgeball.dat
+	inFile_dodgeball = openInputFile();
+	
 	
 //put person class function here
 	//populate person class from input file
@@ -77,7 +79,10 @@ int main() {
 		inFile_dodgeball >> firstName >> lastName >> credit; //gets the remaing people from the file that are not drivers
 		personData.push_back(Person(firstName, lastName, credit)); //populates the person class with the passengers
 	}
-	
+
+	inFile_dodgeball.close();
+
+
 	//used for testing to diaply all names
 	//for (auto i : personData) {
 	//	i.displayFirstName();
@@ -89,9 +94,7 @@ int main() {
 
 
 	//opens the output files
-	//dodgeball_updated = openOutputFile(); //output file used for the updated credit values
-	//all_reservation  = openOutputFile(); //output file for the gui of car reservation
-
+	outFIle_dodgeball = openOutputFile();
 	
 	while (true) {
 		system("cls"); //clear the cmd for every loop
@@ -113,7 +116,7 @@ int main() {
 		//options 1
 		//this will allow the user to create a reservation
 		if (userInput == "1") {
-			reservationTemp.createReservation(personData);
+			reservationTemp.createReservation(personData, trucks, compacts, sedans);
 		}
 
 		//Option 2
@@ -145,7 +148,8 @@ int main() {
 }
 
 
-//creates the three objects of Truck
+//creates the three objects of Truck as a vector
+//with driver name first, last, and car color
 void createTruck(vector<Truck> trucks) {
 	Truck tempTruck;
 	//purple pat cooper
@@ -164,7 +168,8 @@ void createTruck(vector<Truck> trucks) {
 	trucks.push_back(tempTruck);
 }
 
-//Creates the three objects of Compact
+//Creates the three objects of Compact as a vector
+//with driver name first, last, and car color
 void createCompact(vector<Compact>compacts) {
 	Compact tempCompact;
 	//red Ben Butler
@@ -183,24 +188,24 @@ void createCompact(vector<Compact>compacts) {
 	compacts.push_back(tempCompact);
 }
 
-//Crteates the three objects of Sedan
-void createSedan(vector<Sedan>) {
+//Crteates the three objects of Sedan as a vector
+//with driver name first, last, and car color
+void createSedan(vector<Sedan> sedans) {
 	//Blue Grace Wan
-
-
+	Sedan tempSedan;
+	tempSedan.SetDriverName("Grace", "Wan", "Blue");
+	tempSedan.Sedan::Sedan();
+	sedans.push_back(tempSedan);
 	//Black Lary Adams
-
+	tempSedan.SetDriverName( "Larry", "Adams", "Black");
+	tempSedan.Sedan::Sedan();
+	sedans.push_back(tempSedan);
 
 	//Green Jessie Quirk
+	tempSedan.SetDriverName("Jessie", "Quirk", "Green");
+	tempSedan.Sedan::Sedan();
+	sedans.push_back(tempSedan);
 }
-
-
-
-
-
-
-
-
 
 
 //Input file fuction
@@ -208,23 +213,15 @@ ifstream openInputFile() {
 	//------------------------------------------------------
 	//variable ste up
 	//------------------------------------------------------
-	ifstream inPutFile; //read file
-	string userFile_in; //user defined file name
-
-	cout << "File: ";
-	cin >> userFile_in;
+	ifstream inPutFile("dodgeball.dat"); //read file
 
 	//------------------------------------------------------
 	//usedd to open a file in read mode
 	//------------------------------------------------------
-	userFile_in.append(".txt");			 //puts .txt on the end of the file for you
-	inPutFile.open(userFile_in.c_str()); //opens the file
-	if (!inPutFile.is_open()) {			 //error check
+		if (!inPutFile.is_open()) {			 //error check
 		cout << "\nBad File Path... Program Terminated\n";
 		exit(1);
 	}
-
-
 	return inPutFile; //returns the file path to main
 }
 
@@ -237,15 +234,11 @@ ofstream openOutputFile() {
 	ofstream OutPutFile; //write file
 	string userFile_out; //user defined file name
 
-	cout << "OUTPUT file: ";
-	cin >> userFile_out;
-
 	//------------------------------------------------------
 	//used to open a file in write mode
 	//------------------------------------------------------
-	userFile_out.append(".txt");		   //puts .txt on the end of the file for you
-	OutPutFile.open(userFile_out.c_str()); //opens the file
-	if (!OutPutFile.is_open()) {		   //error check
+	OutPutFile.open("OUT_dodgeball.dat"); //opens the file
+	if (!OutPutFile.is_open()) {      //error check for if file cannot be opened
 		cout << "\nBad File Path... Program Terminated\n";
 		exit(1);
 	}

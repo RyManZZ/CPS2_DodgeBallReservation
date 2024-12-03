@@ -61,11 +61,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="dogeball_team.txt">
+    <Text Include="dodgeball.dat">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="all_reservation.txt">
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OUT_dodgeball.dat">
       <Filter>Resource Files</Filter>
-    </Text>
+    </None>
+    <None Include="test.dat">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -22,7 +22,7 @@ namespace NS_Truck { //creates a namespace for tree
 	public:
 		Truck();             //constructor
 		void displayTruck(); //prints the truck image
-		vector <char> getSeat(); //may not be used
+		char displySeatTruck(); //may not be used
 		bool seatCheck(vector<char>); //checks to see if the seat is valid
 	};
 }

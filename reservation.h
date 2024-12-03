@@ -9,21 +9,31 @@
 
 #include "DogeBall.h"
 #include "person.h"
+#include "sedan.h"
+#include "compact.h"
+#include "truck.h"
+
 
 using namespace NS_Person;
+using namespace NS_Truck;
+using namespace NS_Sedan;
+using namespace NS_Compact;
 
 namespace NS_Reservation { //creates a namespace for plant
 	class Reservation {    //creates a parent class Plant
 
 	private:
 		string firstName;
+		int cost;
 		int pin;
 		
 	public:
 		//constructors
 		Reservation(); //default
 		void SetPin(int);
-		void createReservation(vector<Person>);
+		void SetCost(int);
+		int GetCost();
+		void createReservation(vector<Person>, vector<Truck>, vector<Compact>, vector<Sedan>);
 	//	void modifyReservation();
 	//	void printReservation();
 	//	void deleteReservation();

@@ -34,27 +34,47 @@ using namespace std;
 //prototypes
 
 
-//To-Do 
+
+
+//		Still Needs to be completed
+//***************************************
+// Reservation
+//   Create - ()
+//   Modify 
+//   Delete 
+//   Print 
+// 
+// 
+// 
+//***************************************
+
+
+//            Chnage log
+//***************************************
+//Added Sedan objects in dogeball.cpp
+//Changed the file input and output to be automatic and not needing to be entered manualy (changed file type to .dat)
+//	also made the output file OUT_dodgeball.dat
+//***************************************
+
+
+
+//             To-Do 
+//***************************************
 // Finish the print for the truck
 // Finish the print for the compact
 // Finish the print for the sedan
 //
 //
-
-//To-Do Zach
-//
-//
-
-
-
-
-//To-Do Ryan
-//
-//
-
-
+//***************************************
 
 
 //completed
-// Vehcile main class
-// Person Class
+// Person  .h & .cpp
+// Vehcile .h & .cpp
+// 
+//  (maybe)
+// Truck   .h
+// Compact .h
+// Sedan   .h
+// 
+

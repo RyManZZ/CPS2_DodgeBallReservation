@@ -145,8 +145,11 @@
     <ClCompile Include="vehicle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="all_reservation.txt" />
-    <Text Include="dogeball_team.txt" />
+    <Text Include="dodgeball.dat" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OUT_dodgeball.dat" />
+    <None Include="test.dat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -16,9 +16,9 @@ using namespace NS_Compact;
 using namespace NS_Vehicle;
 
 Compact::Compact() {							//pos val
-	seat_C.push_back('-'); //passanger seat        0   5
-	seat_C.push_back('-'); //back seat left        1   3
-	seat_C.push_back('-'); //back seat right       2   3
+	seat_C.push_back('5'); //passanger seat        0   5
+	seat_C.push_back('3'); //back seat left        1   3
+	seat_C.push_back('3'); //back seat right       2   3
 }
 
 //still needs to be completed
@@ -40,8 +40,8 @@ void Compact::displayCompact() {
 }
 
 //reutens back the vector of seat
-vector <char> Compact::getSeatCompact() {
-	return seat_C;
+char Compact::displaySeatCompact(int i) {
+	return seat_C.at(i);
 }
 
 //checks to see if the seat is valid

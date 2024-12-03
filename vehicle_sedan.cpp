@@ -12,10 +12,10 @@ using namespace NS_Sedan;
 using namespace NS_Vehicle;
 
 Sedan::Sedan() {                            // pos  val
-	seat_S.push_back('-'); //passanger seat    0    5
-	seat_S.push_back('-'); //back seat left    1    2
-	seat_S.push_back('-'); //back seat middle  2    1
-	seat_S.push_back('-'); //back seat right   3    2
+	seat_S.push_back('5'); //passanger seat    0    5
+	seat_S.push_back('2'); //back seat left    1    2
+	seat_S.push_back('1'); //back seat middle  2    1
+	seat_S.push_back('2'); //back seat right   3    2
 }
 
 //still needs to be completed
@@ -37,8 +37,8 @@ void Sedan::displaySedan() {
 }
 
 //reutens back the vector of seat
-vector <char> Sedan::getSeatSedan() {
-	return seat_S;
+char Sedan::displaySeatSedan(int i) {
+	return seat_S.at(i);
 }
 
 //checks to see if the seat is valid

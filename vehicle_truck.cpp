@@ -7,7 +7,7 @@ using namespace NS_Truck;
 using namespace NS_Vehicle;
 
 Truck::Truck() {            //pos   val
-	seat_T.push_back('-');  // 0     5
+	seat_T.push_back('5');  // 0     5
 }
 
 //prints the truck image
@@ -31,15 +31,15 @@ void Truck::displayTruck() {
 }
 
 //reutens back the vector of seat
-vector <char> Truck::getSeat() {
-	return seat_T;
+char Truck::displySeatTruck() {
+	return seat_T.at(0);
 } 
 
 //checks to see if the seat is valid
 //returns true if the seat is open
 //else false
 bool Truck::seatCheck(vector<char>) {
-	if (seat_T.at(0) = '-') {
+	if (seat_T.at(0) = '5') {
 		return true;
 	}
 
