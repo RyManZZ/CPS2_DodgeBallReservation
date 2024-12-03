@@ -13,6 +13,9 @@
 #include "sedan.h"
 #include "compact.h"
 
+
+
+
 ifstream openInputFile();
 ofstream openOutputFile();
 
