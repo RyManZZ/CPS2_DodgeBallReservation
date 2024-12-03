@@ -14,8 +14,6 @@
 #include "compact.h"
 
 
-
-
 ifstream openInputFile();
 ofstream openOutputFile();
 
