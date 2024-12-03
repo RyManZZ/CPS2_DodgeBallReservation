@@ -12,7 +12,7 @@
 #include "truck.h"
 #include "sedan.h"
 #include "compact.h"
-
+//test
 ifstream openInputFile();
 ofstream openOutputFile();
 
