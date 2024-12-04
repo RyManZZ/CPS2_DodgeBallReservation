@@ -127,7 +127,7 @@ int main() {
 
 		//Option 3. This will allow a user to Delete a reservation that has been made delete reservation:
 		else if (userInput == "3") {
-
+			reservationTemp.deleteReservation(completedReservation, personData, trucks, compacts, sedans);
 		}
 
 		//Option 4. This will Print all reservations:
