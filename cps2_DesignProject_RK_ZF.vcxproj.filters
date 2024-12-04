@@ -64,6 +64,9 @@
     <Text Include="dodgeball.dat">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="all_reservations.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="OUT_dodgeball.dat">

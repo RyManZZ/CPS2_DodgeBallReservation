@@ -42,22 +42,24 @@ namespace NS_Reservation { //creates a namespace for Reservation
 		//Returns
 		int GetCost();
 		int GetVehicleNum();
+		string GetName();
 
 		void createReservation(vector<Reservation>&, vector<Person>&, vector<Truck>&, vector<Compact>&, vector<Sedan>&);
 	//	void modifyReservation();
-	//	void printReservation();
-	//	void deleteReservation();
+		void printAllReservations(vector<Reservation>, vector<Truck>, vector<Compact>, vector<Sedan>);
+		void printOneReservation(string, string, vector<Reservation>, vector<Truck>, vector <Compact>, vector <Sedan>);
+		//	void deleteReservation();
 	};
 }
 
 
 //Vehicle #   -  Map
-// 1 - Truck    Purple
-// 2 - Truck    Green
-// 3 - Truck    Black
-// 4 - Comapct  Red
-// 5 - Compact  Blue
-// 6 - Compact  Yellow
-// 7 - Sedan    Blue
-// 8 - Sedan    Black
-// 9 - Sedan    Green
+// 0 - Truck    Purple
+// 1 - Truck    Green
+// 2 - Truck    Black
+// 3 - Comapct  Red
+// 4 - Compact  Blue
+// 5 - Compact  Yellow
+// 6 - Sedan    Blue
+// 7 - Sedan    Black
+// 8 - Sedan    Green

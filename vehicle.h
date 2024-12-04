@@ -44,5 +44,6 @@ namespace NS_Vehicle{ //creates a namespace for Vehicle
 		string GetDriverFirstName();
 		string GetDriverLastName();
 		string GetColor();
+		void PrintColor();
 	};
 }

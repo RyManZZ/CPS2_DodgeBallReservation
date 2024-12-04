@@ -65,8 +65,12 @@ int Reservation::GetVehicleNum() {
 	return vehicleNum;
 }
 
+string Reservation::GetName() {
+	return firstName;
+}
+
 //*****************************************************************************************************
-// Create Reservation Class:
+// Create Reservation:
 //*****************************************************************************************************
 
 //This allows a person to make a reservation as long as they have above 0 credits and are not a driver
@@ -165,10 +169,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								if (trucks.at(i).seatCheckTruck() == true) {
 									tempCompleted.SetCost(5);
 
-									//*****//
-									//Temp value
-									tempCompleted.SetPin(999);
-									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+									pinMaker(pinNum);
+									tempCompleted.SetPin(pinNum.at(pinCount));
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 									//print the pin to the user
 									////////////////////////
 
@@ -178,16 +181,17 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 									//subtracts 5 credits from the persons current credit ammount
 									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+
+									system("pause");
 									return;
 								}
 								//compact front seat is a 1 because inside the compact.cpp file it subrtacts one from it
 								else if (compacts.at(i).seatCheckCompact(1) == true) {
 									tempCompleted.SetCost(5);
 
-									//*****//
-									//Temp value
-									tempCompleted.SetPin(999);
-									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+									pinMaker(pinNum);
+									tempCompleted.SetPin(pinNum.at(pinCount));
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 									//print the pin to the user
 									////////////////////////
 
@@ -197,6 +201,8 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 									//subtracts 5 credits from the persons current credit ammount
 									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+
+									system("pause"); 
 									return;
 
 								}
@@ -204,10 +210,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								else if (sedans.at(i).seatCheckSedan(1) == true) {
 									tempCompleted.SetCost(5);
 
-									//*****//
-									//Temp value
-									tempCompleted.SetPin(999);
-									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+									pinMaker(pinNum);
+									tempCompleted.SetPin(pinNum.at(pinCount));
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 									//print the pin to the user
 									////////////////////////
 
@@ -217,6 +222,8 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 									//subtracts 5 credits from the persons current credit ammount
 									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+
+									system("pause"); 
 									return;
 								}
 							}
@@ -230,6 +237,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 						{
 							if (compacts.at(i).seatCheckCompact(userInt) == true)
 							{
+								cout << "\nReservation Made\n\n";
 								tempCompleted.SetCost(5);
 
 								pinMaker(pinNum);
@@ -244,6 +252,8 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 								//subtracts 5 credits from the persons current credit ammount
 								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+
+								system("pause"); 
 								return;
 							}
 						}
@@ -254,8 +264,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 					else if (userInt == 3) {
 						for (int i = 0; i < compacts.size(); i++)
 						{
-							if (sedans.at(i).seatCheckSedan(userInt) == true)
+							if (sedans.at(i).seatCheckSedan(userInt-1) == true)
 							{
+								cout << "\nReservation Made\n\n";
 								tempCompleted.SetCost(2);
 
 								pinMaker(pinNum);
@@ -270,6 +281,8 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 								//subtracts 5 credits from the persons current credit ammount
 								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 2);
+
+								system("pause"); 
 								return;
 							}
 						}
@@ -278,12 +291,13 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 						return;
 					}
 
-					//Sedan Back Seat Middle:
+					//Auto Sedan Back Seat Middle:
 					else if (userInt == 4) {
 						for (int i = 0; i < compacts.size(); i++)
 						{
-							if (sedans.at(i).seatCheckSedan(userInt) == true)
+							if (sedans.at(i).seatCheckSedan(userInt-1) == true)
 							{
+								cout << "\nReservation Made\n\n";
 								tempCompleted.SetCost(1);
 
 								pinMaker(pinNum);
@@ -298,6 +312,8 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 								//subtracts 5 credits from the persons current credit ammount
 								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 1);
+
+								system("pause");
 								return;
 							}
 						}
@@ -340,6 +356,31 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 						else if (carColor == "purple") {
 							
 							if (trucks.at(0).seatCheckTruck() == true) {
+								cout << "\nReservation Made\n\n";
+								tempCompleted.SetCost(5);
+
+								pinMaker(pinNum);
+								tempCompleted.SetPin(pinNum.at(pinCount));
+								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
+								//print the pin to the user
+								////////////////////////
+
+								tempCompleted.SetVehicleNum(0);
+								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+								completedReservation.push_back(tempCompleted);
+								
+								//subtracts 5 credits from the persons current credit ammount
+								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+
+								system("pause");
+								return;
+							}
+						}
+
+						//Green Truck:
+						else if (carColor == "green"){
+							if (trucks.at(1).seatCheckTruck() == true) {
+								cout << "\nReservation Made\n\n";
 								tempCompleted.SetCost(5);
 
 								pinMaker(pinNum);
@@ -351,20 +392,24 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								tempCompleted.SetVehicleNum(1);
 								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 								completedReservation.push_back(tempCompleted);
-								
+
 								//subtracts 5 credits from the persons current credit ammount
 								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+
+								system("pause");
+								return;
 							}
 						}
 
-						//Green Truck:
-						else if (carColor == "green"){
-							if (trucks.at(1).seatCheckTruck() == true) {
+						//Black Truck:
+						else if (carColor == "black"){
+							if(trucks.at(2).seatCheckTruck() == true)
+							{
+								cout << "\nReservation Made\n\n";
 								tempCompleted.SetCost(5);
 
-								pinMaker(pinNum);
-								tempCompleted.SetPin(pinNum.at(pinCount));
-								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
+								tempCompleted.SetPin(999);//needs to be set random 100-999?
+								
 								//print the pin to the user
 								////////////////////////
 
@@ -374,26 +419,10 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 								//subtracts 5 credits from the persons current credit ammount
 								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
-							}
-						}
 
-						//Black Truck:
-						else if (carColor == "black"){
-							if(trucks.at(2).seatCheckTruck() == true)
-							{
-								tempCompleted.SetCost(5);
 
-								tempCompleted.SetPin(999);//needs to be set random 100-999?
-								
-								//print the pin to the user
-								////////////////////////
-
-								tempCompleted.SetVehicleNum(3);
-								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
-								completedReservation.push_back(tempCompleted);
-
-								//subtracts 5 credits from the persons current credit ammount
-								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+								system("pause");
+								return;
 							}
 						}
 
@@ -441,6 +470,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								else {
 									if (compacts.at(0).seatCheckCompact(userInt) == true)
 									{
+										cout << "\nReservation Made\n\n";
 										tempCompleted.SetCost(5);
 
 										pinMaker(pinNum);
@@ -449,12 +479,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 										//print the pin to the user
 										////////////////////////
 
-										tempCompleted.SetVehicleNum(4);
+										tempCompleted.SetVehicleNum(3);
 										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 										completedReservation.push_back(tempCompleted);
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+										
+										system("pause"); 
 										return;
 									}
 								}
@@ -473,6 +505,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								else {
 									if (compacts.at(0).seatCheckCompact(userInt) == true)
 									{
+										cout << "\nReservation Made\n\n";
 										tempCompleted.SetCost(3);
 
 										pinMaker(pinNum);
@@ -481,12 +514,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 										//print the pin to the user
 										////////////////////////
 
-										tempCompleted.SetVehicleNum(4);
+										tempCompleted.SetVehicleNum(3);
 										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 										completedReservation.push_back(tempCompleted);
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 3);
+										
+										system("pause"); 
 										return;
 									}
 								}
@@ -514,6 +549,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								else {
 									if (compacts.at(1).seatCheckCompact(userInt) == true)
 									{
+										cout << "\nReservation Made\n\n";
 										tempCompleted.SetCost(5);
 
 										pinMaker(pinNum);
@@ -522,12 +558,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 										//print the pin to the user
 										////////////////////////
 
-										tempCompleted.SetVehicleNum(5);
+										tempCompleted.SetVehicleNum(4);
 										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 										completedReservation.push_back(tempCompleted);
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+
+										system("pause");
 										return;
 									}
 								}
@@ -546,6 +584,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								else {
 									if (compacts.at(1).seatCheckCompact(userInt) == true)
 									{
+										cout << "\nReservation Made\n\n";
 										tempCompleted.SetCost(3);
 
 										pinMaker(pinNum);
@@ -554,12 +593,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 										//print the pin to the user
 										////////////////////////
 
-										tempCompleted.SetVehicleNum(5);
+										tempCompleted.SetVehicleNum(4);
 										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 										completedReservation.push_back(tempCompleted);
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 3);
+
+										system("pause"); 
 										return;
 									}
 								}
@@ -587,6 +628,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								else {
 									if (compacts.at(2).seatCheckCompact(userInt) == true)
 									{
+										cout << "\nReservation Made\n\n";
 										tempCompleted.SetCost(5);
 
 										pinMaker(pinNum);
@@ -595,12 +637,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 										//print the pin to the user
 										////////////////////////
 
-										tempCompleted.SetVehicleNum(6);
+										tempCompleted.SetVehicleNum(5);
 										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 										completedReservation.push_back(tempCompleted);
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+
+										system("pause"); 
 										return;
 									}
 								}
@@ -619,6 +663,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								else {
 									if (compacts.at(2).seatCheckCompact(userInt) == true)
 									{
+										cout << "\nReservation Made\n\n";
 										tempCompleted.SetCost(3);
 
 										pinMaker(pinNum);
@@ -627,12 +672,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 										//print the pin to the user
 										////////////////////////
 
-										tempCompleted.SetVehicleNum(6);
+										tempCompleted.SetVehicleNum(5);
 										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 										completedReservation.push_back(tempCompleted);
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 3);
+
+										system("pause"); 
 										return;
 									}
 								}
@@ -687,6 +734,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								else {
 									if (sedans.at(0).seatCheckSedan(userInt) == true)
 									{
+										cout << "\nReservation Made\n\n";
 										tempCompleted.SetCost(5);
 
 										pinMaker(pinNum);
@@ -695,12 +743,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 										//print the pin to the user
 										////////////////////////
 
-										tempCompleted.SetVehicleNum(7);
+										tempCompleted.SetVehicleNum(6);
 										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 										completedReservation.push_back(tempCompleted);
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+
+										system("pause"); 
 										return;
 									}
 								} // front seat sedan
@@ -719,6 +769,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								else {
 									if (sedans.at(0).seatCheckSedan(userInt) == true)
 									{
+										cout << "\nReservation Made\n\n";
 										tempCompleted.SetCost(2);
 
 										pinMaker(pinNum);
@@ -727,12 +778,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 										//print the pin to the user
 										////////////////////////
 
-										tempCompleted.SetVehicleNum(7);
+										tempCompleted.SetVehicleNum(6);
 										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 										completedReservation.push_back(tempCompleted);
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 2);
+
+										system("pause"); 
 										return;
 									}
 								} 
@@ -744,6 +797,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 							else if (userInt == 3) {
 								if (sedans.at(0).seatCheckSedan(userInt) == true)
 								{
+									cout << "\nReservation Made\n\n";
 									tempCompleted.SetCost(1);
 
 									pinMaker(pinNum);
@@ -752,12 +806,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									//print the pin to the user
 									////////////////////////
 
-									tempCompleted.SetVehicleNum(7);
+									tempCompleted.SetVehicleNum(6);
 									tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 									completedReservation.push_back(tempCompleted);
 
 									//subtracts 5 credits from the persons current credit ammount
 									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 1);
+									
+									system("pause"); 
 									return;
 								}
 							}// back seat middle sedan
@@ -786,6 +842,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								else {
 									if (sedans.at(1).seatCheckSedan(userInt) == true)
 									{
+										cout << "\nReservation Made\n\n";
 										tempCompleted.SetCost(5);
 
 										pinMaker(pinNum);
@@ -794,12 +851,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 										//print the pin to the user
 										////////////////////////
 
-										tempCompleted.SetVehicleNum(8);
+										tempCompleted.SetVehicleNum(7);
 										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 										completedReservation.push_back(tempCompleted);
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+
+										system("pause"); 
 										return;
 									}
 								}
@@ -818,6 +877,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								else {
 									if (sedans.at(1).seatCheckSedan(userInt) == true)
 									{
+										cout << "\nReservation Made\n\n";
 										tempCompleted.SetCost(2);
 
 										pinMaker(pinNum);
@@ -826,12 +886,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 										//print the pin to the user
 										////////////////////////
 
-										tempCompleted.SetVehicleNum(8);
+										tempCompleted.SetVehicleNum(7);
 										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 										completedReservation.push_back(tempCompleted);
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 2);
+
+										system("pause"); 
 										return;
 									}
 								}
@@ -844,6 +906,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 								if (sedans.at(1).seatCheckSedan(userInt) == true)
 								{
+									cout << "\nReservation Made\n\n";
 									tempCompleted.SetCost(1);
 
 									pinMaker(pinNum);
@@ -852,12 +915,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									//print the pin to the user
 									////////////////////////
 
-									tempCompleted.SetVehicleNum(8);
+									tempCompleted.SetVehicleNum(7);
 									tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 									completedReservation.push_back(tempCompleted);
 
 									//subtracts 5 credits from the persons current credit ammount
 									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 1);
+
+									system("pause"); 
 									return;
 								}
 							}// back seat middle sedan
@@ -887,6 +952,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								else {
 									if (sedans.at(2).seatCheckSedan(userInt) == true)
 									{
+										cout << "\nReservation Made\n\n";
 										tempCompleted.SetCost(5);
 
 										pinMaker(pinNum);
@@ -895,12 +961,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 										//print the pin to the user
 										////////////////////////
 
-										tempCompleted.SetVehicleNum(9);
+										tempCompleted.SetVehicleNum(8);
 										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 										completedReservation.push_back(tempCompleted);
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+
+										system("pause"); 
 										return;
 									}
 								} // front seat sedan
@@ -920,6 +988,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 									if (sedans.at(2).seatCheckSedan(userInt) == true)
 									{
+										cout << "\nReservation Made\n\n";
 										tempCompleted.SetCost(2);
 
 										pinMaker(pinNum);
@@ -928,12 +997,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 										//print the pin to the user
 										////////////////////////
 
-										tempCompleted.SetVehicleNum(9);
+										tempCompleted.SetVehicleNum(8);
 										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 										completedReservation.push_back(tempCompleted);
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 2);
+
+										system("pause");
 										return;
 									}
 								}
@@ -946,6 +1017,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 								if (sedans.at(2).seatCheckSedan(userInt) == true)
 								{
+									cout << "\nReservation Made\n\n";
 									tempCompleted.SetCost(1);
 
 									pinMaker(pinNum);
@@ -954,12 +1026,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									//print the pin to the user
 									////////////////////////
 
-									tempCompleted.SetVehicleNum(9);
+									tempCompleted.SetVehicleNum(8);
 									tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 									completedReservation.push_back(tempCompleted);
 
 									//subtracts 5 credits from the persons current credit ammount
 									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 1);
+									
+									system("pause");
 									return;
 								}
 							}// back seat middle sedan
@@ -1039,6 +1113,197 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 	return;
 }
 
+
+
+
+//*****************************************************************************************************
+// Print ALL Reservations:
+//*****************************************************************************************************
+
+void Reservation::printAllReservations(vector<Reservation> completedReservation, vector<Truck> trucks, vector<Compact> compacts, vector<Sedan> sedans){
+
+	ofstream OutPutFile; //write file
+	OutPutFile.open("all_reservations.txt");
+
+
+	//Truck output
+	for (int i = 0; i < 3; i++) {
+		int passengerCount = 0;
+		OutPutFile << "\n\nTruck " << trucks.at(i).GetColor() << endl;
+		OutPutFile << "-------------------\n";
+		OutPutFile << "Driver    : " << trucks.at(i).GetDriverFirstName() << endl;
+		for (int j = 0; j < completedReservation.size(); j++) {
+			if (trucks.at(i).displySeatTruck() == 'X' && completedReservation.at(j).GetVehicleNum() == i) {
+				OutPutFile << "Front Seat: " << completedReservation.at(j).GetName() << endl;
+				passengerCount++;
+			}
+		}
+		for (passengerCount; passengerCount < 1; passengerCount++) {
+			OutPutFile << "Front Seat: Unassigned\n";
+		}
+	}
+
+
+	//Compact Output
+	vector<string> compactSeatChart;
+	compactSeatChart.push_back("Unassigned");
+	compactSeatChart.push_back("Unassigned");
+	compactSeatChart.push_back("Unassigned");
+
+	for (int i = 0; i < 3; i++) {
+		compactSeatChart.at(0) = "Unassigned";
+		compactSeatChart.at(1) = "Unassigned";
+		compactSeatChart.at(2) = "Unassigned";
+
+		OutPutFile << "\n\nCompact " << compacts.at(i).GetColor() << endl;
+		OutPutFile << "-------------------\n";
+		OutPutFile << "Driver         : " << compacts.at(i).GetDriverFirstName() << endl;
+		for (int j = 0; j < completedReservation.size(); j++) {
+			if (compacts.at(i).displaySeatCompact(0) == 'X' && completedReservation.at(j).GetVehicleNum() == i) {
+				compactSeatChart.at(0) = (completedReservation.at(j).GetName());
+			}
+			else if (compacts.at(i).displaySeatCompact(1) == 'X' && completedReservation.at(j).GetVehicleNum() == i) {
+				compactSeatChart.at(1) = (completedReservation.at(j).GetName());
+			}
+			else if (compacts.at(i).displaySeatCompact(2) == 'X' && completedReservation.at(j).GetVehicleNum() == i) {
+				compactSeatChart.at(2) = (completedReservation.at(j).GetName());
+			}
+		}
+		OutPutFile << "Front      Seat: " << compactSeatChart.at(0) << endl;
+		OutPutFile << "Back Left  Seat: " << compactSeatChart.at(1) << endl;
+		OutPutFile << "Back Right Seat: " << compactSeatChart.at(2) << endl;
+	}
+
+
+	//Sedan Output
+	vector<string> sedanSeatChart;
+	sedanSeatChart.push_back("Unassigned");
+	sedanSeatChart.push_back("Unassigned");
+	sedanSeatChart.push_back("Unassigned");
+	sedanSeatChart.push_back("Unassigned");
+
+	for (int i = 0; i < 3; i++) {
+		sedanSeatChart.at(0) = "Unassigned";
+		sedanSeatChart.at(1) = "Unassigned";
+		sedanSeatChart.at(2) = "Unassigned";
+		sedanSeatChart.at(3) = "Unassigned";
+
+
+		OutPutFile << "\n\nSedan " << sedans.at(i).GetColor() << endl;
+		OutPutFile << "-------------------\n";
+		OutPutFile << "Driver          : " << sedans.at(i).GetDriverFirstName() << endl;
+		for (int j = 0; j < completedReservation.size(); j++) {
+			if (sedans.at(i).displaySeatSedan(0) == 'X' && completedReservation.at(j).GetVehicleNum() == i) {
+				sedanSeatChart.at(0) = (completedReservation.at(j).GetName());
+			}
+			else if (sedans.at(i).displaySeatSedan(1) == 'X' && completedReservation.at(j).GetVehicleNum() == i) {
+				sedanSeatChart.at(1) = (completedReservation.at(j).GetName());
+			}
+			else if (sedans.at(i).displaySeatSedan(2) == 'X' && completedReservation.at(j).GetVehicleNum() == i) {
+				sedanSeatChart.at(2) = (completedReservation.at(j).GetName());
+			}
+		}
+		OutPutFile << "Front       Seat: " << sedanSeatChart.at(0) << endl;
+		OutPutFile << "Back Left   Seat: " << sedanSeatChart.at(1) << endl;
+		OutPutFile << "Back Middle Seat: " << sedanSeatChart.at(2) << endl;
+		OutPutFile << "Back Right  Seat: " << sedanSeatChart.at(3) << endl;
+
+	}
+	cout << "all_reservations.txt made\n\n";
+	system("pause");
+	OutPutFile.close();
+}
+
+
+//*****************************************************************************************************
+// Print Specific Car Reservations:
+//*****************************************************************************************************
+
+void Reservation::printOneReservation(string color, string vehicle, vector<Reservation> completedReservations, vector<Truck> trucks, vector <Compact> compacts, vector <Sedan> sedans) {
+	ofstream outPutFile;
+	
+	//forces color and vehicle to be lowercase
+	low(color);
+	low(vehicle);
+
+	//creates the custom file name
+	string fileName = color;
+	fileName.append("_");	
+	fileName.append(vehicle);
+	fileName.append(".txt");
+	outPutFile.open(fileName);
+	
+	//Truck loop
+	if (vehicle == "truck" ) {
+		if (color == "purple") {
+
+		}
+		
+		else if (color == "green") {
+
+		}
+
+		else if (color ==  "black") {
+
+		}
+
+		else { //no Truck found
+			cout << "A Truck mathing that description was not found, returning to main\n";
+			system("pause");
+			return;
+		}
+	}
+	
+	//Compact loop
+	else if (vehicle == "compact") {
+		if (color == "red") {
+
+		}
+
+		else if (color == "blue") {
+
+		}
+
+		else if (color == "yellow") {
+
+		}
+
+		else { //no Truck found
+			cout << "A Compact mathing that description was not found, returning to main\n";
+			system("pause");
+			return;
+		}
+	}
+	
+	//Sedan loo
+	else if (vehicle == "sedan") {
+		if (color == "blue") {
+
+		}
+
+		else if (color == "black") {
+
+		}
+
+		else if (color == "green") {
+
+		}
+
+		else { //no Truck found
+			cout << "A Sedan mathing that description was not found, returning to main\n";
+			system("pause");
+			return;
+		}
+
+	}
+
+	else { //No vehicle found
+		cout << vehicle << " was not found, returning to main\n"; 
+		system("pause");
+		return;
+	}
+
+}
 
 //*****************************************************************************************************
 // Lowercase Conversion & pinMaker Functions:

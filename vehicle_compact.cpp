@@ -59,7 +59,7 @@ bool Compact::seatCheckCompact(int seatSelection) {
 		//conformation check to make the reservation
 		if (userInput == "Y" || userInput == "y") {
 			//update the truck to show the spot has been claimed
-			cout << "congrats, reservation made, returing to main.";
+			//cout << "congrats, reservation made, returing to main.";
 
 			seat_C.at(0) = 'X';
 			return true;
@@ -83,7 +83,7 @@ bool Compact::seatCheckCompact(int seatSelection) {
 		
 		if (userInput == "Y" || userInput == "y") { //conformation check to make the reservation
 			
-			cout << "congrats, reservation made, returing to main.";
+			//cout << "congrats, reservation made, returing to main.";
 
 			//assigns the seat that the user reserved going left to right
 			if (seat_C.at(1) == '3') seat_C.at(1) = 'X';

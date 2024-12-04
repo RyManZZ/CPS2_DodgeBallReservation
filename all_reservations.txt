@@ -1,0 +1,69 @@
+
+
+Truck Purple
+-------------------
+Driver    : Pat
+Front Seat: Unassigned
+
+
+Truck Green
+-------------------
+Driver    : Jane
+Front Seat: Unassigned
+
+
+Truck Black
+-------------------
+Driver    : Tim
+Front Seat: Unassigned
+
+
+Compact Red
+-------------------
+Driver         : Ben
+Front      Seat: Unassigned
+Back Left  Seat: Unassigned
+Back Right Seat: Unassigned
+
+
+Compact Blue
+-------------------
+Driver         : Art
+Front      Seat: Unassigned
+Back Left  Seat: Unassigned
+Back Right Seat: Unassigned
+
+
+Compact Yellow
+-------------------
+Driver         : Ann
+Front      Seat: Unassigned
+Back Left  Seat: Unassigned
+Back Right Seat: Unassigned
+
+
+Sedan Blue
+-------------------
+Driver          : Grace
+Front       Seat: Unassigned
+Back Left   Seat: Unassigned
+Back Middle Seat: Unassigned
+Back Right  Seat: Unassigned
+
+
+Sedan Black
+-------------------
+Driver          : Larry
+Front       Seat: Unassigned
+Back Left   Seat: Unassigned
+Back Middle Seat: Unassigned
+Back Right  Seat: Unassigned
+
+
+Sedan Green
+-------------------
+Driver          : Jessie
+Front       Seat: Unassigned
+Back Left   Seat: Unassigned
+Back Middle Seat: Unassigned
+Back Right  Seat: Unassigned

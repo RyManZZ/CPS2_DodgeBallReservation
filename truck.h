@@ -22,8 +22,8 @@ namespace NS_Truck { //creates a namespace for Truck
 
 	public:
 		Truck();             //constructor.
-		void displayTruck(); //prints the truck image.
-		char displySeatTruck(); //may not be used.
+		void displayTruck(); //prints the truck image. //may not be used
+		char displySeatTruck();
 		bool seatCheckTruck(); //checks to see if the seat is valid.
 	};
 }

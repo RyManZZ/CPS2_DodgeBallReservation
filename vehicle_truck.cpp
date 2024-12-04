@@ -60,7 +60,7 @@ bool Truck::seatCheckTruck() {
 		if (userInput == "Y" || userInput == "y") {
 
 			//update the truck to show the spot has been claimed
-			cout << "congrats, reservation made, returing to main.";
+			//cout << "congrats, reservation made, returing to main.";
 
 			seat_T.at(0)= 'X'; // <- Indicates Visually that the Seat is taken.
 

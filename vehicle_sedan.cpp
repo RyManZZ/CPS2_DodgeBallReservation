@@ -62,7 +62,7 @@ bool Sedan::seatCheckSedan(int seatSelection) {
 		//conformation check to make the reservation
 		if (userInput == "Y" || userInput == "y") {
 			//update the truck to show the spot has been claimed
-			cout << "congrats, reservation made, returing to main.";
+//			cout << "congrats, reservation made, returing to main.";
 
 			seat_S.at(0) = 'X';
 			return true;
@@ -84,7 +84,7 @@ bool Sedan::seatCheckSedan(int seatSelection) {
 		//conformation check to make the reservation
 		if (userInput == "Y" || userInput == "y") {
 			//update the truck to show the spot has been claimed
-			cout << "congrats, reservation made, returing to main.";
+		//	cout << "congrats, reservation made, returing to main.";
 
 			seat_S.at(2) = 'X';
 			return true;
@@ -108,7 +108,7 @@ bool Sedan::seatCheckSedan(int seatSelection) {
 
 		if (userInput == "Y" || userInput == "y") { //conformation check to make the reservation
 
-			cout << "congrats, reservation made, returing to main.";
+		//	cout << "congrats, reservation made, returing to main.";
 
 			//assigns the seat that the user reserved going left to right
 			if (seat_S.at(1) == '2') seat_S.at(1) = 'X';

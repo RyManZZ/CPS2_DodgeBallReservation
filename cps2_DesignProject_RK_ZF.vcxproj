@@ -145,6 +145,7 @@
     <ClCompile Include="vehicle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="all_reservations.txt" />
     <Text Include="dodgeball.dat" />
   </ItemGroup>
   <ItemGroup>

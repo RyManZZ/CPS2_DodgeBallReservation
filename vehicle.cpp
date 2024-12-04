@@ -37,3 +37,7 @@ string Vehicle::GetDriverLastName() {
 string Vehicle::GetColor() {
 	return color;
 }
+
+void Vehicle::PrintColor() {
+	cout << color;
+}

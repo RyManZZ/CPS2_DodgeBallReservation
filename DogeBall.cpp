@@ -55,6 +55,7 @@ int main() {
 	string carType; // <- User input to get the type of the car.
 
 	//Variables used in Main:
+	string color, vehicle; //used for the specific print of the reservation
 	string userInput, pin, firstName, lastName;
 	int credit;
 	int counts = 0; //<- used to get the drivers.
@@ -104,11 +105,12 @@ int main() {
 		//Menu Display:
 		cout << "Dodge Ball Car pool Reservation:\n";
 		cout << "-------------------------------\n\n";
-		cout << "(1) Create Reservation\n";
-		cout << "(2) Modify Reservation\n";
-		cout << "(3) Delete Reservation\n";
-		cout << "(4) Print  Reservations\n\n";
-
+		cout << "(1) Create A  Reservation\n";
+		cout << "(2) Modify A  Reservation\n";
+		cout << "(3) Delete A  Reservation\n";
+		cout << "(4) Print All Reservations\n";
+		cout << "(5) Print One Reservation\n";
+		cout << "(-1) Quit\n\n";
 		cout << "option: ";
 		cin >> userInput; 	//user input for menu
 
@@ -116,7 +118,6 @@ int main() {
 		//Option 1. This will allow the user to Create a reservation:
 		if (userInput == "1") {
 			 reservationTemp.createReservation(completedReservation, personData, trucks, compacts, sedans);
-
 		}
 
 		//Option 2. This will allow the user to Modify a reservation that has already been made:
@@ -129,11 +130,20 @@ int main() {
 
 		}
 
-		//Option 4. This will Print all made reservation:
+		//Option 4. This will Print all reservations:
 		else if (userInput == "4") {
-
+			reservationTemp.printAllReservations(completedReservation, trucks, compacts, sedans);
 		}
+		
+		//Option 5. This will print a single car's reservation
+		else if (userInput == "5") {
+			reservationTemp.printOneReservation(color, vehicle, completedReservation, trucks, compacts, sedans);
+		}
+
 		//Errorr Check Case:
+		else if (userInput == "-1") {
+			exit(1);
+		}
 		else {
 			cout << "Error invalid input\nPlease enter a number 1-4";
 			system("pause");
@@ -154,17 +164,14 @@ void createTruck(vector<Truck>& trucks) {
 	Truck tempTruck;
 	//Purple Pat Cooper:
 	tempTruck.SetDriverName("Pat", "Cooper", "Purple");
-	tempTruck.Truck::Truck();
 	trucks.push_back(tempTruck);
 
 	//Green Jane Cox:
 	tempTruck.SetDriverName("Jane", "Cox", "Green");
-	tempTruck.Truck::Truck();
 	trucks.push_back(tempTruck);
 
 	//Black Tim Taylor:
 	tempTruck.SetDriverName("Tim", "Taylor", "Black");
-	tempTruck.Truck::Truck();
 	trucks.push_back(tempTruck);
 }
 
@@ -174,17 +181,14 @@ void createCompact(vector<Compact>& compacts) {
 	Compact tempCompact;
 	//Red Ben Butler:
 	tempCompact.SetDriverName("Ben", "Butler", "Red");
-	tempCompact.Compact::Compact();
 	compacts.push_back(tempCompact);
 
 	//Blue Art Campbell:
 	tempCompact.SetDriverName("Art", "Campbell", "Blue");
-	tempCompact.Compact::Compact();
 	compacts.push_back(tempCompact);
 
     //Yellow Ann Edwards:
 	tempCompact.SetDriverName("Ann", "Edwards", "Yellow");
-	tempCompact.Compact::Compact();
 	compacts.push_back(tempCompact);
 }
 
@@ -194,17 +198,14 @@ void createSedan(vector<Sedan>& sedans) {
 	//Blue Grace Wan:
 	Sedan tempSedan;
 	tempSedan.SetDriverName("Grace", "Wan", "Blue");
-	tempSedan.Sedan::Sedan();
 	sedans.push_back(tempSedan);
 
 	//Black Lary Adams:
 	tempSedan.SetDriverName( "Larry", "Adams", "Black");
-	tempSedan.Sedan::Sedan();
 	sedans.push_back(tempSedan);
 
 	//Green Jessie Quirk:
 	tempSedan.SetDriverName("Jessie", "Quirk", "Green");
-	tempSedan.Sedan::Sedan();
 	sedans.push_back(tempSedan);
 }
 
@@ -228,8 +229,7 @@ ifstream openInputFile() {
 ofstream openOutputFile() {
 
 	ofstream OutPutFile; //write file
-	string userFile_out; //user defined file name
-
+	
    //Opens the file. Error Checks:
 	OutPutFile.open("OUT_dodgeball.dat");
 
