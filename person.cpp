@@ -1,10 +1,19 @@
+//////////////////////////////////////////////
+// DodgeBall Team Reservation Project
+// Course: Computational Problem Solving II
+// Developers: Ryan Karges & Zachary Fitzgerald
+// File: person.cpp
+// Description: Contains people Class. Allows access to user's data. Includes Names, and amount of credits.
+//////////////////////////////////////////////
+
+//Header Files & NameSpace Definitions:
 #include "dogeBall.h"
 #include "person.h"
 
 using namespace NS_Person;
 
 
-//constructors
+//Constructors:
 Person::Person() {
      firstName = "NULL";
      lastName = "NULL";
@@ -17,7 +26,7 @@ Person::Person(string firstName, string lastName, int credit) {
 }
 
 
-//setting
+//Setting:
 void Person::setPersonData(string firstName, string lastName) {
     this->firstName = firstName;
     this->lastName = lastName;
@@ -27,7 +36,7 @@ void Person::setCreditData(int credit) {
 }
 
 
-//returns
+//Returns:
 string Person::getFirstName() {
     return firstName;
 }
@@ -39,7 +48,7 @@ int Person::getCredit() {
 }
 
 
-//displayes
+//Displays:
 void Person::displayFirstName(void) {
     cout << firstName <<" ";
 }
