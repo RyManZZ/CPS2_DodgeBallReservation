@@ -3,26 +3,27 @@
 // Course: Computational Problem Solving II
 // Developers: Ryan Karges & Zachary Fitzgerald
 // File: compact.h
-// Description: Serves as Header File for the compact class (compact.cpp):
+// Description: Serves as Header File for the Compact class (compact.cpp):
 //////////////////////////////////////////////
+
+//Header Files:
 #pragma once
 
 #include "DogeBall.h"
 #include "vehicle.h"
 
-
 using namespace NS_Vehicle;
 
-namespace NS_Compact { //creates a namespace for tree
-	class Compact : public Vehicle { //creates the tree class as a child of plant
+namespace NS_Compact { //creates a namespace for Compact
+	class Compact : public Vehicle { //creates the Compact class as a child of Vehicle
 
 	private:
 		vector<char> seat_C;
 
 	public:
-		Compact();             //constructor
-		void displayCompact(); //prints the truck image
-		char displaySeatCompact(int); //may not be used
-		bool seatCheckCompact(int); //checks to see if the seat is valid
+		Compact();             //constructor.
+		void displayCompact(); //prints the Compact image.
+		char displaySeatCompact(int); //may not be used.
+		bool seatCheckCompact(int); //checks to see if the seat is valid.
 	};
 }
