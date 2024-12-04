@@ -14,8 +14,7 @@
 #include "truck.h"
 #include "person.h"
 
-
-//Namespace's
+//Namespace's:
 using namespace NS_Reservation;
 using namespace NS_Person;
 using namespace NS_Truck;
@@ -26,12 +25,12 @@ using namespace NS_Compact;
 // Defines a lot of stuff. Uses Pointers. -------------------------------------------------------------------------- Fix Comment
 //*****************************************************************************************************
 
-//prototypes
-void low(string&); //converts the inputed string to lowercase
-void pinMaker(vector<int>&);
+//Prototypes:
+void low(string&); // <- converts the inputed string to lowercase.
+void pinMaker(vector<int>& pinNum); // Assigns a Unique pin to the Reservation.
 
 
-//constructors
+//Constructors:
 Reservation::Reservation() {
     firstName = "NULL";
 	vehicleNum = 0;
@@ -49,14 +48,15 @@ void Reservation::SetVehicleNum(int vehicleNum) {
 
 void Reservation::SetPin(int pin) {
     this->pin = pin;
+
 }
 
-//used to hold the value of the seat when making a reservation
+//used to hold the value of the seat when making a reservation:
 void Reservation::SetCost(int cost) {
 	this->cost = cost;
 }
 
-//returns the value of the seat that was reserved
+//returns the value of the seat that was reserved:
 int Reservation::GetCost() {
 	return cost;
 }
@@ -70,21 +70,21 @@ int Reservation::GetVehicleNum() {
 //*****************************************************************************************************
 
 //This allows a person to make a reservation as long as they have above 0 credits and are not a driver
-//Takes in the person class vecotor (First/Last names and credits) - drivers get -1 credits
+//Takes in the person class vecotor (First/Last names and credits) - drivers get -1 credits:
 void Reservation::createReservation(vector<Reservation>& completedReservation, vector<Person>& personData, vector<Truck>& trucks, vector<Compact>& compacts, vector<Sedan>& sedans) {
 	Reservation tempCompleted;
 
 	string userInput, carType, carColor, tempString;
 	int userInt;
 	int personLocation;
-	bool resCheck; //used to check to see if a reservation was made
+	bool resCheck; //used to check to see if a reservation was made.
 
 	cout << "\n\nCreate Reservation\n";
 	cout << "------------------\n";
 	cout << "First Name: ";
 	cin >> userInput;
 
-	//Forces first letter of the person name to upper case and the rest to lower
+	//Forces first letter of the person name to upper case and the rest to lower:
 	tempString.push_back(toupper(userInput.at(0)));
 	for (int i = 1; i < userInput.size(); i++) {
 		tempString.push_back(tolower(userInput.at(i)));
@@ -108,30 +108,29 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 				return;
 			}
 
-			 
-			//Make a reservation portion
+			//Make a Reservation Portion:
 			else {
 				system("cls");
-				//displays the persons name and the number of credits they have
+				//Displays the persons name and the number of credits they have:
 				cout << "Hello ";    personData.at(personLocation).Person::displayFirstName();
 				cout << "you have ";  personData.at(personLocation).Person::displayCredit();
 				cout << "credits\n\n";
 
-				//display for all of the current reservations for all 
+				//Display for all of the current reservations for all:
 				cout << "\n\n Truck      Compact      Sedan\n";
 				cout << "-------    ---------    --------\n";
 				
-				//first row of cars
+				//First row of cars:
 				cout << "Purple        Red         Blue \n";
 				cout << "(-)" << "(" << trucks.at(0).Truck::displySeatTruck() << ")      " << "(-) " << "(" << compacts.at(0).Compact::displaySeatCompact(0) << ")     (-)   (" << sedans.at(0).Sedan::displaySeatSedan(0) << ")\n";
 				cout << "            (" << compacts.at(0).Compact::displaySeatCompact(1) << ") (" << compacts.at(0).Compact::displaySeatCompact(2) << ")     (" << sedans.at(0).Sedan::displaySeatSedan(1) << ")(" << sedans.at(0).Sedan::displaySeatSedan(2) << ")(" << sedans.at(0).Sedan::displaySeatSedan(3) << ")\n\n";
 				
-				//second row of cars
+				//second row of cars:
 				cout << "Green        Blue         Black\n";
 				cout << "(-)" << "(" << trucks.at(1).Truck::displySeatTruck() << ")      " << "(-) " << "(" << compacts.at(1).Compact::displaySeatCompact(0) << ")     (-)   (" << sedans.at(1).Sedan::displaySeatSedan(0) << ")\n";
 				cout << "            (" << compacts.at(1).Compact::displaySeatCompact(1) << ") (" << compacts.at(1).Compact::displaySeatCompact(2) << ")     (" << sedans.at(1).Sedan::displaySeatSedan(1) << ")(" << sedans.at(1).Sedan::displaySeatSedan(2) << ")(" << sedans.at(1).Sedan::displaySeatSedan(3) << ")\n\n";
 				
-				//third row of cars
+				//third row of cars:
 				cout << "Black       Yellow        Green\n";
 				cout << "(-)" << "(" << trucks.at(2).Truck::displySeatTruck() << ")      " << "(-) " << "(" << compacts.at(2).Compact::displaySeatCompact(0) << ")     (-)   (" << sedans.at(2).Sedan::displaySeatSedan(0) << ")\n";
 				cout << "            (" << compacts.at(2).Compact::displaySeatCompact(1) << ") (" << compacts.at(2).Compact::displaySeatCompact(2) << ")     (" << sedans.at(2).Sedan::displaySeatSedan(1) << ")(" << sedans.at(2).Sedan::displaySeatSedan(2) << ")(" << sedans.at(2).Sedan::displaySeatSedan(3) << ")\n\n\n";
@@ -208,7 +207,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 //***************************************************	
 
 				else if (userInt == 2) {
-					//allows the user to choose a vehicle type and color
+					//allows the user to choose a vehicle type and color:
 					cout << "What Vechicle do you want to ride in and seat location\n";
 					cout << "Car Type: ";  cin >> carType;
 					cout << "car Color: "; cin >> carColor;
@@ -221,7 +220,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 					bool userCreditCheck = true;
 					while(userCreditCheck) {
 					
-						//cost menu to display seat costs with its option:
+						//Cost Menu to Display seat costs with its option:
 						cout << "\n\nEnter 1-4 for the seat type you want\n";
 						cout << "     Position                Cost \n";
 						cout << "(1) Front Seat                5\n";
@@ -262,7 +261,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 						
 						}
 						else {
-							cout << "invlaid input, must enter 1-4, returning to main";
+							cout << "invalid input, must enter 1-4, returning to main";
 							userCreditCheck = false;
 							system("pause");
 							return;
@@ -287,7 +286,8 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 								//*****//
 								//Temp value
-								tempCompleted.SetPin(999);//needs to be set random 100-999?
+								tempCompleted.SetPin(999);
+								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 <<  "\n";
 								//print the pin to the user
 								////////////////////////
 
@@ -426,21 +426,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 					return;
 				}
 
-
-				//used to convert user input to lower case for car type
-				//for (int i = 0; i < carType.size(); i++) {
-				//	tempString.push_back(tolower(carType.at(i)));
-				//} 
-				//carType = tempString;
-
-
-				//used to convert user input to lower case for car color
-				//for (int i = 0; i < carType.size(); i++) {
-				//	tempString.push_back(tolower(carColor.at(i)));
-				//}
-				//carColor = tempString;
-
-
+/*
 				if (carType == "truck") {
 					if (personData.at(personLocation).Person::getCredit() >= 5) {
 
@@ -469,8 +455,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 				}
 				else {
+				*/
 
-				}
+				
 
 			}
 		}
@@ -484,11 +471,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 }
 
 
-
-
-
-//***********************************************************************************************\\
-//Random Function
+//*****************************************************************************************************
+// Lowercase Conversion & pinMaker Functions:
+//*****************************************************************************************************
 
 //used to convert user input to lower case for car type
 void low(string& inWord) {
@@ -499,7 +484,37 @@ void low(string& inWord) {
 	inWord = tempString;
 }
 
-//makes the randomly generated pin for the user after they make a reservation
-void pinMaker(vector<int>& pin) {
+//Generates a Random & Unique Three Digit PIN:
+void pinMaker(vector<int>& pinNum) {
+	
+	//Loop To keep generating the next pin if it is't Unique:
+	bool notUnique = true;
+	while (notUnique) {
+
+		int tempPin = 0; //Temporary Generated Pin Value
+		srand(time(NULL)); // Seeds the rand()
+		tempPin = (rand() % 898) + 101; // Assigns tempPin with a Random Value 100 - 998
+
+		//Checks If the PIN has been used Before:
+		for (int i = 0; i < pinNum.size(); i++) {
+
+			if (pinNum.at(i) == tempPin)
+			{
+				notUnique = true;
+				break;  // Leaves loop and will Jump to generating a new pin.
+			}
+			else
+			{
+				notUnique = false;
+			}
+
+		}
+
+		//If the PIN is unique, then it will add it to the PIN vector:
+		if (!notUnique)
+		{
+			pinNum.push_back(tempPin);
+		}
+	}
 
 }
