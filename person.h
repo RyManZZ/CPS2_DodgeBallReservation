@@ -5,11 +5,13 @@
 // File: person.h
 // Description: Serves as Header File for the person class (person.cpp):
 //////////////////////////////////////////////
+
+//Header Files:
 #pragma once
 #include "DogeBall.h"
 
-namespace NS_Person { //creates a namespace for plant
-	class Person {    //creates a parent class Plant
+namespace NS_Person {
+	class Person {    //creates a parent class Person
 
 	private:
 		string firstName;
@@ -17,27 +19,25 @@ namespace NS_Person { //creates a namespace for plant
 		int credit;
 
 	public:
-		//constructors
-		Person(); //default
-		Person(string, string, int ); //paramertarized
+		//constructors:
+		Person(); //Default
+		Person(string, string, int ); //Paramertarized.
 		
-		//seting
-		void setPersonData(string, string); //sets the first and last names 
-		void setCreditData(int); //sets the # of credits
+		//Seting:
+		void setPersonData(string, string); //Sets the first and last names.
+		void setCreditData(int); //sets the # of credits.
 
-		//returns
+		//Returns:
 		string getFirstName();
 		string getLastName(); 
 		int    getCredit();
 
 
-		//displays
+		//Displays:
 		void displayFirstName(void);
 		void displayLastName(void);
 		void displayCredit(void);
 
-			//check for driver? 
-			//or give driver -1 credit to serve as a sentinal value?
 	};
 }
 
