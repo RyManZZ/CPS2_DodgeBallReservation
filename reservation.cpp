@@ -74,7 +74,7 @@ string Reservation::GetName() {
 //*****************************************************************************************************
 
 //This allows a person to make a reservation as long as they have above 0 credits and are not a driver
-//Takes in the person class vecotor (First/Last names and credits) - drivers get -1 credits:
+//Takes in the person class vector (First/Last names and credits) - drivers get -1 credits:
 void Reservation::createReservation(vector<Reservation>& completedReservation, vector<Person>& personData, vector<Truck>& trucks, vector<Compact>& compacts, vector<Sedan>& sedans) {
 	Reservation tempCompleted;
 
@@ -1072,36 +1072,6 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 					return;
 				}
 
-/*
-				if (carType == "truck") {
-					if (personData.at(personLocation).Person::getCredit() >= 5) {
-
-
-					}
-					else {
-						cout << "You do not have enough credits to reserve a seat in a Truck\nGoing Back to main menu\n";
-						system("pause");
-						return;
-					}
-				}
-				else if (carType == "compact") {
-					if (personData.at(personLocation).Person::getCredit() >= 3) {
-
-
-
-
-					}
-					else {
-						cout << "You do not have enough credits to reserve a seat in a Truck\nGoing Back to main menu\n";
-						system("pause");
-						return;
-					}
-				}
-				else if (carType == "sedan") {
-
-				}
-				else {
-				*/
 			}
 		}
 	}
@@ -1113,7 +1083,42 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 	return;
 }
 
+//*****************************************************************************************************
+// Delete Reservation:
+//*****************************************************************************************************
+//This allows a person to delete an existing reservation that they have.
+// Takes in the person class and Reservation class to verify a user has a created Reservation and a saved PIN:
+void Reservation::deleteReservation(vector<Reservation>& completedReservation, vector<Person>& personData, vector<Truck>& trucks, vector<Compact>& compacts, vector<Sedan>& sedans) {
 
+	string userInput, carType, carColor, tempString;
+	int userInt;
+	vector<int>pinNum;
+	int pinCount = pinNum.size(); //used to keep track of the umber of pins made
+	bool resCheck; //used to check to see if a reservation was made.
+
+
+	cout << "\n\nDelete Reservation\n";
+	cout << "------------------\n";
+	cout << "First Name: ";
+	cin >> userInput;
+
+	//Forces first letter of the person name to upper case and the rest to lower:
+	tempString.push_back(toupper(userInput.at(0)));
+	for (int i = 1; i < userInput.size(); i++) {
+		tempString.push_back(tolower(userInput.at(i)));
+	}
+	userInput = tempString;
+
+	//Makes sure the Driver isn't deleting the Reservation:
+	if (Person::getCredit() == -1) {                                                                // FIX THIS. Check if userinput == driver name
+
+		cout << "You are a driver and cannot delete your driver seat reservation. \n";
+		system("pause");
+		return;
+
+	}
+
+} // Reservation::deleteReservation;
 
 
 //*****************************************************************************************************
@@ -1320,12 +1325,14 @@ void low(string& inWord) {
 
 //Generates a Random & Unique Three Digit PIN:
 void pinMaker(vector<int>& pinNum) {
-	//Loop To keep generating the next pin if it is't Unique:
+
 	bool notUnique = false;
 	srand(time(NULL)); // Seeds the rand()
 		int tempPin = (rand() % 898) + 101; //Temporary Generated Pin Value
+
 		//Checks If the PIN has been used Before:
 		for (int i = 0; i < pinNum.size(); i++) {
+
 			tempPin = (rand() % 898) + 101; // Assigns tempPin with a Random Value 100 - 998
 
 			if (pinNum.at(i) == tempPin)
