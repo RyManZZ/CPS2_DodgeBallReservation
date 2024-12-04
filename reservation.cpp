@@ -76,8 +76,11 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 	string userInput, carType, carColor, tempString;
 	int userInt;
+	vector<int>pinNum;
+	int pinCount = pinNum.size(); //used to keep track of the umber of pins made
 	int personLocation;
 	bool resCheck; //used to check to see if a reservation was made.
+
 
 	cout << "\n\nCreate Reservation\n";
 	cout << "------------------\n";
@@ -229,10 +232,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 							{
 								tempCompleted.SetCost(5);
 
-								//*****//
-								//Temp value
-								tempCompleted.SetPin(999);
-								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+								pinMaker(pinNum);
+								tempCompleted.SetPin(pinNum.at(pinCount));
+								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 								//print the pin to the user
 								////////////////////////
 
@@ -256,10 +258,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 							{
 								tempCompleted.SetCost(2);
 
-								//*****//
-								//Temp value
-								tempCompleted.SetPin(999);
-								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+								pinMaker(pinNum);
+								tempCompleted.SetPin(pinNum.at(pinCount));
+								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 								//print the pin to the user
 								////////////////////////
 
@@ -285,10 +286,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 							{
 								tempCompleted.SetCost(1);
 
-								//*****//
-								//Temp value
-								tempCompleted.SetPin(999);
-								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+								pinMaker(pinNum);
+								tempCompleted.SetPin(pinNum.at(pinCount));
+								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 								//print the pin to the user
 								////////////////////////
 
@@ -342,10 +342,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 							if (trucks.at(0).seatCheckTruck() == true) {
 								tempCompleted.SetCost(5);
 
-								//*****//
-								//Temp value
-								tempCompleted.SetPin(999);
-								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 <<  "\n";
+								pinMaker(pinNum);
+								tempCompleted.SetPin(pinNum.at(pinCount));
+								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 								//print the pin to the user
 								////////////////////////
 
@@ -363,10 +362,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 							if (trucks.at(1).seatCheckTruck() == true) {
 								tempCompleted.SetCost(5);
 
-								//*****//
-								//Temp value
-								tempCompleted.SetPin(999);//needs to be set random 100-999?
-								
+								pinMaker(pinNum);
+								tempCompleted.SetPin(pinNum.at(pinCount));
+								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 								//print the pin to the user
 								////////////////////////
 
@@ -445,10 +443,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									{
 										tempCompleted.SetCost(5);
 
-										//*****//
-										//Temp value
-										tempCompleted.SetPin(999);
-										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										pinMaker(pinNum);
+										tempCompleted.SetPin(pinNum.at(pinCount));
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 										//print the pin to the user
 										////////////////////////
 
@@ -478,10 +475,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									{
 										tempCompleted.SetCost(3);
 
-										//*****//
-										//Temp value
-										tempCompleted.SetPin(999);
-										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										pinMaker(pinNum);
+										tempCompleted.SetPin(pinNum.at(pinCount));
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 										//print the pin to the user
 										////////////////////////
 
@@ -520,10 +516,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									{
 										tempCompleted.SetCost(5);
 
-										//*****//
-										//Temp value
-										tempCompleted.SetPin(999);
-										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										pinMaker(pinNum);
+										tempCompleted.SetPin(pinNum.at(pinCount));
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 										//print the pin to the user
 										////////////////////////
 
@@ -553,10 +548,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									{
 										tempCompleted.SetCost(3);
 
-										//*****//
-										//Temp value
-										tempCompleted.SetPin(999);
-										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										pinMaker(pinNum);
+										tempCompleted.SetPin(pinNum.at(pinCount));
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 										//print the pin to the user
 										////////////////////////
 
@@ -595,10 +589,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									{
 										tempCompleted.SetCost(5);
 
-										//*****//
-										//Temp value
-										tempCompleted.SetPin(999);
-										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										pinMaker(pinNum);
+										tempCompleted.SetPin(pinNum.at(pinCount));
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 										//print the pin to the user
 										////////////////////////
 
@@ -628,10 +621,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									{
 										tempCompleted.SetCost(3);
 
-										//*****//
-										//Temp value
-										tempCompleted.SetPin(999);
-										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										pinMaker(pinNum);
+										tempCompleted.SetPin(pinNum.at(pinCount));
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 										//print the pin to the user
 										////////////////////////
 
@@ -697,10 +689,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									{
 										tempCompleted.SetCost(5);
 
-										//*****//
-										//Temp value
-										tempCompleted.SetPin(999);
-										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										pinMaker(pinNum);
+										tempCompleted.SetPin(pinNum.at(pinCount));
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 										//print the pin to the user
 										////////////////////////
 
@@ -730,10 +721,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									{
 										tempCompleted.SetCost(2);
 
-										//*****//
-										//Temp value
-										tempCompleted.SetPin(999);
-										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										pinMaker(pinNum);
+										tempCompleted.SetPin(pinNum.at(pinCount));
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 										//print the pin to the user
 										////////////////////////
 
@@ -756,10 +746,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								{
 									tempCompleted.SetCost(1);
 
-									//*****//
-									//Temp value
-									tempCompleted.SetPin(999);
-									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+									pinMaker(pinNum);
+									tempCompleted.SetPin(pinNum.at(pinCount));
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 									//print the pin to the user
 									////////////////////////
 
@@ -799,10 +788,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									{
 										tempCompleted.SetCost(5);
 
-										//*****//
-										//Temp value
-										tempCompleted.SetPin(999);
-										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										pinMaker(pinNum);
+										tempCompleted.SetPin(pinNum.at(pinCount));
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 										//print the pin to the user
 										////////////////////////
 
@@ -832,10 +820,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									{
 										tempCompleted.SetCost(2);
 
-										//*****//
-										//Temp value
-										tempCompleted.SetPin(999);
-										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										pinMaker(pinNum);
+										tempCompleted.SetPin(pinNum.at(pinCount));
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 										//print the pin to the user
 										////////////////////////
 
@@ -859,10 +846,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								{
 									tempCompleted.SetCost(1);
 
-									//*****//
-									//Temp value
-									tempCompleted.SetPin(999);
-									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+									pinMaker(pinNum);
+									tempCompleted.SetPin(pinNum.at(pinCount));
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 									//print the pin to the user
 									////////////////////////
 
@@ -903,10 +889,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									{
 										tempCompleted.SetCost(5);
 
-										//*****//
-										//Temp value
-										tempCompleted.SetPin(999);
-										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										pinMaker(pinNum);
+										tempCompleted.SetPin(pinNum.at(pinCount));
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 										//print the pin to the user
 										////////////////////////
 
@@ -937,10 +922,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									{
 										tempCompleted.SetCost(2);
 
-										//*****//
-										//Temp value
-										tempCompleted.SetPin(999);
-										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										pinMaker(pinNum);
+										tempCompleted.SetPin(pinNum.at(pinCount));
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 										//print the pin to the user
 										////////////////////////
 
@@ -964,10 +948,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								{
 									tempCompleted.SetCost(1);
 
-									//*****//
-									//Temp value
-									tempCompleted.SetPin(999);
-									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+									pinMaker(pinNum);
+									tempCompleted.SetPin(pinNum.at(pinCount));
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
 									//print the pin to the user
 									////////////////////////
 
@@ -1072,28 +1055,19 @@ void low(string& inWord) {
 
 //Generates a Random & Unique Three Digit PIN:
 void pinMaker(vector<int>& pinNum) {
-	
 	//Loop To keep generating the next pin if it is't Unique:
-	bool notUnique = true;
-	while (notUnique) {
-
-		int tempPin = 0; //Temporary Generated Pin Value
-		srand(time(NULL)); // Seeds the rand()
-		tempPin = (rand() % 898) + 101; // Assigns tempPin with a Random Value 100 - 998
-
+	bool notUnique = false;
+	srand(time(NULL)); // Seeds the rand()
+		int tempPin = (rand() % 898) + 101; //Temporary Generated Pin Value
 		//Checks If the PIN has been used Before:
 		for (int i = 0; i < pinNum.size(); i++) {
+			tempPin = (rand() % 898) + 101; // Assigns tempPin with a Random Value 100 - 998
 
 			if (pinNum.at(i) == tempPin)
 			{
 				notUnique = true;
 				break;  // Leaves loop and will Jump to generating a new pin.
 			}
-			else
-			{
-				notUnique = false;
-			}
-
 		}
 
 		//If the PIN is unique, then it will add it to the PIN vector:
@@ -1101,6 +1075,4 @@ void pinMaker(vector<int>& pinNum) {
 		{
 			pinNum.push_back(tempPin);
 		}
-	}
-
 }
