@@ -1,15 +1,21 @@
+//////////////////////////////////////////////
+// DodgeBall Team Reservation Project
+// Course: Computational Problem Solving II
+// Developers: Ryan Karges & Zachary Fitzgerald
+// File: vehicle_sedan.cpp
+// Description: Contains the Sedan Vehicle Class. Stores and processes information on Sedan Vehicle Seating arrangements:
+//////////////////////////////////////////////
 
 
-
+//Header Files & NameSpace Definitions:
 #pragma once
-
-
 #include "DogeBall.h"
 #include "vehicle.h"
 #include "Sedan.h"
 
 using namespace NS_Sedan;
 using namespace NS_Vehicle;
+
 
 Sedan::Sedan() {                            // pos  val
 	seat_S.push_back('5'); //passanger seat    0    5
