@@ -3,20 +3,21 @@
 // Course: Computational Problem Solving II
 // Developers: Ryan Karges & Zachary Fitzgerald
 // File: vehicle.h
-// Description: Serves as Header File for the vehicle class (vehicle.cpp):
+// Description: Serves as Header File for the Vehicle class (vehicle.cpp):
 //////////////////////////////////////////////
+
+//Header Files:
 #pragma once
 
 #include "DogeBall.h"
 
 
-//car order goes
+//car order goes:
+// Color   Vehicle  Name
 
-// Color  Vehcile Name
-
-// Purple  Pick-Up  Pat Cooper
-// Green   Pick-Up  Jane Cox
-// Black   Pick-Up  Tim Taylor
+// Purple  Truck    Pat Cooper
+// Green   Truck    Jane Cox
+// Black   Truck    Tim Taylor
 
 // Red     Compact  Ben Butler
 // Blue    Compact  Art Campbell
@@ -26,8 +27,9 @@
 // Black   Sedan    Lary Adams
 // Green   Sedan    Jessie Quirk
 
-namespace NS_Vehicle{ //creates a namespace for plant
-	class Vehicle {    //creates a parent class Plant
+namespace NS_Vehicle{ //creates a namespace for Vehicle
+
+	class Vehicle {    //creates a parent class Vehicle
 
 	protected:
 		string driverFirstName;
@@ -35,9 +37,10 @@ namespace NS_Vehicle{ //creates a namespace for plant
 		string color;
 		
 	public:
+
 		//constructors
 		Vehicle(); //default
-		void SetDriverName(string, string, string); //sets the drive name
+		void SetDriverName(string, string, string); //sets the driver's Name
 		string GetDriverFirstName();
 		string GetDriverLastName();
 		string GetColor();
