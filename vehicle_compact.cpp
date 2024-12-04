@@ -2,12 +2,12 @@
 // DodgeBall Team Reservation Project
 // Course: Computational Problem Solving II
 // Developers: Ryan Karges & Zachary Fitzgerald
-// File: Compact.h
-// Description: Serves as Header File for the Compact class (vehicle_compact.cpp):
+// File: vehicle_compact.cpp
+// Description: Contains the Compact Vehicle Class. Stores and processes information on Compact Vehicle Seating arrangements:
 //////////////////////////////////////////////
+
+//Header Files & NameSpace Definitions:
 #pragma once
-
-
 #include "DogeBall.h"
 #include "vehicle.h"
 #include "Compact.h"
