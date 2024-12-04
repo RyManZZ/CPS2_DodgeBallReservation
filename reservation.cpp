@@ -272,13 +272,34 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								return;
 							}
 						}
+						cout << "No seat was avaliable, reuning to main.\n";
+						system("pause");
+						return;
 					}
 
 					//Sedan Back Seat Middle:
 					else if (userInt == 4) {
 						for (int i = 0; i < compacts.size(); i++)
 						{
+							if (sedans.at(i).seatCheckSedan(userInt) == true)
+							{
+								tempCompleted.SetCost(1);
 
+								//*****//
+								//Temp value
+								tempCompleted.SetPin(999);
+								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+								//print the pin to the user
+								////////////////////////
+
+								tempCompleted.SetVehicleNum(i+6);
+								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+								completedReservation.push_back(tempCompleted);
+
+								//subtracts 5 credits from the persons current credit ammount
+								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 1);
+								return;
+							}
 						}
 					}
 
@@ -437,6 +458,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+										return;
 									}
 								}
 							}// front seat compact
@@ -469,6 +491,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 3);
+										return;
 									}
 								}
 							}// back seat comppact
@@ -510,6 +533,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+										return;
 									}
 								}
 							}// front seat compact
@@ -542,6 +566,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 3);
+										return;
 									}
 								}
 							}// back seat comppact
@@ -551,8 +576,6 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								system("pause");
 								return;
 							}
-
-
 						}
 
 						//Yellow Compact:
@@ -585,6 +608,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+										return;
 									}
 								}
 							}// front seat compact
@@ -617,6 +641,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 3);
+										return;
 									}
 								}
 							}// back seat comppact
@@ -787,6 +812,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+										return;
 									}
 								}
 							} // front seat sedan
@@ -819,6 +845,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 2);
+										return;
 									}
 								}
 							}// back seat outside sedan
@@ -845,13 +872,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 									//subtracts 5 credits from the persons current credit ammount
 									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 1);
-
+									return;
 								}
 							}// back seat middle sedan
 							
 							else { //error check for the seat map from user input
 								cout << "Invalid input, returning to main.\n";
 								system("pause");
+								return;
 							}
 						}
 
@@ -888,6 +916,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+										return;
 									}
 								} // front seat sedan
 							}
@@ -921,6 +950,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 2);
+										return;
 									}
 								}
 							}// back seat outside sedan
@@ -947,7 +977,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 									//subtracts 5 credits from the persons current credit ammount
 									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 1);
-
+									return;
 								}
 							}// back seat middle sedan
 
@@ -955,6 +985,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 							else { //error check for the seat map from user input
 								cout << "Invalid input, returning to main.\n";
 								system("pause");
+								return;
 							}
 						}
 
