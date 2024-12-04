@@ -154,44 +154,132 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 					cout << "(4) Sedan Back Seat Middle    1\n";
 					cout << "Seat: "; cin >> userInt;
 
-					//Shotgun
+					//Auto Shotgun
 					if (userInt == 1) {
 						if (personData.at(personLocation).getCredit() >= 5) {
 							//loop through the all front seats  if an option is avaiable ask the user to confirm then make pin and return to main
 							for (int i = 0; i < trucks.size(); i++) {
 								if (trucks.at(i).seatCheckTruck() == true) {
-								//tempcar
-									//
-									//
-									//
+									tempCompleted.SetCost(5);
 
+									//*****//
+									//Temp value
+									tempCompleted.SetPin(999);
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+									//print the pin to the user
+									////////////////////////
+
+									tempCompleted.SetVehicleNum(i);
+									tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+									completedReservation.push_back(tempCompleted);
+
+									//subtracts 5 credits from the persons current credit ammount
+									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+									return;
+								}
+								//compact front seat is a 1 because inside the compact.cpp file it subrtacts one from it
+								else if (compacts.at(i).seatCheckCompact(1) == true) {
+									tempCompleted.SetCost(5);
+
+									//*****//
+									//Temp value
+									tempCompleted.SetPin(999);
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+									//print the pin to the user
+									////////////////////////
+
+									tempCompleted.SetVehicleNum(i+3);
+									tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+									completedReservation.push_back(tempCompleted);
+
+									//subtracts 5 credits from the persons current credit ammount
+									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+									return;
+
+								}
+								//sedan front seat is a 1 because inside the compact.cpp file it subrtacts one from it
+								else if (sedans.at(i).seatCheckSedan(1) == true) {
+									tempCompleted.SetCost(5);
+
+									//*****//
+									//Temp value
+									tempCompleted.SetPin(999);
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+									//print the pin to the user
+									////////////////////////
+
+									tempCompleted.SetVehicleNum(i+6);
+									tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+									completedReservation.push_back(tempCompleted);
+
+									//subtracts 5 credits from the persons current credit ammount
+									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
 									return;
 								}
 							}
 						}
 					}
 
-					//Compact Back Seat:
+					//Auto Compact Back Seat:
 					else if (userInt == 2) {
 						//loop through the three comapacts back seats if an option is avaiable ask the user to confirm then make pin and return to main
-						for (int i = 0; i < trucks.size(); i++)
+						for (int i = 0; i < compacts.size(); i++)
 						{
-							//trucks.at(i).seatCheckT
+							if (compacts.at(i).seatCheckCompact(userInt) == true)
+							{
+								tempCompleted.SetCost(5);
 
+								//*****//
+								//Temp value
+								tempCompleted.SetPin(999);
+								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+								//print the pin to the user
+								////////////////////////
+
+								tempCompleted.SetVehicleNum(4);
+								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+								completedReservation.push_back(tempCompleted);
+
+								//subtracts 5 credits from the persons current credit ammount
+								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+								return;
+							}
 						}
 						
 					}
 
-					//Sedan Back Seat Outside:
+					//Auto Sedan Back Seat Outside:
 					else if (userInt == 3) {
-						//loop through the three sedans back seat outside if an option is avaiable ask the user to confirm then make pin and return to main
+						for (int i = 0; i < compacts.size(); i++)
+						{
+							if (sedans.at(i).seatCheckSedan(userInt) == true)
+							{
+								tempCompleted.SetCost(2);
 
+								//*****//
+								//Temp value
+								tempCompleted.SetPin(999);
+								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+								//print the pin to the user
+								////////////////////////
+
+								tempCompleted.SetVehicleNum(i + 6);
+								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+								completedReservation.push_back(tempCompleted);
+
+								//subtracts 5 credits from the persons current credit ammount
+								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 2);
+								return;
+							}
+						}
 					}
 
 					//Sedan Back Seat Middle:
 					else if (userInt == 4) {
-						//loop through the three sedans middle seat if an option is avaiable ask the user to confirm then make pin and return to main
+						for (int i = 0; i < compacts.size(); i++)
+						{
 
+						}
 					}
 
 					//Error Check:
@@ -597,6 +685,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+										return;
 									}
 								} // front seat sedan
 							}
@@ -629,6 +718,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 										//subtracts 5 credits from the persons current credit ammount
 										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 2);
+										return;
 									}
 								} 
 							}// back seat outside sedan	
@@ -654,13 +744,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 									//subtracts 5 credits from the persons current credit ammount
 									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 1);
-
+									return;
 								}
 							}// back seat middle sedan
 
 							else { //error check for the seat map from user input
 								cout << "Invalid input, returning to main.\n";
 								system("pause");
+								return;
 							}
 						}
 

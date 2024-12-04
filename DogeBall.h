@@ -41,30 +41,26 @@ using namespace std;
 //		Still Needs to be completed
 //***************************************
 // Reservation
-//   Create - ()
-//   Modify 
-//   Delete 
-//   Print 
+//   Create:
+//		- need to remove the fail from each vehicle.cpp and instead make a false gate flag in reservation
+//		- or pass in a variable into the seatchecker for auto or manual text options
+// 
+//   Modify:
+//		-no clue
+// 
+//   Delete:
+//		- nneds pin to be completed first
+// 
+//   Print:
+//		- made just needs to be moved
 // 
 // 
 // 
 //***************************************
-
-
-//            Chnage log
-//***************************************
-//Added Sedan objects in dogeball.cpp
-//Changed the file input and output to be automatic and not needing to be entered manualy (changed file type to .dat)
-//	also made the output file OUT_dodgeball.dat
-//***************************************
-
 
 
 //             To-Do 
 //***************************************
-// Finish the print for the truck
-// Finish the print for the compact
-// Finish the print for the sedan
 // Add Header Comments onto All files
 // Fix any Formatting
 // Make the UML Diagram:
@@ -76,9 +72,8 @@ using namespace std;
 // Person  .h & .cpp
 // Vehcile .h & .cpp
 // 
-//  (maybe)
+//  
 // Truck   .h
 // Compact .h
 // Sedan   .h
-// 
 
