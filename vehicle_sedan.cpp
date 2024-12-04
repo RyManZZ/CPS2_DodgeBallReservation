@@ -44,23 +44,90 @@ char Sedan::displaySeatSedan(int i) {
 //checks to see if the seat is valid
 //returns true if the seat is open
 //else false
-bool Sedan::seatCheckSedan(vector<char>) {
-	int userSeatVal = 0;
-	while (true) {
-		cout << "Enter a 1 for the shotgun\nEnter a 2 for back Left\nEnter a 3 for back right\nSeat: ";
-		cin >> userSeatVal;
-		if (userSeatVal > seat_S.size()) {
-			cout << "please enter a value 1-3\n\n";
-			system("pause");
-			system("cls");
-			continue;
-		}
+bool Sedan::seatCheckSedan(int seatSelection) {
+	string userInput;
 
-		if (seat_S.at(userSeatVal - 1) = '-') {
-			return false;
+
+	//Front Seat
+	//*****************************************************************************
+	if (seat_S.at(seatSelection - 1) == '5') {
+		cout << "The front seat is avaliable, would you like to reserve it Y/N\n";
+		cout << "choice: "; cin >> userInput;
+		//conformation check to make the reservation
+		if (userInput == "Y" || userInput == "y") {
+			//update the truck to show the spot has been claimed
+			cout << "congrats, reservation made, returing to main.";
+
+			seat_S.at(0) = 'X';
+			return true;
 		}
-		else {
-			return false;
+		else { //if user cancels reservation
+			cout << "reservation cancled, returing to main";
+			system("pause");
 		}
 	}
+
+	else { //if seat is already claimed
+		cout << "This Seat is already claimed, returning to main.";
+		system("pause");
+		return false;
+	}
+	//*****************************************************************************
+
+	//Back Seat Middle
+	//*****************************************************************************
+	if (seat_S.at(seatSelection - 1) == '1') {
+		cout << "The center back seat is avaliable, would you like to reserve it Y/N\n";
+		cout << "choice: "; cin >> userInput;
+		//conformation check to make the reservation
+		if (userInput == "Y" || userInput == "y") {
+			//update the truck to show the spot has been claimed
+			cout << "congrats, reservation made, returing to main.";
+
+			seat_S.at(2) = 'X';
+			return true;
+		}
+		else { //if user cancels reservation
+			cout << "reservation cancled, returing to main";
+			system("pause");
+		}
+	}
+
+	else { //if seat is already claimed
+		cout << "This Seat is already claimed, returning to main.";
+		system("pause");
+		return false;
+	}
+	//*****************************************************************************
+
+	//Back Seat Outside
+	//*****************************************************************************
+	if (seat_S.at(seatSelection - 1) == '2' || seat_S.at(seatSelection - 1) == '2') { //checks both seats at once to see if they are avaliable
+
+		cout << "A back Seat on the outisde is avaliable, would you like to reserve it Y/N\n";
+		cout << "choice: "; cin >> userInput;
+
+
+		if (userInput == "Y" || userInput == "y") { //conformation check to make the reservation
+
+			cout << "congrats, reservation made, returing to main.";
+
+			//assigns the seat that the user reserved going left to right
+			if (seat_S.at(1) == '2') seat_S.at(1) = 'X';
+			else if (seat_S.at(3) == '2') seat_S.at(3) = 'X';
+
+			return true;
+		}
+		else { //if user cancels reservation / invlaid input
+			cout << "reservation cancled, returing to main";
+			system("pause");
+		}
+	}
+
+	else { //if seat is already claimed
+		cout << "This Seat is already claimed, returning to main.";
+		system("pause");
+		return false;
+	}
+	//*****************************************************************************
 }

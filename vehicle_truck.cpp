@@ -40,14 +40,15 @@ char Truck::displySeatTruck() {
 //else false
 bool Truck::seatCheckTruck() {
 	string userInput;
-	if (seat_T.at(0) = '5') {
+	if (seat_T.at(0) == '5') {
 		cout << "The front seat is avaliable, would you like to reserve it Y/N\n";
 		cout << "choice: "; cin >> userInput;
 		//conformation check to make the reservation
 		if (userInput == "Y" || userInput == "y") {
 			//update the truck to show the spot has been claimed
 			cout << "congrats, reservation made, returing to main.";
-			seat_T.at(0) = 'X';
+
+			seat_T.at(0)= 'X';
 			return true;
 		}
 		else { //if user cancels reservation
@@ -56,7 +57,9 @@ bool Truck::seatCheckTruck() {
 		}
 	}
 
-	else { //if seat is already claimed
+	else { //if seat is already claimed / invlaid input
+		cout << "This Seat is already claimed, returning to main.";
+		system("pause");
 		return false;
 	}
 } 

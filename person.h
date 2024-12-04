@@ -22,12 +22,12 @@ namespace NS_Person { //creates a namespace for plant
 		Person(string, string, int ); //paramertarized
 		
 		//seting
-		void setPersonData(string, string); //sets the first and last names
+		void setPersonData(string, string); //sets the first and last names 
 		void setCreditData(int); //sets the # of credits
 
 		//returns
 		string getFirstName();
-		string getLastName();
+		string getLastName(); 
 		int    getCredit();
 
 

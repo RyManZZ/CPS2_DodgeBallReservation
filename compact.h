@@ -23,6 +23,6 @@ namespace NS_Compact { //creates a namespace for tree
 		Compact();             //constructor
 		void displayCompact(); //prints the truck image
 		char displaySeatCompact(int); //may not be used
-		bool seatCheckCompact(vector<char>); //checks to see if the seat is valid
+		bool seatCheckCompact(int); //checks to see if the seat is valid
 	};
 }

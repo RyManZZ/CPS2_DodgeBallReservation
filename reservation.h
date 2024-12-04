@@ -42,7 +42,7 @@ namespace NS_Reservation { //creates a namespace for plant
 		int GetCost();
 		int GetVehicleNum();
 
-		void createReservation(vector<Reservation>&, vector<Person>, vector<Truck>, vector<Compact>, vector<Sedan>);
+		void createReservation(vector<Reservation>&, vector<Person>&, vector<Truck>&, vector<Compact>&, vector<Sedan>&);
 	//	void modifyReservation();
 	//	void printReservation();
 	//	void deleteReservation();

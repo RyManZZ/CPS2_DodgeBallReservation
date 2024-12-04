@@ -1,5 +1,12 @@
+//////////////////////////////////////////////
+// DodgeBall Team Reservation Project
+// Course: Computational Problem Solving II
+// Developers: Ryan Karges & Zachary Fitzgerald
+// File: reservation.cpp
+// Description: Allows users to Create, Modify, Delete, or Display thier vehicle reservations:
+//////////////////////////////////////////////
 
-//Header Files
+//Header Files:
 #include "dogeBall.h"
 #include "reservation.h"
 #include "sedan.h"
@@ -21,6 +28,7 @@ using namespace NS_Compact;
 
 //prototypes
 void low(string&); //converts the inputed string to lowercase
+void pinMaker(vector<int>&);
 
 
 //constructors
@@ -63,7 +71,7 @@ int Reservation::GetVehicleNum() {
 
 //This allows a person to make a reservation as long as they have above 0 credits and are not a driver
 //Takes in the person class vecotor (First/Last names and credits) - drivers get -1 credits
-void Reservation::createReservation(vector<Reservation>& completedReservation, vector<Person> personData, vector<Truck> trucks, vector<Compact> compacts, vector<Sedan> sedans) {
+void Reservation::createReservation(vector<Reservation>& completedReservation, vector<Person>& personData, vector<Truck>& trucks, vector<Compact>& compacts, vector<Sedan>& sedans) {
 	Reservation tempCompleted;
 
 	string userInput, carType, carColor, tempString;
@@ -147,16 +155,20 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 					cout << "(4) Sedan Back Seat Middle    1\n";
 					cout << "Seat: "; cin >> userInt;
 
-					//add a credit check here to make sure they have enough for the desired seat
-
-
 					//Shotgun
 					if (userInt == 1) {
-						//loop through the all front seats  if an option is avaiable ask the user to confirm then make pin and return to main
-						for (int i = 0; i < trucks.size(); i++) {
-							trucks.at(i).seatCheckTruck();
-							
-							
+						if (personData.at(personLocation).getCredit() >= 5) {
+							//loop through the all front seats  if an option is avaiable ask the user to confirm then make pin and return to main
+							for (int i = 0; i < trucks.size(); i++) {
+								if (trucks.at(i).seatCheckTruck() == true) {
+								//tempcar
+									//
+									//
+									//
+
+									return;
+								}
+							}
 						}
 					}
 
@@ -276,9 +288,10 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								//*****//
 								//Temp value
 								tempCompleted.SetPin(999);//needs to be set random 100-999?
+								//print the pin to the user
 								////////////////////////
 
-								tempCompleted.SetVehicleNum(2);
+								tempCompleted.SetVehicleNum(1);
 								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 								completedReservation.push_back(tempCompleted);
 							}
@@ -292,6 +305,8 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								//*****//
 								//Temp value
 								tempCompleted.SetPin(999);//needs to be set random 100-999?
+								
+								//print the pin to the user
 								////////////////////////
 
 								tempCompleted.SetVehicleNum(2);
@@ -307,6 +322,8 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								tempCompleted.SetCost(5);
 
 								tempCompleted.SetPin(999);//needs to be set random 100-999?
+								
+								//print the pin to the user
 								////////////////////////
 
 								tempCompleted.SetVehicleNum(2);
@@ -467,6 +484,12 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 }
 
 
+
+
+
+//***********************************************************************************************\\
+//Random Function
+
 //used to convert user input to lower case for car type
 void low(string& inWord) {
 	string tempString;
@@ -475,4 +498,8 @@ void low(string& inWord) {
 	} 
 	inWord = tempString;
 }
-	
+
+//makes the randomly generated pin for the user after they make a reservation
+void pinMaker(vector<int>& pin) {
+
+}

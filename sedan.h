@@ -23,6 +23,6 @@ namespace NS_Sedan { //creates a namespace for tree
 		Sedan();             //constructor
 		void displaySedan(); //prints the truck image
 		char displaySeatSedan(int); //may not be used
-		bool seatCheckSedan(vector<char>); //checks to see if the seat is valid
+		bool seatCheckSedan(int); //checks to see if the seat is valid
 	};
 }
