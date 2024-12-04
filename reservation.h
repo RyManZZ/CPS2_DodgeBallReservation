@@ -5,6 +5,8 @@
 // File: reservation.h
 // Description: Serves as Header File for the reservation class (reservation.cpp):
 //////////////////////////////////////////////
+
+//Header Files and NameSpaces:
 #pragma once
 
 #include "DogeBall.h"
@@ -13,32 +15,31 @@
 #include "compact.h"
 #include "truck.h"
 
-
 using namespace NS_Person;
 using namespace NS_Truck;
 using namespace NS_Sedan;
 using namespace NS_Compact;
 
-namespace NS_Reservation { //creates a namespace for plant
-	class Reservation {    //creates a parent class Plant
+namespace NS_Reservation { //creates a namespace for Reservation
+	class Reservation {    //creates a parent class Reservation
 
 	private:
 		string firstName;
-		int vehicleNum;  //used to identify which vehicle the reservation is being made for
+		int vehicleNum;  //used to identify which vehicle the reservation is being made for.
 		int cost;
 		int pin;
 		
 	public:
-		//constructors
+		//Constructors:
 		Reservation(); //default
 		
-		//sets
+		//Sets:
 		void SetPin(int);
 		void SetCost(int);
 		void SetVehicleNum(int);
 		void SetFirstName(string);
 
-		//returns
+		//Returns
 		int GetCost();
 		int GetVehicleNum();
 
@@ -50,8 +51,7 @@ namespace NS_Reservation { //creates a namespace for plant
 }
 
 
-
-//vehicleNum - map
+//Vehicle #   -  Map
 // 1 - Truck    Purple
 // 2 - Truck    Green
 // 3 - Truck    Black
