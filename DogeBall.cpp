@@ -61,13 +61,13 @@ int main() {
 	bool reservationCheck = false; //used to make sure a reservation was made
 
 //*****************************************************************************************************
+//  Reads in dodgeball.dat input file and puts all the Drivers, Passengers, and thier credits into Person Class:
+//*****************************************************************************************************
 	
-
-	//opens the input file of dodgeball.dat
+	//opens the input file of dodgeball.dat:
 	inFile_dodgeball = openInputFile();
 	
-	
-//put person class function here
+	//put person class function here
 	//populate person class from input file
 	while (inFile_dodgeball.good()) {
 		//Grabs the first 9 people from the txt file
@@ -79,14 +79,17 @@ int main() {
 
 			personData.push_back(Person(firstName, lastName, credit)); //populates the person class with the drivers
 		}
+
 		inFile_dodgeball >> firstName >> lastName >> credit; //gets the remaing people from the file that are not drivers
 		personData.push_back(Person(firstName, lastName, credit)); //populates the person class with the passengers
 	}
 
 	inFile_dodgeball.close();
-
-
-	//calls the functions for the three vehicle types to create three objects of each
+//**********************************************************************************************************
+// Initiates Object Calls along with Providing the Main Menu to call Functions and Classes:
+//**********************************************************************************************************
+ 
+	//calls the functions for the three vehicle types to create three objects of each:
 	createTruck(trucks);
 	createCompact(compacts);
 	createSedan(sedans);
@@ -157,6 +160,9 @@ int main() {
 	return 0;
 }
 
+//*****************************************************************************************************
+// Car Object Creations and Input / Output File definitions:
+//*****************************************************************************************************
 
 //creates the three objects of Truck as a vector
 //with driver name first, last, and car color
@@ -257,3 +263,4 @@ ofstream openOutputFile() {
 	return OutPutFile; //returns the file path to main
 }
 
+//*****************************************************************************************************
