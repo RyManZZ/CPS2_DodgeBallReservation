@@ -146,7 +146,13 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="all_reservations.txt" />
+    <Text Include="black_truck.txt" />
+    <Text Include="blue_compact.txt" />
     <Text Include="dodgeball.dat" />
+    <Text Include="green_truck.txt" />
+    <Text Include="purple_truck.txt" />
+    <Text Include="red_compact.txt" />
+    <Text Include="yellow_compact.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OUT_dodgeball.dat" />

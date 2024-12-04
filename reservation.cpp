@@ -28,7 +28,7 @@ using namespace NS_Compact;
 //Prototypes:
 void low(string&); // <- converts the inputed string to lowercase.
 void pinMaker(vector<int>& pinNum); // Assigns a Unique pin to the Reservation.
-
+void nameLow(string&);
 
 //Constructors:
 Reservation::Reservation() {
@@ -65,6 +65,10 @@ int Reservation::GetVehicleNum() {
 	return vehicleNum;
 }
 
+int Reservation::GetPin() {
+	return pin;
+}
+
 string Reservation::GetName() {
 	return firstName;
 }
@@ -91,13 +95,8 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 	cout << "First Name: ";
 	cin >> userInput;
 
-	//Forces first letter of the person name to upper case and the rest to lower:
-	tempString.push_back(toupper(userInput.at(0)));
-	for (int i = 1; i < userInput.size(); i++) {
-		tempString.push_back(tolower(userInput.at(i)));
-	}
-	userInput = tempString;
-	
+	nameLow(userInput);
+
 	for (personLocation = 0; personLocation < personData.size(); personLocation++) {
 		if (userInput == personData.at(personLocation).Person::getFirstName()) {
 			
@@ -1091,45 +1090,139 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 void Reservation::deleteReservation(vector<Reservation>& completedReservation, vector<Person>& personData, vector<Truck>& trucks, vector<Compact>& compacts, vector<Sedan>& sedans) {
 
 	string userInput, carType, carColor, tempString;
-	int userInt;
+	int userInt; //pin input from user
 	vector<int>pinNum;
-	int pinCount = pinNum.size(); //used to keep track of the umber of pins made
 	bool resCheck; //used to check to see if a reservation was made.
 
+	int reservationLocation;
 
 	cout << "\n\nDelete Reservation\n";
 	cout << "------------------\n";
-	cout << "First Name: ";
-	cin >> userInput;
+	cout << "First Name: "; cin >> userInput;
+	cout << "Pin       : "; cin >> userInt;
+	
+	nameLow(userInput); //modifies the user name to have first letter uppercase and the rest lower
 
-	//Forces first letter of the person name to upper case and the rest to lower:
-	tempString.push_back(toupper(userInput.at(0)));
-	for (int i = 1; i < userInput.size(); i++) {
-		tempString.push_back(tolower(userInput.at(i)));
+	for (reservationLocation = 0; reservationLocation < personData.size(); reservationLocation++) {
+		if (userInput == completedReservation.at(reservationLocation).GetName() && userInt == completedReservation.at(reservationLocation).GetPin()) {
+			cout << "Reservation found\n";
+			if (completedReservation.at(reservationLocation).GetVehicleNum() == 0) {
+				//Truck Purple
+				cout << "Purple Truck\nCost 5";
+			}
+			else if (completedReservation.at(reservationLocation).GetVehicleNum() == 1) {
+				//Truck Green
+				cout << "Green Truck\nCost 5";
+			}
+			else if (completedReservation.at(reservationLocation).GetVehicleNum() == 2) {
+				//Truck Black
+				cout << "Black Truck\nCost 5";
+			}
+			else if (completedReservation.at(reservationLocation).GetVehicleNum() == 3) {
+				//Compact Red
+				cout << "Red Compact\nCost " << completedReservation.at(reservationLocation).GetCost();
+			}
+			else if (completedReservation.at(reservationLocation).GetVehicleNum() == 4) {
+				//Compact Blue
+				cout << "Blue Compact\nCost " << completedReservation.at(reservationLocation).GetCost();
+			}
+			else if (completedReservation.at(reservationLocation).GetVehicleNum() == 5) {
+				//Compact Yellow
+				cout << "Yellow Compact\nCost " << completedReservation.at(reservationLocation).GetCost();
+			}
+			else if (completedReservation.at(reservationLocation).GetVehicleNum() == 6) {
+				//Sedan Blue
+				cout << "Blue Sedan\nCost " << completedReservation.at(reservationLocation).GetCost();
+			}
+			else if (completedReservation.at(reservationLocation).GetVehicleNum() == 7) {
+				//Sedan Black
+				cout << "Black Sedan\nCost " << completedReservation.at(reservationLocation).GetCost();
+			}
+			else if (completedReservation.at(reservationLocation).GetVehicleNum() == 8) {
+				//Sedan Green
+				cout << "Green Sedan\nCost " << completedReservation.at(reservationLocation).GetCost();
+			}
+			else {
+				"ERROR<><>Returning to main.";
+				system("pause");
+				return;
+			}
+			cout << "\nWould you like to cancel your reservation (Y/N)\n";
+			cout << "choice: "; cin >> userInput;
+
+			if (userInput == "Y" || userInput == "y") {
+				for (int i = 0; i < personData.size(); i++) {
+					if (personData.at(i).getFirstName() == completedReservation.at(reservationLocation).GetName()) {
+						personData.at(i).setCreditData(personData.at(i).getCredit() + completedReservation.at(reservationLocation).GetCost());
+					}
+				}
+				
+				completedReservation.erase(completedReservation.begin() + reservationLocation);
+
+				if (completedReservation.at(reservationLocation).GetVehicleNum() == 0) {
+					trucks.at(0).setSeatTruck();
+				}
+				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 1) {
+					trucks.at(1).setSeatTruck();
+				}
+				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 2) {
+					trucks.at(2).setSeatTruck();
+				}
+				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 3) {
+					
+				}
+				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 4) {
+					//Compact Blue
+					cout << "Blue Compact\nCost " << completedReservation.at(reservationLocation).GetCost();
+				}
+				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 5) {
+					//Compact Yellow
+					cout << "Yellow Compact\nCost " << completedReservation.at(reservationLocation).GetCost();
+				}
+				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 6) {
+					//Sedan Blue
+					cout << "Blue Sedan\nCost " << completedReservation.at(reservationLocation).GetCost();
+				}
+				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 7) {
+					//Sedan Black
+					cout << "Black Sedan\nCost " << completedReservation.at(reservationLocation).GetCost();
+				}
+				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 8) {
+					//Sedan Green
+					cout << "Green Sedan\nCost " << completedReservation.at(reservationLocation).GetCost();
+				}
+				else {
+					"ERROR<><>Returning to main.";
+					system("pause");
+					return;
+				}
+
+				system("cls");
+				cout << "reservation canceled, you have ben refunded. Returning to main.";
+				system("pause");
+				return;
+			}
+		}
+		else {
+			cout << "No reservation found with " << userInt << "for " << userInput << "\nReturning to Main\n\n";
+			system("pause");
+			return;
+		}
 	}
-	userInput = tempString;
 
-	//Makes sure the Driver isn't deleting the Reservation:
-	if (Person::getCredit() == -1) {                                                                // FIX THIS. Check if userinput == driver name
 
-		cout << "You are a driver and cannot delete your driver seat reservation. \n";
-		system("pause");
-		return;
 
-	}
-
+	 
 } // Reservation::deleteReservation;
 
 
 //*****************************************************************************************************
 // Print ALL Reservations:
 //*****************************************************************************************************
-
 void Reservation::printAllReservations(vector<Reservation> completedReservation, vector<Truck> trucks, vector<Compact> compacts, vector<Sedan> sedans){
 
 	ofstream OutPutFile; //write file
 	OutPutFile.open("all_reservations.txt");
-
 
 	//Truck output
 	for (int i = 0; i < 3; i++) {
@@ -1164,13 +1257,13 @@ void Reservation::printAllReservations(vector<Reservation> completedReservation,
 		OutPutFile << "-------------------\n";
 		OutPutFile << "Driver         : " << compacts.at(i).GetDriverFirstName() << endl;
 		for (int j = 0; j < completedReservation.size(); j++) {
-			if (compacts.at(i).displaySeatCompact(0) == 'X' && completedReservation.at(j).GetVehicleNum() == i) {
+			if (compacts.at(i).displaySeatCompact(0) == 'X' && completedReservation.at(j).GetVehicleNum() == i+3) {
 				compactSeatChart.at(0) = (completedReservation.at(j).GetName());
 			}
-			else if (compacts.at(i).displaySeatCompact(1) == 'X' && completedReservation.at(j).GetVehicleNum() == i) {
+			else if (compacts.at(i).displaySeatCompact(1) == 'X' && completedReservation.at(j).GetVehicleNum() == i+3) {
 				compactSeatChart.at(1) = (completedReservation.at(j).GetName());
 			}
-			else if (compacts.at(i).displaySeatCompact(2) == 'X' && completedReservation.at(j).GetVehicleNum() == i) {
+			else if (compacts.at(i).displaySeatCompact(2) == 'X' && completedReservation.at(j).GetVehicleNum() == i+3) {
 				compactSeatChart.at(2) = (completedReservation.at(j).GetName());
 			}
 		}
@@ -1198,13 +1291,13 @@ void Reservation::printAllReservations(vector<Reservation> completedReservation,
 		OutPutFile << "-------------------\n";
 		OutPutFile << "Driver          : " << sedans.at(i).GetDriverFirstName() << endl;
 		for (int j = 0; j < completedReservation.size(); j++) {
-			if (sedans.at(i).displaySeatSedan(0) == 'X' && completedReservation.at(j).GetVehicleNum() == i) {
+			if (sedans.at(i).displaySeatSedan(0) == 'X' && completedReservation.at(j).GetVehicleNum() == i+6) {
 				sedanSeatChart.at(0) = (completedReservation.at(j).GetName());
 			}
-			else if (sedans.at(i).displaySeatSedan(1) == 'X' && completedReservation.at(j).GetVehicleNum() == i) {
+			else if (sedans.at(i).displaySeatSedan(1) == 'X' && completedReservation.at(j).GetVehicleNum() == i+6) {
 				sedanSeatChart.at(1) = (completedReservation.at(j).GetName());
 			}
-			else if (sedans.at(i).displaySeatSedan(2) == 'X' && completedReservation.at(j).GetVehicleNum() == i) {
+			else if (sedans.at(i).displaySeatSedan(2) == 'X' && completedReservation.at(j).GetVehicleNum() == i+6) {
 				sedanSeatChart.at(2) = (completedReservation.at(j).GetName());
 			}
 		}
@@ -1217,15 +1310,15 @@ void Reservation::printAllReservations(vector<Reservation> completedReservation,
 	cout << "all_reservations.txt made\n\n";
 	system("pause");
 	OutPutFile.close();
+	return;
 }
 
 
 //*****************************************************************************************************
 // Print Specific Car Reservations:
 //*****************************************************************************************************
-
-void Reservation::printOneReservation(string color, string vehicle, vector<Reservation> completedReservations, vector<Truck> trucks, vector <Compact> compacts, vector <Sedan> sedans) {
-	ofstream outPutFile;
+void Reservation::printOneReservation(string color, string vehicle, vector<Reservation> completedReservation, vector<Truck> trucks, vector <Compact> compacts, vector <Sedan> sedans) {
+	ofstream OutPutFile;
 	
 	//forces color and vehicle to be lowercase
 	low(color);
@@ -1236,20 +1329,71 @@ void Reservation::printOneReservation(string color, string vehicle, vector<Reser
 	fileName.append("_");	
 	fileName.append(vehicle);
 	fileName.append(".txt");
-	outPutFile.open(fileName);
+	OutPutFile.open(fileName);
 	
 	//Truck loop
 	if (vehicle == "truck" ) {
 		if (color == "purple") {
+			
+				int passengerCount = 0;
+				OutPutFile << "Truck Purple \n";
+				OutPutFile << "-------------------\n";
+				OutPutFile << "Driver    : " << trucks.at(0).GetDriverFirstName() << endl;
+				for (int j = 0; j < completedReservation.size(); j++) {
+					if (trucks.at(0).displySeatTruck() == 'X' && completedReservation.at(j).GetVehicleNum() == 0) {
+						OutPutFile << "Front Seat: " << completedReservation.at(j).GetName() << endl;
+						passengerCount++;
+					}
+				}
+				for (passengerCount; passengerCount != 1; passengerCount++) {
+					OutPutFile << "Front Seat: Unassigned\n";
+				}
+			cout << "Reservation list purple_truck.txt made, returning to main\n";
+			OutPutFile.close();
+			system("pause");
 
+			return;
 		}
 		
 		else if (color == "green") {
-
+			
+				int passengerCount = 0;
+				OutPutFile << "Truck Green \n";
+				OutPutFile << "-------------------\n";
+				OutPutFile << "Driver    : " << trucks.at(1).GetDriverFirstName() << endl;
+				for (int j = 0; j < completedReservation.size(); j++) {
+					if (trucks.at(1).displySeatTruck() == 'X' && completedReservation.at(j).GetVehicleNum() == 0) {
+						OutPutFile << "Front Seat: " << completedReservation.at(j).GetName() << endl;
+						passengerCount++;
+					}
+				}
+				for (passengerCount; passengerCount != 1; passengerCount++) {
+					OutPutFile << "Front Seat: Unassigned\n";
+				}
+			cout << "Reservation list green_truck.txt made, returning to main\n";
+			OutPutFile.close();
+			system("pause");
+			return;
 		}
 
 		else if (color ==  "black") {
-
+				int passengerCount = 0;
+				OutPutFile << "Truck Black\n";
+				OutPutFile << "-------------------\n";
+				OutPutFile << "Driver    : " << trucks.at(2).GetDriverFirstName() << endl;
+				for (int j = 0; j < completedReservation.size(); j++) {
+					if (trucks.at(2).displySeatTruck() == 'X' && completedReservation.at(j).GetVehicleNum() == 0) {
+						OutPutFile << "Front Seat: " << completedReservation.at(j).GetName() << endl;
+						passengerCount++;
+					}
+				}
+				for (passengerCount; passengerCount != 1; passengerCount++) {
+					OutPutFile << "Front Seat: Unassigned\n";
+				}
+			cout << "Reservation list black_truck.txt made, returning to main\n";
+			OutPutFile.close();
+			system("pause");
+			return;
 		}
 
 		else { //no Truck found
@@ -1261,25 +1405,94 @@ void Reservation::printOneReservation(string color, string vehicle, vector<Reser
 	
 	//Compact loop
 	else if (vehicle == "compact") {
-		if (color == "red") {
+		vector<string> compactSeatChart;
+		compactSeatChart.push_back("Unassigned");
+		compactSeatChart.push_back("Unassigned");
+		compactSeatChart.push_back("Unassigned");
 
+
+		if (color == "red") {
+			OutPutFile << "Compact         Red\n";
+			OutPutFile << "-------------------\n";
+			OutPutFile << "Driver         : " << compacts.at(0).GetDriverFirstName() << endl;
+			for (int j = 0; j < completedReservation.size(); j++) {
+				if (compacts.at(0).displaySeatCompact(0) == 'X' && completedReservation.at(j).GetVehicleNum() == 3) {
+					compactSeatChart.at(0) = (completedReservation.at(j).GetName());
+				}
+				else if (compacts.at(0).displaySeatCompact(1) == 'X' && completedReservation.at(j).GetVehicleNum() == 3) {
+					compactSeatChart.at(1) = (completedReservation.at(j).GetName());
+				}
+				else if (compacts.at(0).displaySeatCompact(2) == 'X' && completedReservation.at(j).GetVehicleNum() == 3) {
+					compactSeatChart.at(2) = (completedReservation.at(j).GetName());
+				}
+			}
+			OutPutFile << "Front      Seat: " << compactSeatChart.at(0) << endl;
+			OutPutFile << "Back Left  Seat: " << compactSeatChart.at(1) << endl;
+			OutPutFile << "Back Right Seat: " << compactSeatChart.at(2) << endl;
+
+			cout << "Reservation list red_compact.txt made, returning to main\n";
+			OutPutFile.close();
+			system("pause");
+			return;
 		}
 
 		else if (color == "blue") {
+			OutPutFile << "Compact        Blue\n";
+			OutPutFile << "-------------------\n";
+			OutPutFile << "Driver         : " << compacts.at(1).GetDriverFirstName() << endl;
+			for (int j = 0; j < completedReservation.size(); j++) {
+				if (compacts.at(1).displaySeatCompact(0) == 'X' && completedReservation.at(j).GetVehicleNum() == 4) {
+					compactSeatChart.at(0) = (completedReservation.at(j).GetName());
+				}
+				else if (compacts.at(1).displaySeatCompact(1) == 'X' && completedReservation.at(j).GetVehicleNum() == 4) {
+					compactSeatChart.at(1) = (completedReservation.at(j).GetName());
+				}
+				else if (compacts.at(1).displaySeatCompact(2) == 'X' && completedReservation.at(j).GetVehicleNum() == 4) {
+					compactSeatChart.at(2) = (completedReservation.at(j).GetName());
+				}
+			}
+			OutPutFile << "Front      Seat: " << compactSeatChart.at(0) << endl;
+			OutPutFile << "Back Left  Seat: " << compactSeatChart.at(1) << endl;
+			OutPutFile << "Back Right Seat: " << compactSeatChart.at(2) << endl;
 
+			cout << "Reservation list blue_compact.txt made, returning to main\n";
+			OutPutFile.close();
+			system("pause");
+			return;
 		}
 
 		else if (color == "yellow") {
-
+			OutPutFile << "Compact      Yellow\n";
+			OutPutFile << "-------------------\n";
+			OutPutFile << "Driver         : " << compacts.at(2).GetDriverFirstName() << endl;
+			for (int j = 0; j < completedReservation.size(); j++) {
+				if (compacts.at(2).displaySeatCompact(0) == 'X' && completedReservation.at(j).GetVehicleNum() == 5) {
+					compactSeatChart.at(0) = (completedReservation.at(j).GetName());
+				}
+				else if (compacts.at(2).displaySeatCompact(1) == 'X' && completedReservation.at(j).GetVehicleNum() == 5) {
+					compactSeatChart.at(1) = (completedReservation.at(j).GetName());
+				}
+				else if (compacts.at(2).displaySeatCompact(2) == 'X' && completedReservation.at(j).GetVehicleNum() == 5) {
+					compactSeatChart.at(2) = (completedReservation.at(j).GetName());
+				}
+			}
+			OutPutFile << "Front      Seat: " << compactSeatChart.at(0) << endl;
+			OutPutFile << "Back Left  Seat: " << compactSeatChart.at(1) << endl;
+			OutPutFile << "Back Right Seat: " << compactSeatChart.at(2) << endl;
+		
+			cout << "Reservation list yellow_compact.txt made, returning to main\n";
+			OutPutFile.close();
+			system("pause");
+			return;
 		}
 
-		else { //no Truck found
+		else { //no compact found
 			cout << "A Compact mathing that description was not found, returning to main\n";
 			system("pause");
 			return;
 		}
 	}
-	
+
 	//Sedan loo
 	else if (vehicle == "sedan") {
 		if (color == "blue") {
@@ -1294,7 +1507,7 @@ void Reservation::printOneReservation(string color, string vehicle, vector<Reser
 
 		}
 
-		else { //no Truck found
+		else { //no sedan found
 			cout << "A Sedan mathing that description was not found, returning to main\n";
 			system("pause");
 			return;
@@ -1307,14 +1520,25 @@ void Reservation::printOneReservation(string color, string vehicle, vector<Reser
 		system("pause");
 		return;
 	}
-
 }
+
 
 //*****************************************************************************************************
 // Lowercase Conversion & pinMaker Functions:
 //*****************************************************************************************************
 
 //used to convert user input to lower case for car type
+void nameLow(string& userInput) {
+	string tempString;
+	//Forces first letter of the person name to upper case and the rest to lower:
+	tempString.push_back(toupper(userInput.at(0)));
+	for (int i = 1; i < userInput.size(); i++) {
+		tempString.push_back(tolower(userInput.at(i)));
+	}
+	userInput = tempString;
+}
+
+
 void low(string& inWord) {
 	string tempString;
 	for (int i = 0; i < inWord.size(); i++) {

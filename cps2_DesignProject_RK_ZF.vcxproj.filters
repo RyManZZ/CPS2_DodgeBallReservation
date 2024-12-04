@@ -67,6 +67,24 @@
     <Text Include="all_reservations.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="green_truck.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="black_truck.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="purple_truck.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="yellow_compact.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="blue_compact.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="red_compact.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="OUT_dodgeball.dat">

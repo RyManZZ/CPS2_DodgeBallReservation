@@ -39,6 +39,19 @@ void Compact::displayCompact() {
 	//Print Passanger 3
 }
 
+
+void Compact::setSeatCompact(int seat) {
+	if (seat == 0) {
+		seat_C.at(0) = '5';
+	}
+	else if (seat == 1) {
+		seat_C.at(1) = '3';
+	}
+	else if (seat == 2) {
+		seat_C.at(2) = '3';
+	}
+}
+
 //reutens back the vector of seat
 char Compact::displaySeatCompact(int i) {
 	return seat_C.at(i);

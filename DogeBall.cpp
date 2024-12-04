@@ -137,6 +137,10 @@ int main() {
 		
 		//Option 5. This will print a single car's reservation
 		else if (userInput == "5") {
+			cout << "Cose a vehicle to print the reservation list for\n"; 
+			cout << "Vehicle : "; cin >> vehicle;
+			cout << "Color   : "; cin >> color;
+			
 			reservationTemp.printOneReservation(color, vehicle, completedReservation, trucks, compacts, sedans);
 		}
 

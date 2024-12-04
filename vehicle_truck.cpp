@@ -19,6 +19,9 @@ Truck::Truck() {            //pos   val
 	seat_T.push_back('5');  // 0     5
 }
 
+void Truck::setSeatTruck() {
+	seat_T.at(0) = '5';
+}
 //prints the Truck Image:
 void Truck::displayTruck() {
 

@@ -24,6 +24,21 @@ Sedan::Sedan() {                            // pos  val
 	seat_S.push_back('2'); //back seat right   3    2
 }
 
+void Sedan::setSeatSedan(int seat) {
+	if (seat == 0) {
+		seat_S.at(0) = '5';
+	}
+	else if (seat == 1) {
+		seat_S.at(1) = '2';
+	}
+	else if (seat == 2) {
+		seat_S.at(2) = '1';
+	}
+	else if (seat == 3) {
+		seat_S.at(3) = '2';
+	}
+}
+
 //still needs to be completed
 //prints the Sedan image
 void Sedan::displaySedan() {
