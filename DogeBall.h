@@ -14,7 +14,6 @@
 #include <vector>
 #include <fstream>
 
-//test
 
 //Remove?
 //*****************************************************************************\\
@@ -63,8 +62,10 @@ using namespace std;
 // Finish the print for the truck
 // Finish the print for the compact
 // Finish the print for the sedan
-//
-//
+// Add Header Comments onto All files
+// Fix any Formatting
+// Make the UML Diagram:
+// Delete Anything Used For Testing
 //***************************************
 
 

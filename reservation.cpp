@@ -1,5 +1,4 @@
 
-
 //Header Files
 #include "dogeBall.h"
 #include "reservation.h"
@@ -16,10 +15,12 @@ using namespace NS_Truck;
 using namespace NS_Sedan;
 using namespace NS_Compact;
 
+//*****************************************************************************************************
+// Defines a lot of stuff. Uses Pointers. -------------------------------------------------------------------------- Fix Comment
+//*****************************************************************************************************
 
 //prototypes
 void low(string&); //converts the inputed string to lowercase
-
 
 
 //constructors
@@ -56,6 +57,9 @@ int Reservation::GetVehicleNum() {
 	return vehicleNum;
 }
 
+//*****************************************************************************************************
+// Create Reservation Class:
+//*****************************************************************************************************
 
 //This allows a person to make a reservation as long as they have above 0 credits and are not a driver
 //Takes in the person class vecotor (First/Last names and credits) - drivers get -1 credits
@@ -78,24 +82,25 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 		tempString.push_back(tolower(userInput.at(i)));
 	}
 	userInput = tempString;
-
+	
 	for (personLocation = 0; personLocation < personData.size(); personLocation++) {
 		if (userInput == personData.at(personLocation).Person::getFirstName()) {
 			
-			//Driver Check
+			//Driver Check:
 			if (personData.at(personLocation).Person::getCredit() == -1) {
 				cout << "You are a driver and cannot reserve a seat\n";
 				system("pause");
 				return;
 			}
 
-			//0 creddit check
+			//0 Credit Check:
 			else if (personData.at(personLocation).Person::getCredit() == 0) {
 				cout << "\nYou have 0 credits, you must dirve your self\n";
 				system("pause");
 				return;
 			}
 
+			 
 			//Make a reservation portion
 			else {
 				system("cls");
@@ -128,9 +133,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 				cout << "Option: Enter a 1 or a 2\n(1) Any avaiable seat\n(2) A specific Vehicle\n\n";
 				cout << "choice: "; cin >> userInt;
 
-//**************************************************************************************************************************************************************************************************************************************************************************
-
-				//Any avaiable seat
+//***************************************************
+// Any available Seat Option:
+//***************************************************
 				if (userInt == 1) {
 					cout << "\n\nEnter 1-4 for the seat type you want\n";
 
@@ -155,7 +160,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 						}
 					}
 
-					//Compact Back Seat
+					//Compact Back Seat:
 					else if (userInt == 2) {
 						//loop through the three comapacts back seats if an option is avaiable ask the user to confirm then make pin and return to main
 						for (int i = 0; i < trucks.size(); i++)
@@ -166,19 +171,19 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 						
 					}
 
-					//Sedan Back Seat Outside
+					//Sedan Back Seat Outside:
 					else if (userInt == 3) {
 						//loop through the three sedans back seat outside if an option is avaiable ask the user to confirm then make pin and return to main
 
 					}
 
-					//Sedan Back Seat Middle
+					//Sedan Back Seat Middle:
 					else if (userInt == 4) {
 						//loop through the three sedans middle seat if an option is avaiable ask the user to confirm then make pin and return to main
 
 					}
 
-					//error check
+					//Error Check:
 					else {
 						cout << "You did not enter a number 1-4 going back to main menu\n";
 						system("pause");
@@ -186,9 +191,10 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 					}
 				}
 	
-//************************************************************************************************************************************************* 	
+//***************************************************
+// User Specific Vehicle and Seat:
+//***************************************************	
 
-				//user specific vehicle and seat
 				else if (userInt == 2) {
 					//allows the user to choose a vehicle type and color
 					cout << "What Vechicle do you want to ride in and seat location\n";
@@ -198,50 +204,87 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 					low(carType);
 					low(carColor);
 
+					// Credit check to make sure they can get a seat of that cost value:
+					// Put inside of a while Loop to keep going until they input a seat they can afford:
+					bool userCreditCheck = true;
+					while(userCreditCheck) {
+					
+						//cost menu to display seat costs with its option:
+						cout << "\n\nEnter 1-4 for the seat type you want\n";
+						cout << "     Position                Cost \n";
+						cout << "(1) Front Seat                5\n";
+						cout << "(2) Compact Back Seat         3\n";
+						cout << "(3) Sedan Back Seat Outside   2\n";
+						cout << "(4) Sedan Back Seat Middle    1\n";
+						cout << "Seat: "; cin >> userInt;
 
-					//cost menu to display seat costs with its option
-					cout << "\n\nEnter 1-4 for the seat type you want\n";
-					cout << "     Position                Cost \n";
-					cout << "(1) Front Seat                5\n";
-					cout << "(2) Compact Back Seat         3\n";
-					cout << "(3) Sedan Back Seat Outside   2\n";
-					cout << "(4) Sedan Back Seat Middle    1\n";
-					cout << "Seat: "; cin >> userInt;
+						//Credit Check Selection:
+						if (userInt == 1) {
+							if (personData.at(personLocation).getCredit() >= 5) {
+								
+								userCreditCheck = false;
 
-					//add credit check here to make sure they can get a seat of that cost value
-					if (userInt == 1) {
-						if (personData.at(personLocation).getCredit() >= 5) {
+							}					
+						}
+						else if (userInt == 2) {
+
+
+							if (personData.at(personLocation).getCredit() >= 3) {
+
+								userCreditCheck = false;
+
+							}
+						}
+						else if (userInt == 3) {
+
+							if (personData.at(personLocation).getCredit() >= 2) {
+
+								userCreditCheck = false;
+
+							}
 
 						}
+						else if (userInt == 4) {
+
+							userCreditCheck = false;
+						
+						}
+						else {
+							cout << "invlaid input, must enter 1-4, returning to main";
+							userCreditCheck = false;
+							system("pause");
+							return;
+						}
+
+						// If The user inputted Something they can't afffort it will reprompt and run the loop again:
+						if (userCreditCheck) {
+
+							cout << "You Do Not Have Enough Credits for this Selection. Please Choose Again: \n";
+						}
 					}
-
-					else if (userInt == 2) {
-
-					}
-
-					else if (userInt == 3) {
 					
-					}
-
-					else if (userInt == 4) {
-
-					}
-
-					else {
-						cout << "invlaid input, must enter 1-4, returning to main";
-						system("pause");
-						return;
-					}
-					
-					//truck and its three options for user specified vehicle
+					//*****************************************************************
+					//Truck and its three options for user specified vehicle:
+					//*****************************************************************
 					if (carType == "truck") {
 						
 						//Purple Truck:
 						if (carColor == "purple") {
-							//if avaiable ask the user to confirm then make pin and return to main 
+							if (trucks.at(0).seatCheckTruck() == true) {
+								tempCompleted.SetCost(5);
+
+								//*****//
+								//Temp value
+								tempCompleted.SetPin(999);//needs to be set random 100-999?
+								////////////////////////
+
+								tempCompleted.SetVehicleNum(2);
+								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+								completedReservation.push_back(tempCompleted);
+							}
 						}
 
-						//Green Truck
+						//Green Truck:
 						else if (carColor == "green"){
 							if (trucks.at(1).seatCheckTruck() == true) {
 								tempCompleted.SetCost(5);
@@ -257,15 +300,24 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 							}
 						}
 
-						//Black Truck
+						//Black Truck:
 						else if (carColor == "black"){
-							if(trucks.at(1).seatCheckTruck() == true)
+							if(trucks.at(2).seatCheckTruck() == true)
 							{
-								
+								tempCompleted.SetCost(5);
+
+								tempCompleted.SetPin(999);//needs to be set random 100-999?
+								////////////////////////
+
+								tempCompleted.SetVehicleNum(2);
+								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+								completedReservation.push_back(tempCompleted);
+
+
 							}
 						}
 
-						//Error check
+						//Error Check:
 						else {
 							cout << "The truck you entered does not exist, returing to main menu.";
 							system("pause");
@@ -273,41 +325,48 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 						}
 					}
 
-					//Compact and its three options for user specified vehicle
+			        //*****************************************************************
+				    //Compact and its three options for user specified vehicle:
+				    //*****************************************************************
 					else if (carType == "compact") {
 
 						
 						
-						//Red Compact 
+						//Red Compact:
 						if (carColor == "red") {
 							//if avaiable ask the user to confirm then make pin and return to main
 
 
 						}
 
-						//Blue Compact
+						//Blue Compact:
 						else if (carColor == "blue") {
 							//if avaiable ask the user to confirm then make pin and return to main
 
 						}
 
-						//Yellow Compact
+						//Yellow Compact:
 						else if (carColor == "yellow") {
 							//if avaiable ask the user to confirm then make pin and return to main
 
 						}
 
-						//Error Check
+						//Error Check:
 						else {
-							cout << "The Truck you entered does not exist, returing to main menu.";
+							cout << "The Compact you entered does not exist, returing to main menu.";
 							system("pause");
 							return;
 						}
 					}
 
+
+						//*****************************************************************
+						//Compact and its three options for user specified vehicle:
+						//*****************************************************************
+
 					else if (carType == "sedan") {
 						
-						//Blue Sedan
+						//Blue Sedan:
 						if (carColor == "blue") {
 							//if avaiable ask the user to confirm then make pin and return to main
 
@@ -315,27 +374,27 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 						}
 						
-						//Black Sedan
+						//Black Sedan:
 						else if (carColor == "black") {
 							//if avaiable ask the user to confirm then make pin and return to main
 						
 						}
 
-						//Green Sedan
+						//Green Sedan:
 						else if (carColor == "green") {
 							//if avaiable ask the user to confirm then make pin and return to main
 
 						}
 
-						//Error Check
+						//Error Check:
 						else {
-							cout << "The sedan you entered does not exist, returing to main menu.";
+							cout << "The Sedan you entered does not exist, returing to main menu.";
 							system("pause");
 							return;
 						}
 					}
 
-					//error check for vehicle type
+					//error check for vehicle type:
 					else {
 						cout << "You did not enter a valid vehicle type, returning to main.\n";
 						system("pause");
@@ -343,7 +402,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 					}
 				}
 
-				//error check option between vehicle choice or auto
+				//error check option between vehicle choice or auto:
 				else {
 					cout << "you did not enter a 1 or a 2, returning to main.\n";
 					system("pause");
