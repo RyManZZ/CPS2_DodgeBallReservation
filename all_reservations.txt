@@ -22,8 +22,8 @@ Compact Red
 -------------------
 Driver         : Ben
 Front      Seat: Unassigned
-Back Left  Seat: Max
-Back Right Seat: Unassigned
+Back Left  Seat: Randy
+Back Right Seat: Ed
 
 
 Compact Blue

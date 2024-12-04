@@ -153,6 +153,11 @@ int main() {
 			system("pause");
 			continue;
 		}
+
+		for (int i = 0; i < completedReservation.size(); i++) {
+			cout << completedReservation.at(i).GetPin() << "\n";
+		}
+		system("pause");
 	}
 
 	return 0;

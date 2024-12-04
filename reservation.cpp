@@ -1100,10 +1100,11 @@ void Reservation::deleteReservation(vector<Reservation>& completedReservation, v
 	cout << "------------------\n";
 	cout << "First Name: "; cin >> userInput;
 	cout << "Pin       : "; cin >> userInt;
-	
+
 	nameLow(userInput); //modifies the user name to have first letter uppercase and the rest lower
 
-	for (reservationLocation = 0; reservationLocation < personData.size(); reservationLocation++) {
+	for (reservationLocation = 0; reservationLocation < completedReservation.size(); reservationLocation++) {
+
 		if (userInput == completedReservation.at(reservationLocation).GetName() && userInt == completedReservation.at(reservationLocation).GetPin()) {
 			cout << "Reservation found\n";
 			if (completedReservation.at(reservationLocation).GetVehicleNum() == 0) {
@@ -1156,40 +1157,158 @@ void Reservation::deleteReservation(vector<Reservation>& completedReservation, v
 						personData.at(i).setCreditData(personData.at(i).getCredit() + completedReservation.at(reservationLocation).GetCost());
 					}
 				}
-				
-				completedReservation.erase(completedReservation.begin() + reservationLocation);
 
+				//----------------------------------------------------------------------------------
+				//Trucks
+				//----------------------------------------------------------------------------------
+
+				//Truck Purple
 				if (completedReservation.at(reservationLocation).GetVehicleNum() == 0) {
 					trucks.at(0).setSeatTruck();
 				}
+
+				//Truck Green
 				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 1) {
 					trucks.at(1).setSeatTruck();
 				}
+
+				//Truck Black
 				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 2) {
 					trucks.at(2).setSeatTruck();
 				}
+
+
+				//----------------------------------------------------------------------------------
+				//Compacts
+				//----------------------------------------------------------------------------------
+
+				//Compact Red
 				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 3) {
-					
+
+					if (completedReservation.at(reservationLocation).GetCost() == 5) {
+						compacts.at(0).setSeatCompact(0);
+					}
+					//back Seats
+					if (completedReservation.at(reservationLocation).GetCost() == 3) {
+						//Back Left Seat
+						if (compacts.at(0).displaySeatCompact(1) == 'X') {
+							compacts.at(0).setSeatCompact(1);
+						}
+						//back Rigth Seat
+						else {
+							compacts.at(0).setSeatCompact(2);
+						}
+					}
 				}
+
+				//Compact Blue
 				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 4) {
-					//Compact Blue
-					cout << "Blue Compact\nCost " << completedReservation.at(reservationLocation).GetCost();
+					if (completedReservation.at(reservationLocation).GetCost() == 5) {
+						compacts.at(1).setSeatCompact(0);
+					}
+					//back Seats
+					if (completedReservation.at(reservationLocation).GetCost() == 3) {
+						//Back Left Seat
+						if (compacts.at(1).displaySeatCompact(1) == 'X') {
+							compacts.at(1).setSeatCompact(1);
+						}
+						//back Rigth Seat
+						else {
+							compacts.at(1).setSeatCompact(2);
+						}
+					}
 				}
+				//Compact Yellow
 				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 5) {
-					//Compact Yellow
-					cout << "Yellow Compact\nCost " << completedReservation.at(reservationLocation).GetCost();
+					if (completedReservation.at(reservationLocation).GetCost() == 5) {
+						compacts.at(2).setSeatCompact(0);
+					}
+					//back Seats
+					if (completedReservation.at(reservationLocation).GetCost() == 3) {
+						//Back Left Seat
+						if (compacts.at(2).displaySeatCompact(1) == 'X') {
+							compacts.at(2).setSeatCompact(1);
+						}
+						//back Rigth Seat
+						else {
+							compacts.at(2).setSeatCompact(2);
+						}
+					}
 				}
+
+
+				//----------------------------------------------------------------------------------
+				//Sedans
+				//----------------------------------------------------------------------------------
+
+				//Sedan Blue
 				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 6) {
-					//Sedan Blue
-					cout << "Blue Sedan\nCost " << completedReservation.at(reservationLocation).GetCost();
+					//Front Seat
+					if (completedReservation.at(reservationLocation).GetCost() == 5) {
+						compacts.at(0).setSeatCompact(0);
+					}
+					//Back Seats Outside
+					else if (completedReservation.at(reservationLocation).GetCost() == 2) {
+						//Back Left Seat
+						if (sedans.at(0).displaySeatSedan(1) == 'X') {
+							sedans.at(0).setSeatSedan(1);
+						}
+						//back Rigth Seat
+						else {
+							sedans.at(0).setSeatSedan(3);
+						}
+					}
+					//Back seat Middle
+					else if (completedReservation.at(reservationLocation).GetCost() == 1) {
+						sedans.at(0).setSeatSedan(2);
+					}
 				}
+
+				//Sedan Black
 				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 7) {
-					//Sedan Black
-					cout << "Black Sedan\nCost " << completedReservation.at(reservationLocation).GetCost();
+					//Front Seat
+					if (completedReservation.at(reservationLocation).GetCost() == 5) {
+						compacts.at(1).setSeatCompact(0);
+					}
+					//Back Seats Outside
+					else if (completedReservation.at(reservationLocation).GetCost() == 2) {
+						//Back Left Seat
+						if (sedans.at(1).displaySeatSedan(1) == 'X') {
+							sedans.at(1).setSeatSedan(1);
+						}
+						//back Rigth Seat
+						else {
+							sedans.at(1).setSeatSedan(3);
+						}
+					}
+					//Back seat Middle
+					else if (completedReservation.at(reservationLocation).GetCost() == 1) {
+						sedans.at(1).setSeatSedan(2);
+					}
 				}
+
+				//Sedan Green
 				else if (completedReservation.at(reservationLocation).GetVehicleNum() == 8) {
-					//Sedan Green
-					cout << "Green Sedan\nCost " << completedReservation.at(reservationLocation).GetCost();
+					//Front Seat
+					if (completedReservation.at(reservationLocation).GetCost() == 5) {
+						compacts.at(2).setSeatCompact(0);
+					}
+					//Back Seats Outside
+					else if (completedReservation.at(reservationLocation).GetCost() == 2) {
+						//Back Left Seat
+						if (sedans.at(2).displaySeatSedan(1) == 'X') {
+							sedans.at(2).setSeatSedan(1);
+						}
+						//back Rigth Seat
+						else {
+							sedans.at(2).setSeatSedan(3);
+						}
+					}
+					//Back seat Middle
+					else if (completedReservation.at(reservationLocation).GetCost() == 1) {
+						sedans.at(2).setSeatSedan(2);
+					}
+
 				}
 				else {
 					"ERROR<><>Returning to main.";
@@ -1198,21 +1317,28 @@ void Reservation::deleteReservation(vector<Reservation>& completedReservation, v
 				}
 
 				system("cls");
-				cout << "reservation canceled, you have ben refunded. Returning to main.";
+				cout << "Deletion canceled, you have ben refunded. Returning to main.\n";
+				system("pause");
+				completedReservation.erase(completedReservation.begin() + reservationLocation);
+				return;
+			}
+
+
+			else {
+				cout << "Deletion cancled, returning to main\n";
 				system("pause");
 				return;
 			}
 		}
-		else {
-			cout << "No reservation found with " << userInt << "for " << userInput << "\nReturning to Main\n\n";
-			system("pause");
-			return;
-		}
+
 	}
+	cout << "No reservation found with " << userInt << " for " << userInput << "\nReturning to Main\n\n";
+	system("pause");
+	return;
 
 
 
-	 
+
 } // Reservation::deleteReservation;
 
 
@@ -1243,6 +1369,8 @@ void Reservation::printAllReservations(vector<Reservation> completedReservation,
 
 
 	//Compact Output
+	
+	bool used = false; //used for the double back seats so that way it can get both people 
 	vector<string> compactSeatChart;
 	compactSeatChart.push_back("Unassigned");
 	compactSeatChart.push_back("Unassigned");
@@ -1257,12 +1385,18 @@ void Reservation::printAllReservations(vector<Reservation> completedReservation,
 		OutPutFile << "-------------------\n";
 		OutPutFile << "Driver         : " << compacts.at(i).GetDriverFirstName() << endl;
 		for (int j = 0; j < completedReservation.size(); j++) {
+			//front seat
 			if (compacts.at(i).displaySeatCompact(0) == 'X' && completedReservation.at(j).GetVehicleNum() == i+3) {
 				compactSeatChart.at(0) = (completedReservation.at(j).GetName());
 			}
-			else if (compacts.at(i).displaySeatCompact(1) == 'X' && completedReservation.at(j).GetVehicleNum() == i+3) {
+			//Back left seat
+			else if (compacts.at(i).displaySeatCompact(1) == 'X' && completedReservation.at(j).GetVehicleNum() == i+3 && used == false) {
 				compactSeatChart.at(1) = (completedReservation.at(j).GetName());
+				//forces it back to the begning to pick up the second back seat
+				used = true;
+				continue;
 			}
+			//back right seat
 			else if (compacts.at(i).displaySeatCompact(2) == 'X' && completedReservation.at(j).GetVehicleNum() == i+3) {
 				compactSeatChart.at(2) = (completedReservation.at(j).GetName());
 			}
@@ -1272,7 +1406,7 @@ void Reservation::printAllReservations(vector<Reservation> completedReservation,
 		OutPutFile << "Back Right Seat: " << compactSeatChart.at(2) << endl;
 	}
 
-
+	used = false;
 	//Sedan Output
 	vector<string> sedanSeatChart;
 	sedanSeatChart.push_back("Unassigned");
@@ -1294,11 +1428,17 @@ void Reservation::printAllReservations(vector<Reservation> completedReservation,
 			if (sedans.at(i).displaySeatSedan(0) == 'X' && completedReservation.at(j).GetVehicleNum() == i+6) {
 				sedanSeatChart.at(0) = (completedReservation.at(j).GetName());
 			}
-			else if (sedans.at(i).displaySeatSedan(1) == 'X' && completedReservation.at(j).GetVehicleNum() == i+6) {
+			else if (sedans.at(i).displaySeatSedan(1) == 'X' && completedReservation.at(j).GetVehicleNum() == i+6 && used == false) {
 				sedanSeatChart.at(1) = (completedReservation.at(j).GetName());
+				//forces it back to the begning to pick up the second back seat
+				used = true;
+				continue;
 			}
 			else if (sedans.at(i).displaySeatSedan(2) == 'X' && completedReservation.at(j).GetVehicleNum() == i+6) {
 				sedanSeatChart.at(2) = (completedReservation.at(j).GetName());
+			}
+			else if (sedans.at(i).displaySeatSedan(3) == 'X' && completedReservation.at(j).GetVehicleNum() == i + 6) {
+				sedanSeatChart.at(3) = (completedReservation.at(j).GetName());
 			}
 		}
 		OutPutFile << "Front       Seat: " << sedanSeatChart.at(0) << endl;
@@ -1409,9 +1549,11 @@ void Reservation::printOneReservation(string color, string vehicle, vector<Reser
 		compactSeatChart.push_back("Unassigned");
 		compactSeatChart.push_back("Unassigned");
 		compactSeatChart.push_back("Unassigned");
-
+		
+		bool used = false;
 
 		if (color == "red") {
+
 			OutPutFile << "Compact         Red\n";
 			OutPutFile << "-------------------\n";
 			OutPutFile << "Driver         : " << compacts.at(0).GetDriverFirstName() << endl;
@@ -1419,8 +1561,11 @@ void Reservation::printOneReservation(string color, string vehicle, vector<Reser
 				if (compacts.at(0).displaySeatCompact(0) == 'X' && completedReservation.at(j).GetVehicleNum() == 3) {
 					compactSeatChart.at(0) = (completedReservation.at(j).GetName());
 				}
-				else if (compacts.at(0).displaySeatCompact(1) == 'X' && completedReservation.at(j).GetVehicleNum() == 3) {
+				else if (compacts.at(0).displaySeatCompact(1) == 'X' && completedReservation.at(j).GetVehicleNum() == 3 && used == false) {
 					compactSeatChart.at(1) = (completedReservation.at(j).GetName());
+					//forces it back to the begning to pick up the second back seat
+					used = true;
+					continue;
 				}
 				else if (compacts.at(0).displaySeatCompact(2) == 'X' && completedReservation.at(j).GetVehicleNum() == 3) {
 					compactSeatChart.at(2) = (completedReservation.at(j).GetName());
@@ -1444,8 +1589,11 @@ void Reservation::printOneReservation(string color, string vehicle, vector<Reser
 				if (compacts.at(1).displaySeatCompact(0) == 'X' && completedReservation.at(j).GetVehicleNum() == 4) {
 					compactSeatChart.at(0) = (completedReservation.at(j).GetName());
 				}
-				else if (compacts.at(1).displaySeatCompact(1) == 'X' && completedReservation.at(j).GetVehicleNum() == 4) {
+				else if (compacts.at(1).displaySeatCompact(1) == 'X' && completedReservation.at(j).GetVehicleNum() == 4 && used == false) {
 					compactSeatChart.at(1) = (completedReservation.at(j).GetName());
+					//forces it back to the begning to pick up the second back seat
+					used = true;
+					continue;
 				}
 				else if (compacts.at(1).displaySeatCompact(2) == 'X' && completedReservation.at(j).GetVehicleNum() == 4) {
 					compactSeatChart.at(2) = (completedReservation.at(j).GetName());
@@ -1469,8 +1617,11 @@ void Reservation::printOneReservation(string color, string vehicle, vector<Reser
 				if (compacts.at(2).displaySeatCompact(0) == 'X' && completedReservation.at(j).GetVehicleNum() == 5) {
 					compactSeatChart.at(0) = (completedReservation.at(j).GetName());
 				}
-				else if (compacts.at(2).displaySeatCompact(1) == 'X' && completedReservation.at(j).GetVehicleNum() == 5) {
+				else if (compacts.at(2).displaySeatCompact(1) == 'X' && completedReservation.at(j).GetVehicleNum() == 5 && used == false) {
 					compactSeatChart.at(1) = (completedReservation.at(j).GetName());
+					//forces it back to the begning to pick up the second back seat
+					used = true;
+					continue;
 				}
 				else if (compacts.at(2).displaySeatCompact(2) == 'X' && completedReservation.at(j).GetVehicleNum() == 5) {
 					compactSeatChart.at(2) = (completedReservation.at(j).GetName());
@@ -1493,17 +1644,102 @@ void Reservation::printOneReservation(string color, string vehicle, vector<Reser
 		}
 	}
 
-	//Sedan loo
+	//Sedan loop
 	else if (vehicle == "sedan") {
+	vector<string> sedanSeatChart;
+	sedanSeatChart.push_back("Unassigned");
+	sedanSeatChart.push_back("Unassigned");
+	sedanSeatChart.push_back("Unassigned");
+	sedanSeatChart.push_back("Unassigned");
+
+	bool used = false;
+
 		if (color == "blue") {
+			OutPutFile << "Sedan          Blue\n";    
+			OutPutFile << "-------------------\n";
+			OutPutFile << "Driver          : " << sedans.at(0).GetDriverFirstName() << endl;
+			
+			
+			for (int j = 0; j < completedReservation.size(); j++) {
+				if (sedans.at(0).displaySeatSedan(0) == 'X' && completedReservation.at(j).GetVehicleNum() == 6) {
+					sedanSeatChart.at(0) = (completedReservation.at(j).GetName());
+				}
+				else if (sedans.at(0).displaySeatSedan(1) == 'X' && completedReservation.at(j).GetVehicleNum() == 6 && used == false) {
+					sedanSeatChart.at(1) = (completedReservation.at(j).GetName());
+					//forces it back to the begning to pick up the second back seat
+					used = true;
+					continue;
+				}
+				else if (sedans.at(0).displaySeatSedan(2) == 'X' && completedReservation.at(j).GetVehicleNum() == 6) {
+					sedanSeatChart.at(2) = (completedReservation.at(j).GetName());
+				}
+				else if (sedans.at(0).displaySeatSedan(3) == 'X' && completedReservation.at(j).GetVehicleNum() == 6) {
+					sedanSeatChart.at(3) = (completedReservation.at(j).GetName());
+				}
+			}
+			OutPutFile << "Front       Seat: " << sedanSeatChart.at(0) << endl;
+			OutPutFile << "Back Left   Seat: " << sedanSeatChart.at(1) << endl;
+			OutPutFile << "Back Middle Seat: " << sedanSeatChart.at(2) << endl;
+			OutPutFile << "Back Right  Seat: " << sedanSeatChart.at(3) << endl;
+
 
 		}
 
 		else if (color == "black") {
 
+			OutPutFile << "Sedan         Black\n" ;
+			OutPutFile << "-------------------\n";
+			OutPutFile << "Driver          : " << sedans.at(1).GetDriverFirstName() << endl;
+			for (int j = 0; j < completedReservation.size(); j++) {
+				if (sedans.at(1).displaySeatSedan(0) == 'X' && completedReservation.at(j).GetVehicleNum() == 7) {
+					sedanSeatChart.at(0) = (completedReservation.at(j).GetName());
+				}
+				else if (sedans.at(1).displaySeatSedan(1) == 'X' && completedReservation.at(j).GetVehicleNum() == 7 && used == false) {
+					sedanSeatChart.at(1) = (completedReservation.at(j).GetName());
+					//forces it back to the begning to pick up the second back seat
+					used = true;
+					continue;
+				}
+				else if (sedans.at(1).displaySeatSedan(2) == 'X' && completedReservation.at(j).GetVehicleNum() == 7) {
+					sedanSeatChart.at(2) = (completedReservation.at(j).GetName());
+				}
+				else if (sedans.at(1).displaySeatSedan(3) == 'X' && completedReservation.at(j).GetVehicleNum() == 7) {
+					sedanSeatChart.at(3) = (completedReservation.at(j).GetName());
+				}
+			}
+			OutPutFile << "Front       Seat: " << sedanSeatChart.at(0) << endl;
+			OutPutFile << "Back Left   Seat: " << sedanSeatChart.at(1) << endl;
+			OutPutFile << "Back Middle Seat: " << sedanSeatChart.at(2) << endl;
+			OutPutFile << "Back Right  Seat: " << sedanSeatChart.at(3) << endl;
+
+
 		}
 
 		else if (color == "green") {
+			OutPutFile << "Sedan         Green\n";
+			OutPutFile << "-------------------\n";
+			OutPutFile << "Driver          : " << sedans.at(2).GetDriverFirstName() << endl;
+			for (int j = 0; j < completedReservation.size(); j++) {
+				if (sedans.at(2).displaySeatSedan(0) == 'X' && completedReservation.at(j).GetVehicleNum() == 8) {
+					sedanSeatChart.at(0) = (completedReservation.at(j).GetName());
+				}
+				else if (sedans.at(2).displaySeatSedan(1) == 'X' && completedReservation.at(j).GetVehicleNum() == 8 && used == false) {
+					sedanSeatChart.at(1) = (completedReservation.at(j).GetName());
+					//forces it back to the begning to pick up the second back seat
+					used = true;
+					continue;
+				}
+				else if (sedans.at(2).displaySeatSedan(2) == 'X' && completedReservation.at(j).GetVehicleNum() == 8) {
+					sedanSeatChart.at(2) = (completedReservation.at(j).GetName());
+				}
+				else if (sedans.at(2).displaySeatSedan(3) == 'X' && completedReservation.at(j).GetVehicleNum() == 8) {
+					sedanSeatChart.at(3) = (completedReservation.at(j).GetName());
+				}
+			}
+			OutPutFile << "Front       Seat: " << sedanSeatChart.at(0) << endl;
+			OutPutFile << "Back Left   Seat: " << sedanSeatChart.at(1) << endl;
+			OutPutFile << "Back Middle Seat: " << sedanSeatChart.at(2) << endl;
+			OutPutFile << "Back Right  Seat: " << sedanSeatChart.at(3) << endl;
 
 		}
 
