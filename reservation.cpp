@@ -215,72 +215,21 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 					low(carType);
 					low(carColor);
 
-					// Credit check to make sure they can get a seat of that cost value:
-					// Put inside of a while Loop to keep going until they input a seat they can afford:
-					bool userCreditCheck = true;
-					while(userCreditCheck) {
-					
-						//Cost Menu to Display seat costs with its option:
-						cout << "\n\nEnter 1-4 for the seat type you want\n";
-						cout << "     Position                Cost \n";
-						cout << "(1) Front Seat                5\n";
-						cout << "(2) Compact Back Seat         3\n";
-						cout << "(3) Sedan Back Seat Outside   2\n";
-						cout << "(4) Sedan Back Seat Middle    1\n";
-						cout << "Seat: "; cin >> userInt;
-
-						//Credit Check Selection:
-						if (userInt == 1) {
-							if (personData.at(personLocation).getCredit() >= 5) {
-								
-								userCreditCheck = false;
-
-							}					
-						}
-						else if (userInt == 2) {
-
-
-							if (personData.at(personLocation).getCredit() >= 3) {
-
-								userCreditCheck = false;
-
-							}
-						}
-						else if (userInt == 3) {
-
-							if (personData.at(personLocation).getCredit() >= 2) {
-
-								userCreditCheck = false;
-
-							}
-
-						}
-						else if (userInt == 4) {
-
-							userCreditCheck = false;
-						
-						}
-						else {
-							cout << "invalid input, must enter 1-4, returning to main";
-							userCreditCheck = false;
-							system("pause");
-							return;
-						}
-
-						// If The user inputted Something they can't afffort it will reprompt and run the loop again:
-						if (userCreditCheck) {
-
-							cout << "You Do Not Have Enough Credits for this Selection. Please Choose Again: \n";
-						}
-					}
 					
 					//*****************************************************************
 					//Truck and its three options for user specified vehicle:
 					//*****************************************************************
 					if (carType == "truck") {
-						
+						//credit check for the truck
+						if (personData.at(personLocation).getCredit() < 5) {
+							cout << "You do not have enough credits to ride in a truck, returning to main";
+							system("pause");
+							return;
+						}
+
 						//Purple Truck:
-						if (carColor == "purple") {
+						else if (carColor == "purple") {
+							
 							if (trucks.at(0).seatCheckTruck() == true) {
 								tempCompleted.SetCost(5);
 
@@ -294,6 +243,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								tempCompleted.SetVehicleNum(1);
 								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 								completedReservation.push_back(tempCompleted);
+								
+								//subtracts 5 credits from the persons current credit ammount
+								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
 							}
 						}
 
@@ -312,6 +264,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								tempCompleted.SetVehicleNum(2);
 								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 								completedReservation.push_back(tempCompleted);
+
+								//subtracts 5 credits from the persons current credit ammount
+								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
 							}
 						}
 
@@ -326,11 +281,12 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 								//print the pin to the user
 								////////////////////////
 
-								tempCompleted.SetVehicleNum(2);
+								tempCompleted.SetVehicleNum(3);
 								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 								completedReservation.push_back(tempCompleted);
 
-
+								//subtracts 5 credits from the persons current credit ammount
+								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
 							}
 						}
 
@@ -347,25 +303,241 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 				    //*****************************************************************
 					else if (carType == "compact") {
 
-						
-						
+
 						//Red Compact:
+						if (personData.at(personLocation).getCredit() < 3) {
+							cout << "\nyou do not have eough credits to ride in a compact, returing to main\n";
+							system("pause");
+							return;
+						}
+
+						//Cost Menu to Display seat costs with its option:
+						cout << "\n\nEnter 1-4 for the seat type you want\n";
+						cout << "     Position                Cost \n";
+						cout << "(1) Front Seat                5\n";
+						cout << "(2) Compact Back Seat         3\n";
+						cout << "Seat: "; cin >> userInt;
+
+						
+
 						if (carColor == "red") {
-							//if avaiable ask the user to confirm then make pin and return to main
+							//----------------------------------------------------------------------------------------------------		
+							//Front Seat
+							//----------------------------------------------------------------------------------------------------
+							if (userInt == 1) {
+								if (personData.at(personLocation).getCredit() < 5) {
+									cout << "You do not have enough credits to ride front seat in a compact, returning to main";
+									system("pause");
+									return;
+								}
 
+								else {
+									if (compacts.at(0).seatCheckCompact(userInt) == true)
+									{
+										tempCompleted.SetCost(5);
 
+										//*****//
+										//Temp value
+										tempCompleted.SetPin(999);
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										//print the pin to the user
+										////////////////////////
+
+										tempCompleted.SetVehicleNum(4);
+										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+										completedReservation.push_back(tempCompleted);
+
+										//subtracts 5 credits from the persons current credit ammount
+										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+									}
+								}
+							}// front seat compact
+
+							//----------------------------------------------------------------------------------------------------
+							//Back Seat 
+							//----------------------------------------------------------------------------------------------------
+							else if (userInt == 2) {
+								if (personData.at(personLocation).getCredit() < 3) {
+									cout << "You do not have enough credits to ride in the back seat of a compact, returning to main";
+									system("pause");
+									return;
+								}
+
+								else {
+									if (compacts.at(0).seatCheckCompact(userInt) == true)
+									{
+										tempCompleted.SetCost(3);
+
+										//*****//
+										//Temp value
+										tempCompleted.SetPin(999);
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										//print the pin to the user
+										////////////////////////
+
+										tempCompleted.SetVehicleNum(4);
+										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+										completedReservation.push_back(tempCompleted);
+
+										//subtracts 5 credits from the persons current credit ammount
+										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 3);
+									}
+								}
+							}// back seat comppact
+
+							else {
+								cout << "Invalid input, returing to main.";
+								system("pause");
+								return;
+							}
 						}
 
 						//Blue Compact:
 						else if (carColor == "blue") {
-							//if avaiable ask the user to confirm then make pin and return to main
+							//----------------------------------------------------------------------------------------------------		
+							//Front Seat
+							//----------------------------------------------------------------------------------------------------
+							if (userInt == 1) {
+								if (personData.at(personLocation).getCredit() < 5) {
+									cout << "You do not have enough credits to ride front seat in a compact, returning to main";
+									system("pause");
+									return;
+								}
+
+								else {
+									if (compacts.at(1).seatCheckCompact(userInt) == true)
+									{
+										tempCompleted.SetCost(5);
+
+										//*****//
+										//Temp value
+										tempCompleted.SetPin(999);
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										//print the pin to the user
+										////////////////////////
+
+										tempCompleted.SetVehicleNum(5);
+										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+										completedReservation.push_back(tempCompleted);
+
+										//subtracts 5 credits from the persons current credit ammount
+										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+									}
+								}
+							}// front seat compact
+
+							//----------------------------------------------------------------------------------------------------
+							//Back Seat 
+							//----------------------------------------------------------------------------------------------------
+							else if (userInt == 2) {
+								if (personData.at(personLocation).getCredit() < 3) {
+									cout << "You do not have enough credits to ride in the back seat of a compact, returning to main";
+									system("pause");
+									return;
+								}
+
+								else {
+									if (compacts.at(1).seatCheckCompact(userInt) == true)
+									{
+										tempCompleted.SetCost(3);
+
+										//*****//
+										//Temp value
+										tempCompleted.SetPin(999);
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										//print the pin to the user
+										////////////////////////
+
+										tempCompleted.SetVehicleNum(5);
+										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+										completedReservation.push_back(tempCompleted);
+
+										//subtracts 5 credits from the persons current credit ammount
+										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 3);
+									}
+								}
+							}// back seat comppact
+
+							else {
+								cout << "Invalid input, returing to main.";
+								system("pause");
+								return;
+							}
+
 
 						}
 
 						//Yellow Compact:
 						else if (carColor == "yellow") {
-							//if avaiable ask the user to confirm then make pin and return to main
+							//----------------------------------------------------------------------------------------------------		
+							//Front Seat
+							//----------------------------------------------------------------------------------------------------
+							if (userInt == 1) {
+								if (personData.at(personLocation).getCredit() < 5) {
+									cout << "You do not have enough credits to ride front seat in a compact, returning to main";
+									system("pause");
+									return;
+								}
 
+								else {
+									if (compacts.at(2).seatCheckCompact(userInt) == true)
+									{
+										tempCompleted.SetCost(5);
+
+										//*****//
+										//Temp value
+										tempCompleted.SetPin(999);
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										//print the pin to the user
+										////////////////////////
+
+										tempCompleted.SetVehicleNum(6);
+										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+										completedReservation.push_back(tempCompleted);
+
+										//subtracts 5 credits from the persons current credit ammount
+										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+									}
+								}
+							}// front seat compact
+
+							//----------------------------------------------------------------------------------------------------
+							//Back Seat 
+							//----------------------------------------------------------------------------------------------------
+							else if (userInt == 2) {
+								if (personData.at(personLocation).getCredit() < 3) {
+									cout << "You do not have enough credits to ride in the back seat of a compact, returning to main";
+									system("pause");
+									return;
+								}
+
+								else {
+									if (compacts.at(2).seatCheckCompact(userInt) == true)
+									{
+										tempCompleted.SetCost(3);
+
+										//*****//
+										//Temp value
+										tempCompleted.SetPin(999);
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										//print the pin to the user
+										////////////////////////
+
+										tempCompleted.SetVehicleNum(6);
+										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+										completedReservation.push_back(tempCompleted);
+
+										//subtracts 5 credits from the persons current credit ammount
+										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 3);
+									}
+								}
+							}// back seat comppact
+
+							else {
+								cout << "Invalid input, returing to main.";
+								system("pause");
+								return;
+							}
 						}
 
 						//Error Check:
@@ -377,41 +549,334 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 					}
 
 
-						//*****************************************************************
-						//Compact and its three options for user specified vehicle:
-						//*****************************************************************
-
+						
+					//*****************************************************************
+					//Sedan and its three options for user specified vehicle
+					//*****************************************************************
 					else if (carType == "sedan") {
 						
+					//Cost Menu to Display seat costs with its option:
+					cout << "\n\nEnter 1-4 for the seat type you want\n";
+					cout << "     Position                Cost \n";
+					cout << "(1) Front Seat                5\n";
+					cout << "(2) Sedan Back Seat Outside   2\n";
+					cout << "(3) Sedan Back Seat Middle    1\n";
+					cout << "Seat: "; cin >> userInt;
+
+						//----------------------------------------------------------------------------------------------------
 						//Blue Sedan:
+						//----------------------------------------------------------------------------------------------------
 						if (carColor == "blue") {
 							//if avaiable ask the user to confirm then make pin and return to main
 
-							
+							//----------------------------------------------------------------------------------------------------		
+							//Front Seat
+							//----------------------------------------------------------------------------------------------------
+							if (userInt == 1) {
+								if (personData.at(personLocation).getCredit() < 5) {
+									cout << "You do not have enough credits to ride front seat in a Sedan, returning to main";
+									system("pause");
+									return;
+								}
 
+								else {
+									if (sedans.at(0).seatCheckSedan(userInt) == true)
+									{
+										tempCompleted.SetCost(5);
+
+										//*****//
+										//Temp value
+										tempCompleted.SetPin(999);
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										//print the pin to the user
+										////////////////////////
+
+										tempCompleted.SetVehicleNum(7);
+										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+										completedReservation.push_back(tempCompleted);
+
+										//subtracts 5 credits from the persons current credit ammount
+										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+									}
+								} // front seat sedan
+							}
+
+							//----------------------------------------------------------------------------------------------------
+							//Back Seat Outside
+							//----------------------------------------------------------------------------------------------------
+							else if (userInt == 2) {
+								if (personData.at(personLocation).getCredit() < 2) {
+									cout << "You do not have enough credits to ride in the outside back seat of a sedan, returning to main";
+									system("pause");
+									return;
+								}
+
+								else {
+									if (sedans.at(0).seatCheckSedan(userInt) == true)
+									{
+										tempCompleted.SetCost(2);
+
+										//*****//
+										//Temp value
+										tempCompleted.SetPin(999);
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										//print the pin to the user
+										////////////////////////
+
+										tempCompleted.SetVehicleNum(7);
+										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+										completedReservation.push_back(tempCompleted);
+
+										//subtracts 5 credits from the persons current credit ammount
+										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 2);
+									}
+								} 
+							}// back seat outside sedan	
+
+							//----------------------------------------------------------------------------------------------------
+							//Back Seat Middle
+							//----------------------------------------------------------------------------------------------------
+							else if (userInt == 3) {
+								if (sedans.at(0).seatCheckSedan(userInt) == true)
+								{
+									tempCompleted.SetCost(1);
+
+									//*****//
+									//Temp value
+									tempCompleted.SetPin(999);
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+									//print the pin to the user
+									////////////////////////
+
+									tempCompleted.SetVehicleNum(7);
+									tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+									completedReservation.push_back(tempCompleted);
+
+									//subtracts 5 credits from the persons current credit ammount
+									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 1);
+
+								}
+							}// back seat middle sedan
+
+							else { //error check for the seat map from user input
+								cout << "Invalid input, returning to main.\n";
+								system("pause");
+							}
 						}
-						
+
+						//----------------------------------------------------------------------------------------------------
 						//Black Sedan:
+						//----------------------------------------------------------------------------------------------------						
 						else if (carColor == "black") {
-							//if avaiable ask the user to confirm then make pin and return to main
-						
+							//----------------------------------------------------------------------------------------------------		
+							//Front Seat
+							//----------------------------------------------------------------------------------------------------
+							if (userInt == 1) {
+								if (personData.at(personLocation).getCredit() < 5) {
+									cout << "You do not have enough credits to ride in a truck, returning to main";
+									system("pause");
+									return;
+								}
+
+								else {
+									if (sedans.at(1).seatCheckSedan(userInt) == true)
+									{
+										tempCompleted.SetCost(5);
+
+										//*****//
+										//Temp value
+										tempCompleted.SetPin(999);
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										//print the pin to the user
+										////////////////////////
+
+										tempCompleted.SetVehicleNum(8);
+										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+										completedReservation.push_back(tempCompleted);
+
+										//subtracts 5 credits from the persons current credit ammount
+										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+									}
+								}
+							} // front seat sedan
+
+							//----------------------------------------------------------------------------------------------------
+							//Back Seat Outside
+							//----------------------------------------------------------------------------------------------------
+							else if (userInt == 2) {
+								if (personData.at(personLocation).getCredit() < 2) {
+									cout << "You do not have enough credits to ride in a truck, returning to main";
+									system("pause");
+									return;
+								}
+
+								else {
+									if (sedans.at(1).seatCheckSedan(userInt) == true)
+									{
+										tempCompleted.SetCost(2);
+
+										//*****//
+										//Temp value
+										tempCompleted.SetPin(999);
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										//print the pin to the user
+										////////////////////////
+
+										tempCompleted.SetVehicleNum(8);
+										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+										completedReservation.push_back(tempCompleted);
+
+										//subtracts 5 credits from the persons current credit ammount
+										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 2);
+									}
+								}
+							}// back seat outside sedan
+	
+							//----------------------------------------------------------------------------------------------------
+							//Back Seat Middle
+							//----------------------------------------------------------------------------------------------------
+							else if (userInt == 3) {
+
+								if (sedans.at(1).seatCheckSedan(userInt) == true)
+								{
+									tempCompleted.SetCost(1);
+
+									//*****//
+									//Temp value
+									tempCompleted.SetPin(999);
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+									//print the pin to the user
+									////////////////////////
+
+									tempCompleted.SetVehicleNum(8);
+									tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+									completedReservation.push_back(tempCompleted);
+
+									//subtracts 5 credits from the persons current credit ammount
+									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 1);
+
+								}
+							}// back seat middle sedan
+							
+							else { //error check for the seat map from user input
+								cout << "Invalid input, returning to main.\n";
+								system("pause");
+							}
 						}
 
+						//----------------------------------------------------------------------------------------------------
 						//Green Sedan:
+						//----------------------------------------------------------------------------------------------------
 						else if (carColor == "green") {
-							//if avaiable ask the user to confirm then make pin and return to main
 
+							//----------------------------------------------------------------------------------------------------		
+							//Front Seat
+							//----------------------------------------------------------------------------------------------------
+							if (userInt == 1) {
+								if (personData.at(personLocation).getCredit() < 5) {
+									cout << "You do not have enough credits to ride in a truck, returning to main";
+									system("pause");
+									return;
+								}
+
+								else {
+									if (sedans.at(2).seatCheckSedan(userInt) == true)
+									{
+										tempCompleted.SetCost(5);
+
+										//*****//
+										//Temp value
+										tempCompleted.SetPin(999);
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										//print the pin to the user
+										////////////////////////
+
+										tempCompleted.SetVehicleNum(9);
+										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+										completedReservation.push_back(tempCompleted);
+
+										//subtracts 5 credits from the persons current credit ammount
+										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+									}
+								} // front seat sedan
+							}
+
+							//----------------------------------------------------------------------------------------------------
+							//Back Seat Outside
+							//----------------------------------------------------------------------------------------------------
+							else if (userInt == 2) {
+								if (personData.at(personLocation).getCredit() < 2) {
+									cout << "You do not have enough credits to ride in a truck, returning to main";
+									system("pause");
+									return;
+								}
+
+								else {
+
+									if (sedans.at(2).seatCheckSedan(userInt) == true)
+									{
+										tempCompleted.SetCost(2);
+
+										//*****//
+										//Temp value
+										tempCompleted.SetPin(999);
+										cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+										//print the pin to the user
+										////////////////////////
+
+										tempCompleted.SetVehicleNum(9);
+										tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+										completedReservation.push_back(tempCompleted);
+
+										//subtracts 5 credits from the persons current credit ammount
+										personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 2);
+									}
+								}
+							}// back seat outside sedan
+
+							//----------------------------------------------------------------------------------------------------
+							//Back Seat Middle
+							//----------------------------------------------------------------------------------------------------
+							else if (userInt == 3) {
+
+								if (sedans.at(2).seatCheckSedan(userInt) == true)
+								{
+									tempCompleted.SetCost(1);
+
+									//*****//
+									//Temp value
+									tempCompleted.SetPin(999);
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ 9 << "\n";
+									//print the pin to the user
+									////////////////////////
+
+									tempCompleted.SetVehicleNum(9);
+									tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+									completedReservation.push_back(tempCompleted);
+
+									//subtracts 5 credits from the persons current credit ammount
+									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 1);
+
+								}
+							}// back seat middle sedan
+
+
+							else { //error check for the seat map from user input
+								cout << "Invalid input, returning to main.\n";
+								system("pause");
+							}
 						}
 
-						//Error Check:
+
+						//Error Check for sedan color:
 						else {
 							cout << "The Sedan you entered does not exist, returing to main menu.";
 							system("pause");
 							return;
 						}
-					}
+					}//car type == sedan 
 
-					//error check for vehicle type:
+					//Error check for vehicle make:
 					else {
 						cout << "You did not enter a valid vehicle type, returning to main.\n";
 						system("pause");
@@ -419,7 +884,9 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 					}
 				}
 
-				//error check option between vehicle choice or auto:
+				//----------------------------------------------------------------------------------------------------
+				//Error check option between vehicle choice or auto:
+				//----------------------------------------------------------------------------------------------------
 				else {
 					cout << "you did not enter a 1 or a 2, returning to main.\n";
 					system("pause");
@@ -456,9 +923,6 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 				}
 				else {
 				*/
-
-				
-
 			}
 		}
 	}

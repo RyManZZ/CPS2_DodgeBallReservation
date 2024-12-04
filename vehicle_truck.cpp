@@ -73,7 +73,7 @@ bool Truck::seatCheckTruck() {
 	}
 
 	else { //if seat is already claimed / invlaid input
-		cout << "This Seat is already claimed, returning to main.";
+		cout << "This Seat is already claimed, returning to main.\n";
 		system("pause");
 		return false;
 	}

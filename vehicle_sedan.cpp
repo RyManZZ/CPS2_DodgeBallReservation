@@ -73,16 +73,12 @@ bool Sedan::seatCheckSedan(int seatSelection) {
 		}
 	}
 
-	else { //if seat is already claimed
-		cout << "This Seat is already claimed, returning to main.";
-		system("pause");
-		return false;
-	}
+	
 	//*****************************************************************************
 
 	//Back Seat Middle
 	//*****************************************************************************
-	if (seat_S.at(seatSelection - 1) == '1') {
+	else if (seat_S.at(seatSelection - 1) == '1') {
 		cout << "The center back seat is avaliable, would you like to reserve it Y/N\n";
 		cout << "choice: "; cin >> userInput;
 		//conformation check to make the reservation
@@ -99,16 +95,12 @@ bool Sedan::seatCheckSedan(int seatSelection) {
 		}
 	}
 
-	else { //if seat is already claimed
-		cout << "This Seat is already claimed, returning to main.";
-		system("pause");
-		return false;
-	}
+	
 	//*****************************************************************************
 
 	//Back Seat Outside
 	//*****************************************************************************
-	if (seat_S.at(seatSelection - 1) == '2' || seat_S.at(seatSelection - 1) == '2') { //checks both seats at once to see if they are avaliable
+	else if (seat_S.at(seatSelection - 2) == '2' || seat_S.at(seatSelection + 1) == '2') { //checks both seats at once to see if they are avaliable
 
 		cout << "A back Seat on the outisde is avaliable, would you like to reserve it Y/N\n";
 		cout << "choice: "; cin >> userInput;
@@ -131,7 +123,7 @@ bool Sedan::seatCheckSedan(int seatSelection) {
 	}
 
 	else { //if seat is already claimed
-		cout << "This Seat is already claimed, returning to main.";
+		cout << "This Seat is already claimed, returning to main.\n";
 		system("pause");
 		return false;
 	}

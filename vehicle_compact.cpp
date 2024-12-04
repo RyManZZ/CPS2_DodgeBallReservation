@@ -70,17 +70,12 @@ bool Compact::seatCheckCompact(int seatSelection) {
 		}
 	}
 
-	else { //if seat is already claimed
-		cout << "This Seat is already claimed, returning to main.";
-		system("pause");
-		return false;
-	}
 	//*****************************************************************************
 
 
 	//Back Seat
 	//*****************************************************************************
-	if (seat_C.at(seatSelection - 1) == '3' || seat_C.at(seatSelection - 1) == '3') { //checks both seats at once to see if they are avaliable
+	else if (seat_C.at(seatSelection - 1) == '3' || seat_C.at(seatSelection) == '3') { //checks both seats at once to see if they are avaliable
 		
 		cout << "A back Seat is avaliable, would you like to reserve it Y/N\n";
 		cout << "choice: "; cin >> userInput;
@@ -103,7 +98,7 @@ bool Compact::seatCheckCompact(int seatSelection) {
 	}
 
 	else { //if seat is already claimed
-		cout << "This Seat is already claimed, returning to main.";
+		cout << "This Seat is already claimed, returning to main.\n";
 		system("pause");
 		return false;
 	}
