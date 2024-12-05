@@ -14,9 +14,12 @@
 #include "sedan.h"
 #include "compact.h"
 
-
+//In-Out Files
 ifstream openInputFile();
-ofstream openOutputFile();
+
+void updateRoster(vector<Person>);
+
+
 
 using namespace NS_Person;
 using namespace NS_Reservation;
@@ -28,7 +31,6 @@ using namespace NS_Compact;
 void createTruck(vector<Truck>&);
 void createSedan(vector<Sedan>&);
 void createCompact(vector<Compact>&);
-
 
 
 
@@ -96,9 +98,6 @@ int main() {
 	createCompact(compacts);
 	createSedan(sedans);
 
-	//opens the output files:
-	outFIle_dodgeball = openOutputFile();
-	
 	while (true) {
 
 		modify = false; //resets at the start of each new run
@@ -155,11 +154,42 @@ int main() {
 			system("pause");
 			continue;
 		}
-
+		updateRoster(personData);
 	}
 
 	return 0;
 }
+
+
+
+//*****************************************************************************************************
+// Updated credit list function
+//*****************************************************************************************************
+
+void updateRoster(vector<Person> personData) {
+	int counts = 0;
+	ofstream OutPutFile;
+	OutPutFile.open("UpdatedRoster.dat");
+
+	//put person class function here 
+
+	//populate person class from input file:
+	for (int i = 0; i < personData.size(); i ++) {
+		//Grabs the first 9 people from the txt file
+
+		while (i < 9) {
+			OutPutFile << personData.at(i).getFirstName() << " " << personData.at(i).getLastName() << endl; // <- run 9 times for driver
+			i++;
+		}
+
+		OutPutFile << personData.at(i).getFirstName() << " " << personData.at(i).getLastName() << " " << personData.at(i).getCredit() << endl; //gets the remaing people from the file that are not drivers
+	}
+
+	OutPutFile.close();
+}
+
+
+
 
 //*****************************************************************************************************
 // Car Object Creations and Input / Output File definitions:
@@ -232,20 +262,3 @@ ifstream openInputFile() {
 }
 
 
-//Output file function:
-ofstream openOutputFile() {
-
-	ofstream OutPutFile; //write file
-	
-   //Opens the file. Error Checks:
-	OutPutFile.open("OUT_dodgeball.dat");
-
-	if (!OutPutFile.is_open()) {     
-		cout << "\nBad File Path... Program Terminated\n";
-		exit(1);
-	}
-
-	return OutPutFile; //returns the file path to main.
-}
-
-//*****************************************************************************************************

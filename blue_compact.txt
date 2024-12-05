@@ -1,0 +1,6 @@
+Compact        Blue
+-------------------
+Driver         : Art
+Front      Seat: Unassigned
+Back Left  Seat: Unassigned
+Back Right Seat: Unassigned
