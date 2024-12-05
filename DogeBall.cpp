@@ -59,7 +59,7 @@ int main() {
 	string userInput, pin, firstName, lastName;
 	int credit;
 	int counts = 0; //<- used to get the drivers.
-	bool reservationCheck = false; // <- used to make sure a reservation was made.
+	bool modify;// <- used to make sure modify is true.
 
 //*****************************************************************************************************
 //  Reads in dodgeball.dat input file and puts all the Drivers, Passengers, and thier credits into Person Class:
@@ -100,6 +100,8 @@ int main() {
 	outFIle_dodgeball = openOutputFile();
 	
 	while (true) {
+
+		modify = false; //resets at the start of each new run
 		system("cls"); //clear the cmd for every loop
 
 		//Menu Display:
@@ -117,17 +119,17 @@ int main() {
 		
 		//Option 1. This will allow the user to Create a reservation:
 		if (userInput == "1") {
-			 reservationTemp.createReservation(completedReservation, personData, trucks, compacts, sedans);
+			 reservationTemp.createReservation(completedReservation, personData, trucks, compacts, sedans, modify, firstName);
 		}
 
 		//Option 2. This will allow the user to Modify a reservation that has already been made:
 		else if (userInput == "2") {
-
+			reservationTemp.modifyReservation(completedReservation, personData, trucks, compacts, sedans, modify);
 		}
 
 		//Option 3. This will allow a user to Delete a reservation that has been made delete reservation:
 		else if (userInput == "3") {
-			reservationTemp.deleteReservation(completedReservation, personData, trucks, compacts, sedans);
+			reservationTemp.deleteReservation(completedReservation, personData, trucks, compacts, sedans, modify, credit, firstName);
 		}
 
 		//Option 4. This will Print all reservations:
@@ -154,10 +156,6 @@ int main() {
 			continue;
 		}
 
-		for (int i = 0; i < completedReservation.size(); i++) {
-			cout << completedReservation.at(i).GetPin() << "\n";
-		}
-		system("pause");
 	}
 
 	return 0;

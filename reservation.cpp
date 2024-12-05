@@ -79,7 +79,7 @@ string Reservation::GetName() {
 
 //This allows a person to make a reservation as long as they have above 0 credits and are not a driver
 //Takes in the person class vector (First/Last names and credits) - drivers get -1 credits:
-void Reservation::createReservation(vector<Reservation>& completedReservation, vector<Person>& personData, vector<Truck>& trucks, vector<Compact>& compacts, vector<Sedan>& sedans) {
+void Reservation::createReservation(vector<Reservation>& completedReservation, vector<Person>& personData, vector<Truck>& trucks, vector<Compact>& compacts, vector<Sedan>& sedans, bool& modify, string name) {
 	Reservation tempCompleted;
 
 	string userInput, carType, carColor, tempString;
@@ -92,8 +92,16 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 
 	cout << "\n\nCreate Reservation\n";
 	cout << "------------------\n";
+	
+	//used for the modify loop
+	if (modify == false) {
 	cout << "First Name: ";
 	cin >> userInput;
+	}
+	else {
+		cout << "First Name: " << name << endl;
+		userInput = name;
+	}
 
 	nameLow(userInput);
 
@@ -1087,7 +1095,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 //*****************************************************************************************************
 //This allows a person to delete an existing reservation that they have.
 // Takes in the person class and Reservation class to verify a user has a created Reservation and a saved PIN:
-void Reservation::deleteReservation(vector<Reservation>& completedReservation, vector<Person>& personData, vector<Truck>& trucks, vector<Compact>& compacts, vector<Sedan>& sedans) {
+void Reservation::deleteReservation(vector<Reservation>& completedReservation, vector<Person>& personData, vector<Truck>& trucks, vector<Compact>& compacts, vector<Sedan>& sedans, bool& modify, int pin, string name) {
 
 	string userInput, carType, carColor, tempString;
 	int userInt; //pin input from user
@@ -1098,8 +1106,19 @@ void Reservation::deleteReservation(vector<Reservation>& completedReservation, v
 
 	cout << "\n\nDelete Reservation\n";
 	cout << "------------------\n";
-	cout << "First Name: "; cin >> userInput;
-	cout << "Pin       : "; cin >> userInt;
+
+	//used for the modify reservation
+	if (modify == false) {
+		cout << "First Name: "; cin >> userInput;
+		cout << "Pin       : "; cin >> userInt;
+	}
+	else {
+		cout << "First Name : " << name;
+		cout << "\nPin       : " << pin << endl;
+		userInput = name;
+		userInt = pin;
+	}
+	
 
 	nameLow(userInput); //modifies the user name to have first letter uppercase and the rest lower
 
@@ -1317,7 +1336,10 @@ void Reservation::deleteReservation(vector<Reservation>& completedReservation, v
 				}
 
 				system("cls");
-				cout << "Deletion canceled, you have ben refunded. Returning to main.\n";
+				
+				if (modify == false) { cout << "Deletion confirmed, you have ben refunded. Returning to main.\n"; }
+				else { cout << "Deletion confirmed, you have ben refunded. Going to Create Reservation \n"; }
+				
 				system("pause");
 				completedReservation.erase(completedReservation.begin() + reservationLocation);
 				return;
@@ -1325,6 +1347,7 @@ void Reservation::deleteReservation(vector<Reservation>& completedReservation, v
 
 
 			else {
+				modify = false;
 				cout << "Deletion cancled, returning to main\n";
 				system("pause");
 				return;
@@ -1341,11 +1364,58 @@ void Reservation::deleteReservation(vector<Reservation>& completedReservation, v
 
 } // Reservation::deleteReservation;
 
+//*****************************************************************************************************
+// Delete Reservation:
+//*****************************************************************************************************
+void Reservation::modifyReservation(vector<Reservation>& completedReservation, vector<Person>& personData, vector<Truck> trucks, vector<Compact> compacts, vector<Sedan> sedans, bool&) {
+	bool modify = true;
+	string name, userInput;
+	int pin;
+	int tempRefund; //gives them back their credits to change their reservation
+
+	cout << "Modify Reservation\n";
+	cout << "------------------\n";
+	cout << "Please Enter your Name and Pin number below\n\n";
+	cout << "Name : ";  cin >> name;
+	cout << "Pin  : ";  cin >> pin;
+
+	nameLow(name);
+
+	for (int i = 0; i < completedReservation.size(); i++) {
+		if (name == completedReservation.at(i).GetName() && pin == completedReservation.at(i).GetPin()) {
+			cout << "Reservation Found,would you like to change it  (Y/N)\n\n";
+			cout << "choice: "; cin >> userInput;
+
+			if (userInput == "y" || userInput == "Y") {
+				completedReservation.at(i).deleteReservation(completedReservation, personData, trucks, compacts, sedans, modify, pin, name);
+				if (modify == true) { createReservation(completedReservation, personData, trucks, compacts, sedans, modify, name); }
+				else { return; }
+			}
+			else {
+				cout << "Modified Cancled, returning to main";
+				system("pause");
+				system("pause");
+				return;
+			}
+
+		}
+	}
+}
+
 
 //*****************************************************************************************************
 // Print ALL Reservations:
 //*****************************************************************************************************
 void Reservation::printAllReservations(vector<Reservation> completedReservation, vector<Truck> trucks, vector<Compact> compacts, vector<Sedan> sedans){
+
+	string password;
+	cout << "Password: "; cin >> password;
+
+	if (password != "Dr.Z") {
+		cout << "You do not belong here, returning to main.\n";
+		system("pause");
+		return;
+	}
 
 	ofstream OutPutFile; //write file
 	OutPutFile.open("all_reservations.txt");

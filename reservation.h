@@ -46,9 +46,9 @@ namespace NS_Reservation { //creates a namespace for Reservation
 		string GetName();
 		
 
-		void createReservation(vector<Reservation>&, vector<Person>&, vector<Truck>&, vector<Compact>&, vector<Sedan>&);
-		void deleteReservation(vector<Reservation>&, vector<Person>&, vector<Truck>&, vector<Compact>&, vector<Sedan>&);
-	//	void modifyReservation();
+		void createReservation(vector<Reservation>&, vector<Person>&, vector<Truck>&, vector<Compact>&, vector<Sedan>&, bool&, string);
+		void deleteReservation(vector<Reservation>&, vector<Person>&, vector<Truck>&, vector<Compact>&, vector<Sedan>&, bool&, int, string);
+		void modifyReservation(vector<Reservation>&, vector<Person>&, vector<Truck>, vector<Compact>, vector<Sedan>, bool&);
 		void printAllReservations(vector<Reservation>, vector<Truck>, vector<Compact>, vector<Sedan>);
 		void printOneReservation(string, string, vector<Reservation>, vector<Truck>, vector <Compact>, vector <Sedan>);
 	};
