@@ -168,6 +168,7 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 					cout << "(4) Sedan Back Seat Middle    1\n";
 					cout << "Seat: "; cin >> userInt;
 
+
 					//Auto Shotgun
 					if (userInt == 1) {
 						if (personData.at(personLocation).getCredit() >= 5) {
@@ -202,14 +203,14 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									//print the pin to the user
 									////////////////////////
 
-									tempCompleted.SetVehicleNum(i+3);
+									tempCompleted.SetVehicleNum(i + 3);
 									tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 									completedReservation.push_back(tempCompleted);
 
 									//subtracts 5 credits from the persons current credit ammount
 									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
 
-									system("pause"); 
+									system("pause");
 									return;
 
 								}
@@ -223,106 +224,138 @@ void Reservation::createReservation(vector<Reservation>& completedReservation, v
 									//print the pin to the user
 									////////////////////////
 
-									tempCompleted.SetVehicleNum(i+6);
+									tempCompleted.SetVehicleNum(i + 6);
 									tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
 									completedReservation.push_back(tempCompleted);
 
 									//subtracts 5 credits from the persons current credit ammount
 									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
 
-									system("pause"); 
+									system("pause");
 									return;
 								}
 							}
+						}
+						else {
+							cout << "\nNot enough credits, returning to main.\n";
+							system("pause");
+							return;
 						}
 					}
 
 					//Auto Compact Back Seat:
 					else if (userInt == 2) {
 						//loop through the three comapacts back seats if an option is avaiable ask the user to confirm then make pin and return to main
-						for (int i = 0; i < compacts.size(); i++)
-						{
-							if (compacts.at(i).seatCheckCompact(userInt) == true)
+						if (personData.at(personLocation).getCredit() >= 3) {
+							for (int i = 0; i < compacts.size(); i++)
 							{
-								cout << "\nReservation Made\n\n";
-								tempCompleted.SetCost(5);
 
-								pinMaker(pinNum);
-								tempCompleted.SetPin(pinNum.at(pinCount));
-								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
-								//print the pin to the user
-								////////////////////////
+								if (compacts.at(i).seatCheckCompact(userInt) == true)
+								{
 
-								tempCompleted.SetVehicleNum(4);
-								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
-								completedReservation.push_back(tempCompleted);
+									cout << "\nReservation Made\n\n";
+									tempCompleted.SetCost(5);
 
-								//subtracts 5 credits from the persons current credit ammount
-								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 5);
+									pinMaker(pinNum);
+									tempCompleted.SetPin(pinNum.at(pinCount));
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
+									//print the pin to the user
+									////////////////////////
 
-								system("pause"); 
-								return;
+									tempCompleted.SetVehicleNum(4);
+									tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+									completedReservation.push_back(tempCompleted);
+
+									//subtracts 5 credits from the persons current credit ammount
+									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 3);
+
+									system("pause");
+									return;
+								}
 							}
+
 						}
-						
+						else {
+							cout << "\nNot enough credits, returning to main.\n";
+							system("pause");
+							return;
+						}
+
 					}
 
 					//Auto Sedan Back Seat Outside:
 					else if (userInt == 3) {
-						for (int i = 0; i < compacts.size(); i++)
-						{
-							if (sedans.at(i).seatCheckSedan(userInt-1) == true)
+
+						if (personData.at(personLocation).getCredit() >= 2) {
+							for (int i = 0; i < compacts.size(); i++)
 							{
-								cout << "\nReservation Made\n\n";
-								tempCompleted.SetCost(2);
+								if (sedans.at(i).seatCheckSedan(userInt - 1) == true)
+								{
+									cout << "\nReservation Made\n\n";
+									tempCompleted.SetCost(2);
 
-								pinMaker(pinNum);
-								tempCompleted.SetPin(pinNum.at(pinCount));
-								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
-								//print the pin to the user
-								////////////////////////
+									pinMaker(pinNum);
+									tempCompleted.SetPin(pinNum.at(pinCount));
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
+									//print the pin to the user
+									////////////////////////
 
-								tempCompleted.SetVehicleNum(i + 6);
-								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
-								completedReservation.push_back(tempCompleted);
+									tempCompleted.SetVehicleNum(i + 6);
+									tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+									completedReservation.push_back(tempCompleted);
 
-								//subtracts 5 credits from the persons current credit ammount
-								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 2);
+									//subtracts 5 credits from the persons current credit ammount
+									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 2);
 
-								system("pause"); 
-								return;
+									system("pause");
+									return;
+								}
 							}
+							cout << "No seat was avaliable, reuning to main.\n";
+							system("pause");
+							return;
 						}
-						cout << "No seat was avaliable, reuning to main.\n";
-						system("pause");
-						return;
+						else {
+							cout << "\nNot enough credits, returning to main.\n";
+							system("pause");
+							return;
+						}
+
 					}
+
 
 					//Auto Sedan Back Seat Middle:
 					else if (userInt == 4) {
-						for (int i = 0; i < compacts.size(); i++)
-						{
-							if (sedans.at(i).seatCheckSedan(userInt-1) == true)
+						if (personData.at(personLocation).getCredit() >= 1) {
+							for (int i = 0; i < compacts.size(); i++)
 							{
-								cout << "\nReservation Made\n\n";
-								tempCompleted.SetCost(1);
+								if (sedans.at(i).seatCheckSedan(userInt - 1) == true)
+								{
+									cout << "\nReservation Made\n\n";
+									tempCompleted.SetCost(1);
 
-								pinMaker(pinNum);
-								tempCompleted.SetPin(pinNum.at(pinCount));
-								cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
-								//print the pin to the user
-								////////////////////////
+									pinMaker(pinNum);
+									tempCompleted.SetPin(pinNum.at(pinCount));
+									cout << "Remeber Your PIN  : " << /*insert PIN Here*/ pinNum.at(pinCount) << "\n";
+									//print the pin to the user
+									////////////////////////
 
-								tempCompleted.SetVehicleNum(i+6);
-								tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
-								completedReservation.push_back(tempCompleted);
+									tempCompleted.SetVehicleNum(i + 6);
+									tempCompleted.SetFirstName(personData.at(personLocation).Person::getFirstName());
+									completedReservation.push_back(tempCompleted);
 
-								//subtracts 5 credits from the persons current credit ammount
-								personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 1);
+									//subtracts 5 credits from the persons current credit ammount
+									personData.at(personLocation).setCreditData(personData.at(personLocation).getCredit() - 1);
 
-								system("pause");
-								return;
+									system("pause");
+									return;
+								}
 							}
+						}
+						else {
+							cout << "\nNot enough credits, returning to main.\n";
+							system("pause");
+							return;
 						}
 					}
 

@@ -163,20 +163,16 @@ int main() {
 
 
 //*****************************************************************************************************
-// Updated credit list function
+// Updated Roster credit list function
 //*****************************************************************************************************
 
 void updateRoster(vector<Person> personData) {
 	int counts = 0;
 	ofstream OutPutFile;
 	OutPutFile.open("UpdatedRoster.dat");
-
-	//put person class function here 
-
-	//populate person class from input file:
+	//populate the output file with the 
 	for (int i = 0; i < personData.size(); i ++) {
-		//Grabs the first 9 people from the txt file
-
+		//Grabs the first 9 people (Drivers) and adds them to the file
 		while (i < 9) {
 			OutPutFile << personData.at(i).getFirstName() << " " << personData.at(i).getLastName() << endl; // <- run 9 times for driver
 			i++;
