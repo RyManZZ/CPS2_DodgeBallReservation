@@ -5,8 +5,6 @@
 // File: vehicle.h
 // Description: Serves as Header File for the Vehicle class (vehicle.cpp):
 //////////////////////////////////////////////
-
-//Header Files:
 #pragma once
 
 #include "DogeBall.h"

@@ -25,7 +25,7 @@ namespace NS_Reservation { //creates a namespace for Reservation
 
 	private:
 		string firstName;
-		int vehicleNum;  //used to identify which vehicle the reservation is being made for.
+		int vehicleNum;  //used to identify which vehicle the reservation is being made for. see chart on line 58
 		int cost;
 		int pin;
 		
