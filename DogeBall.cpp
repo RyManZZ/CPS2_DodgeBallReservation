@@ -32,6 +32,7 @@ void createTruck(vector<Truck>&);
 void createSedan(vector<Sedan>&);
 void createCompact(vector<Compact>&);
 
+void displayReservations(vector<Truck>, vector<Compact>, vector<Sedan>);
 
 
 int main() {
@@ -109,8 +110,9 @@ int main() {
 		cout << "(1) Create A  Reservation\n";
 		cout << "(2) Modify A  Reservation\n";
 		cout << "(3) Delete A  Reservation\n";
-		cout << "(4) Print All Reservations\n";
-		cout << "(5) Print One Reservation\n";
+		cout << "(4) Display   Reservations\n";
+		cout << "(5) Print All Reservations\n";
+		cout << "(6) Print One Reservation\n";
 		cout << "(-1) Quit\n\n";
 		cout << "option: ";
 		cin >> userInput; 	//user input for menu
@@ -131,13 +133,17 @@ int main() {
 			reservationTemp.deleteReservation(completedReservation, personData, trucks, compacts, sedans, modify, credit, firstName);
 		}
 
-		//Option 4. This will Print all reservations:
 		else if (userInput == "4") {
+			displayReservations(trucks, compacts, sedans);
+		}
+
+		//Option 4. This will Print all reservations:
+		else if (userInput == "5") {
 			reservationTemp.printAllReservations(completedReservation, trucks, compacts, sedans);
 		}
 		
 		//Option 5. This will print a single car's reservation
-		else if (userInput == "5") {
+		else if (userInput == "6") {
 			cout << "Cose a vehicle to print the reservation list for\n"; 
 			cout << "Vehicle : "; cin >> vehicle;
 			cout << "Color   : "; cin >> color;
@@ -185,7 +191,33 @@ void updateRoster(vector<Person> personData) {
 }
 
 
+//*****************************************************************************************************
+// Display all Vehices:
+//*****************************************************************************************************
 
+void displayReservations(vector<Truck> trucks, vector<Compact> compacts, vector<Sedan>sedans) {
+
+	//Display for all of the current reservations for all:
+	cout << "\n\n Truck      Compact      Sedan\n";
+	cout << "-------    ---------    --------\n";
+
+	//First row of cars:
+	cout << "Purple        Red         Blue \n";
+	cout << "(-)" << "(" << trucks.at(0).Truck::displySeatTruck() << ")      " << "(-) " << "(" << compacts.at(0).Compact::displaySeatCompact(0) << ")     (-)   (" << sedans.at(0).Sedan::displaySeatSedan(0) << ")\n";
+	cout << "            (" << compacts.at(0).Compact::displaySeatCompact(1) << ") (" << compacts.at(0).Compact::displaySeatCompact(2) << ")     (" << sedans.at(0).Sedan::displaySeatSedan(1) << ")(" << sedans.at(0).Sedan::displaySeatSedan(2) << ")(" << sedans.at(0).Sedan::displaySeatSedan(3) << ")\n\n";
+
+	//second row of cars:
+	cout << "Green        Blue         Black\n";
+	cout << "(-)" << "(" << trucks.at(1).Truck::displySeatTruck() << ")      " << "(-) " << "(" << compacts.at(1).Compact::displaySeatCompact(0) << ")     (-)   (" << sedans.at(1).Sedan::displaySeatSedan(0) << ")\n";
+	cout << "            (" << compacts.at(1).Compact::displaySeatCompact(1) << ") (" << compacts.at(1).Compact::displaySeatCompact(2) << ")     (" << sedans.at(1).Sedan::displaySeatSedan(1) << ")(" << sedans.at(1).Sedan::displaySeatSedan(2) << ")(" << sedans.at(1).Sedan::displaySeatSedan(3) << ")\n\n";
+
+	//third row of cars:
+	cout << "Black       Yellow        Green\n";
+	cout << "(-)" << "(" << trucks.at(2).Truck::displySeatTruck() << ")      " << "(-) " << "(" << compacts.at(2).Compact::displaySeatCompact(0) << ")     (-)   (" << sedans.at(2).Sedan::displaySeatSedan(0) << ")\n";
+	cout << "            (" << compacts.at(2).Compact::displaySeatCompact(1) << ") (" << compacts.at(2).Compact::displaySeatCompact(2) << ")     (" << sedans.at(2).Sedan::displaySeatSedan(1) << ")(" << sedans.at(2).Sedan::displaySeatSedan(2) << ")(" << sedans.at(2).Sedan::displaySeatSedan(3) << ")\n\n\n";
+
+	system("pause");
+}
 
 //*****************************************************************************************************
 // Car Object Creations and Input / Output File definitions:
@@ -256,5 +288,3 @@ ifstream openInputFile() {
 
 	return inPutFile; //returns the file path to main.
 }
-
-
