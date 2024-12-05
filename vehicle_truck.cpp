@@ -22,25 +22,6 @@ Truck::Truck() {            //pos   val
 void Truck::setSeatTruck() {
 	seat_T.at(0) = '5';
 }
-//prints the Truck Image:
-void Truck::displayTruck() {
-
-	//    Truck
-	//    _   _
-	//  --|---|--
-	//  | X   - |
-	//  |       |
-	//  ---------	
-	//Print Driver Name
-
-	//Extra (add if time allows)
-	//Print Passanger 1
-	//Print Passanger 2
-	//Print Passanger 3
-
-	cout << "------";
-	cout << "|X   " << seat_T.at(0) << "|";
-}
 
 //Returns back the vector of Seat:
 char Truck::displySeatTruck() {

@@ -21,25 +21,6 @@ Compact::Compact() {							//pos val
 	seat_C.push_back('3'); //back seat right       2   3
 }
 
-//still needs to be completed
-//prints the Compact image
-void Compact::displayCompact() {
-	//  Compact
-	//    _  _
-	//  --|--|--
-	//  | X  - |
-	//  |      |
-	//  | -  - |
-	//  --------
-	//Print Driver Name
-
-	//Extra (add if time allows)
-	//Print Passanger 1
-	//Print Passanger 2
-	//Print Passanger 3
-}
-
-
 void Compact::setSeatCompact(int seat) {
 	if (seat == 0) {
 		seat_C.at(0) = '5';

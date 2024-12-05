@@ -23,7 +23,6 @@ namespace NS_Compact { //creates a namespace for Compact
 	public:
 		Compact();             //constructor.
 		void setSeatCompact(int); 
-		void displayCompact(); //prints the Compact image.
 		char displaySeatCompact(int); //may not be used.
 		bool seatCheckCompact(int); //checks to see if the seat is valid.
 	};

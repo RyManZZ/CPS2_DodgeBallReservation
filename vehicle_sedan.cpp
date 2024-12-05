@@ -39,24 +39,6 @@ void Sedan::setSeatSedan(int seat) {
 	}
 }
 
-//still needs to be completed
-//prints the Sedan image
-void Sedan::displaySedan() {
-	//    Sedan
-	//    _   _
-	//  --|---|--
-	//  | X   - |
-	//  |       |
-	//  | - - - |
-	//  ---------
-	//Print Driver Name
-
-	//Extra (add if time allows)
-	//Print Passanger 1
-	//Print Passanger 2
-	//Print Passanger 3
-}
-
 //reutens back the vector of seat
 char Sedan::displaySeatSedan(int i) {
 	return seat_S.at(i);

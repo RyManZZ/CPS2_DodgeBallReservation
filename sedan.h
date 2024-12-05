@@ -23,7 +23,6 @@ namespace NS_Sedan { //creates a namespace for Sedan
 	public:
 		Sedan();             //constructor.
 		void setSeatSedan(int);
-		void displaySedan(); //prints the Sedan image.
 		char displaySeatSedan(int); //may not be used.
 		bool seatCheckSedan(int); //checks to see if the seat is valid.
 	};
