@@ -25,7 +25,7 @@ namespace NS_Reservation { //creates a namespace for Reservation
 
 	private:
 		string firstName;
-		int vehicleNum;  //used to identify which vehicle the reservation is being made for. see chart on line 58
+		int vehicleNum;  //used to identify which vehicle the reservation isX being made for. see chart on line 58
 		int cost;
 		int pin;
 		
@@ -48,7 +48,7 @@ namespace NS_Reservation { //creates a namespace for Reservation
 
 		void createReservation(vector<Reservation>&, vector<Person>&, vector<Truck>&, vector<Compact>&, vector<Sedan>&, bool&, string);
 		void deleteReservation(vector<Reservation>&, vector<Person>&, vector<Truck>&, vector<Compact>&, vector<Sedan>&, bool&, int, string);
-		void modifyReservation(vector<Reservation>&, vector<Person>&, vector<Truck>, vector<Compact>, vector<Sedan>, bool&);
+		void modifyReservation(vector<Reservation>&, vector<Person>&, vector<Truck>&, vector<Compact>&, vector<Sedan>&, bool&);
 		void printAllReservations(vector<Reservation>, vector<Truck>, vector<Compact>, vector<Sedan>);
 		void printOneReservation(string, string, vector<Reservation>, vector<Truck>, vector <Compact>, vector <Sedan>);
 	};

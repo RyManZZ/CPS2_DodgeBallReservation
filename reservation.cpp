@@ -1400,7 +1400,7 @@ void Reservation::deleteReservation(vector<Reservation>& completedReservation, v
 //*****************************************************************************************************
 // Delete Reservation:
 //*****************************************************************************************************
-void Reservation::modifyReservation(vector<Reservation>& completedReservation, vector<Person>& personData, vector<Truck> trucks, vector<Compact> compacts, vector<Sedan> sedans, bool&) {
+void Reservation::modifyReservation(vector<Reservation>& completedReservation, vector<Person>& personData, vector<Truck>& trucks, vector<Compact>& compacts, vector<Sedan>& sedans, bool&) {
 	bool modify = true;
 	string name, userInput;
 	int pin;
@@ -1423,16 +1423,19 @@ void Reservation::modifyReservation(vector<Reservation>& completedReservation, v
 				completedReservation.at(i).deleteReservation(completedReservation, personData, trucks, compacts, sedans, modify, pin, name);
 				if (modify == true) { createReservation(completedReservation, personData, trucks, compacts, sedans, modify, name); }
 				else { return; }
+				return;
 			}
 			else {
-				cout << "Modified Cancled, returning to main";
-				system("pause");
+				cout << "Modified Cancled, returning to main\n";
 				system("pause");
 				return;
 			}
 
 		}
 	}
+	cout << "No reservation matching that pin, returning to menu\n";
+	system("pause");
+	return;
 }
 
 
